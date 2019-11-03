@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Missing Data - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Built_002din-Data-Types.html#Built_002din-Data-Types" title="Built-in Data Types">
+<link rel="prev" href="Numeric-Objects.html#Numeric-Objects" title="Numeric Objects">
+<link rel="next" href="String-Objects.html#String-Objects" title="String Objects">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Missing-Data"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="String-Objects.html#String-Objects">String Objects</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Numeric-Objects.html#Numeric-Objects">Numeric Objects</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Built_002din-Data-Types.html#Built_002din-Data-Types">Built-in Data Types</a>
+<hr>
+</div>
+
+<h4 class="subsection">3.1.2 Missing Data</h4>
+
+<p><a name="index-missing-data-157"></a>
+It is possible to represent missing data explicitly in Octave using
+<code>NA</code> (short for &ldquo;Not Available&rdquo;). Missing data can only be
+represented when data is represented as floating point numbers. In this
+case missing data is represented as a special case of the representation
+of <code>NaN</code>.
+
+   <p><a name="doc_002dNA"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>NA</b> (<var>x</var>)<var><a name="index-NA-158"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var>n, m</var>)<var><a name="index-NA-159"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NA-160"></a></var><br>
+&mdash; Built-in Function:  <b>NA</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NA-161"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the special constant used to designate missing values. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disna"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>isna</b> (<var>x</var>)<var><a name="index-isna-162"></a></var><br>
+<blockquote><p>Return 1 for elements of <var>x</var> that are NA (missing) values and zero
+otherwise.  For example,
+
+     <pre class="example">          isna ([13, Inf, NA, NaN])
+                [ 0, 0, 1, 0 ]
+</pre>
+        </blockquote></div>
+
+   </body></html>
+

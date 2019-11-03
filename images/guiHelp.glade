@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<!--*- mode: xml -*-->
+<glade-interface>
+  <widget class="GtkWindow" id="window2">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Octave Help</property>
+    <property name="icon">logo.png</property>
+    <signal name="delete_event" handler="close"/>
+    <child>
+      <widget class="GtkVBox" id="vbox8">
+        <property name="visible">True</property>
+        <child>
+          <widget class="GtkMenuBar" id="menubar1">
+            <property name="visible">True</property>
+            <property name="border_width">1</property>
+            <child>
+              <widget class="GtkMenuItem" id="menuitem10">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child>
+                  <widget class="GtkMenu" id="menu4">
+                    <child>
+                      <widget class="GtkImageMenuItem" id="salir1">
+                        <property name="label">gtk-quit</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="close"/>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkMenuItem" id="menuitem11">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Edit</property>
+                <property name="use_underline">True</property>
+                <signal name="activate" handler="on_menuitem11_popup_menu"/>
+                <child>
+                  <widget class="GtkMenu" id="menu5">
+                    <signal name="popup_menu" handler="on_menuitem11_popup_menu"/>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="cortar1">
+                        <property name="label">gtk-cut</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_cortar1_activate"/>
+                        <accelerator key="x" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="copiar1">
+                        <property name="label">gtk-copy</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_copiar1_activate"/>
+                        <accelerator key="c" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="pegar1">
+                        <property name="label">gtk-paste</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_pegar1_activate"/>
+                        <accelerator key="v" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkMenuItem" id="menuitem13">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use_underline">True</property>
+                <child>
+                  <widget class="GtkMenu" id="menu7">
+                    <child>
+                      <widget class="GtkImageMenuItem" id="About">
+                        <property name="label" translatable="yes">_About EIDMAT</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_acerca_de1_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image1">
+                            <property name="stock">gtk-about</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkHBox" id="hbox6">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkHPaned" id="hpaned2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="border_width">1</property>
+                <property name="position">350</property>
+                <signal name="event" handler="on_hpaned2_event"/>
+                <child>
+                  <widget class="GtkAlignment" id="alignment4">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkVBox" id="vbox10">
+                        <property name="visible">True</property>
+                        <child>
+                          <widget class="GtkAlignment" id="alignment5">
+                            <property name="visible">True</property>
+                            <child>
+                              <widget class="GtkToolbar" id="toolbar4">
+                                <property name="visible">True</property>
+                                <property name="border_width">2</property>
+                                <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                                <child>
+                                  <widget class="GtkToolItem" id="toolitem49">
+                                    <property name="visible">True</property>
+                                    <child>
+                                      <widget class="GtkLabel" id="label58">
+                                        <property name="visible">True</property>
+                                        <property name="xpad">6</property>
+                                        <property name="label" translatable="yes">Help Navigator</property>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="homogeneous">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkToolButton" id="toolbutton30">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="has_focus">True</property>
+                                    <property name="can_default">True</property>
+                                    <property name="has_default">True</property>
+                                    <property name="tooltip" translatable="yes">Hide</property>
+                                    <property name="stock_id">gtk-close</property>
+                                    <signal name="clicked" handler="on_toolbutton30_clicked"/>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkNotebook" id="notebook2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="scrollable">True</property>
+                            <property name="enable_popup">True</property>
+                            <signal name="switch_page" handler="on_notebook2_switch_page"/>
+                            <child>
+                              <widget class="GtkScrolledWindow" id="scrolledwindow6">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="shadow_type">GTK_SHADOW_IN</property>
+                                <child>
+                                  <widget class="GtkTreeView" id="treeview4">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <signal name="cursor_changed" handler="on_treeview4_cursor_changed"/>
+                                  </widget>
+                                </child>
+                              </widget>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label13">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Contents</property>
+                              </widget>
+                              <packing>
+                                <property name="type">tab</property>
+                                <property name="tab_fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkVBox" id="vbox13">
+                                <property name="visible">True</property>
+                                <child>
+                                  <widget class="GtkVBox" id="vbox14">
+                                    <property name="visible">True</property>
+                                    <child>
+                                      <widget class="GtkToolbar" id="toolbar5">
+                                        <property name="visible">True</property>
+                                        <property name="border_width">1</property>
+                                        <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                                        <property name="show_arrow">False</property>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem2">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label16">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">A</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem3">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label17">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="yalign">0.4699999988079071</property>
+                                                <property name="label" translatable="yes">B</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem4">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label18">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">C</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem5">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label19">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">D</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem6">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label20">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">E</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem7">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label21">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">F</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem8">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label22">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">G</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem9">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label23">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">H</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem10">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label24">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">I</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem11">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label25">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">J</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem12">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label26">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">K</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem13">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label27">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">L</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem14">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label28">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">M</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="padding">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkToolbar" id="toolbar6">
+                                        <property name="visible">True</property>
+                                        <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                                        <property name="show_arrow">False</property>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem27">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label41">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">N</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem28">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label42">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">O</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem29">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label43">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">P</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem30">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label44">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">Q</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem31">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label45">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">R</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem32">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label46">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">S</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem33">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label47">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">T</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem34">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label48">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">U</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem35">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label49">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">V</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem36">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label50">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">W</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem37">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label51">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">X</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem38">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label52">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">Y</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <widget class="GtkToolItem" id="toolitem39">
+                                            <property name="visible">True</property>
+                                            <child>
+                                              <widget class="GtkLabel" id="label53">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <property name="label" translatable="yes">Z</property>
+                                                <property name="use_markup">True</property>
+                                                <property name="use_underline">True</property>
+                                                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                                                <property name="wrap">True</property>
+                                                <property name="selectable">True</property>
+                                                <property name="mnemonic_widget">hpaned2</property>
+                                                <property name="ellipsize">PANGO_ELLIPSIZE_MIDDLE</property>
+                                                <property name="width_chars">1</property>
+                                                <signal name="button_press_event" handler="gestionar_labels"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="homogeneous">False</property>
+                                          </packing>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="padding">1</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkToolbar" id="toolbar7">
+                                    <property name="visible">True</property>
+                                    <property name="border_width">2</property>
+                                    <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                                    <child>
+                                      <widget class="GtkToolItem" id="toolitem40">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkLabel" id="label54">
+                                            <property name="visible">True</property>
+                                            <property name="xpad">3</property>
+                                            <property name="label" translatable="yes">Term:</property>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="homogeneous">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkToolItem" id="toolitem41">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkEntry" id="entry1">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="invisible_char">*</property>
+                                            <property name="width_chars">11</property>
+                                            <signal name="changed" handler="on_entry1_changed"/>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="homogeneous">False</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkScrolledWindow" id="scrolledwindow10">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="shadow_type">GTK_SHADOW_IN</property>
+                                    <child>
+                                      <widget class="GtkTreeView" id="treeview5">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <signal name="cursor_changed" handler="on_treeview5_cursor_changed"/>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label14">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Index</property>
+                              </widget>
+                              <packing>
+                                <property name="type">tab</property>
+                                <property name="position">1</property>
+                                <property name="tab_fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkVBox" id="vbox15">
+                                <property name="visible">True</property>
+                                <child>
+                                  <widget class="GtkToolbar" id="toolbar8">
+                                    <property name="visible">True</property>
+                                    <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                                    <child>
+                                      <widget class="GtkToolItem" id="toolitem44">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkLabel" id="label56">
+                                            <property name="visible">True</property>
+                                            <property name="xpad">7</property>
+                                            <property name="label" translatable="yes">Term:</property>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="homogeneous">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkToolItem" id="toolitem45">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkEntry" id="entry4">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="invisible_char">*</property>
+                                            <property name="width_chars">15</property>
+                                            <signal name="key_press_event" handler="on_entry2_key_press_event"/>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="homogeneous">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkToolButton" id="toolbutton33">
+                                        <property name="visible">True</property>
+                                        <property name="has_focus">True</property>
+                                        <property name="is_important">True</property>
+                                        <property name="label" translatable="yes">Start</property>
+                                        <property name="icon">start.png</property>
+                                        <signal name="clicked" handler="on_toolbutton33_clicked"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkToolButton" id="toolbutton3">
+                                        <property name="visible">True</property>
+                                        <property name="is_important">True</property>
+                                        <property name="label" translatable="yes">Stop</property>
+                                        <property name="icon">stop.png</property>
+                                        <signal name="clicked" handler="on_toolbutton3_clicked"/>
+                                      </widget>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <widget class="GtkScrolledWindow" id="scrolledwindow8">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="shadow_type">GTK_SHADOW_IN</property>
+                                    <child>
+                                      <widget class="GtkTreeView" id="treeview6">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <signal name="cursor_changed" handler="on_treeview6_cursor_changed"/>
+                                      </widget>
+                                    </child>
+                                  </widget>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label15">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Search Results</property>
+                              </widget>
+                              <packing>
+                                <property name="type">tab</property>
+                                <property name="position">2</property>
+                                <property name="tab_fill">False</property>
+                              </packing>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkVBox" id="vbox9">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkToolbar" id="toolbar3">
+                        <property name="visible">True</property>
+                        <property name="border_width">2</property>
+                        <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton31">
+                            <property name="tooltip_text">Help Navigator</property>
+                            <property name="visible_horizontal">False</property>
+                            <property name="visible_vertical">False</property>
+                            <property name="stock_id">gtk-edit</property>
+                            <signal name="clicked" handler="on_toolbutton31_clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton23">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Go back one page Alt+Left</property>
+                            <property name="icon">back.png</property>
+                            <signal name="clicked" handler="on_toolbutton23_clicked"/>
+                            <accelerator key="Left" modifiers="GDK_MOD1_MASK" signal="clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton24">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Go forward one page Alt+Right</property>
+                            <property name="icon">forward.png</property>
+                            <signal name="clicked" handler="on_toolbutton24_clicked"/>
+                            <accelerator key="Right" modifiers="GDK_MOD1_MASK" signal="clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton25">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Reload Ctrl+R</property>
+                            <property name="icon">reload.png</property>
+                            <signal name="clicked" handler="on_actualizar_button"/>
+                            <accelerator key="R" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkSeparatorToolItem" id="separatortoolitem2">
+                            <property name="visible">True</property>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="homogeneous">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton29">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Find Ctrl+F</property>
+                            <property name="icon">search.png</property>
+                            <signal name="clicked" handler="on_toolbutton29_clicked"/>
+                            <accelerator key="F" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkSeparatorToolItem" id="toolbutton2">
+                            <property name="visible">True</property>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="homogeneous">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkToolButton" id="toolbutton1">
+                            <property name="visible">True</property>
+                            <property name="tooltip" translatable="yes">Open in web browser Ctrl+O</property>
+                            <property name="icon">icon_web.png</property>
+                            <signal name="clicked" handler="on_toolbutton1_clicked"/>
+                            <accelerator key="O" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+                          </widget>
+                          <packing>
+                            <property name="expand">False</property>
+                          </packing>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkVBox" id="vbox11">
+                        <property name="visible">True</property>
+                        <child>
+                          <widget class="GtkVBox" id="vbox12">
+                            <property name="visible">True</property>
+                            <child>
+                              <widget class="GtkHBox" id="hbox1">
+                                <property name="visible">True</property>
+                                <property name="spacing">2</property>
+                                <child>
+                                  <widget class="GtkLabel" id="label1">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes"> Contents History:</property>
+                                  </widget>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                  </packing>
+                                </child>
+                              </widget>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="padding">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkHBox" id="hbox7">
+                                <property name="visible">True</property>
+                                <child>
+                                  <widget class="GtkNotebook" id="notebook3">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <child>
+                                      <widget class="GtkHBox" id="hbox10">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                      </widget>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkLabel" id="label65">
+                                        <property name="visible">True</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="type">tab</property>
+                                        <property name="tab_fill">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkHBox" id="hbox9">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <widget class="GtkScrolledWindow" id="scrolledwindow9">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">True</property>
+                                            <property name="shadow_type">GTK_SHADOW_IN</property>
+                                            <child>
+                                              <widget class="GtkTextView" id="textview1">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">True</property>
+                                                <accelerator key="C" modifiers="GDK_CONTROL_MASK" signal="copy_clipboard"/>
+                                              </widget>
+                                            </child>
+                                          </widget>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkLabel" id="label66">
+                                        <property name="visible">True</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="type">tab</property>
+                                        <property name="position">1</property>
+                                        <property name="tab_fill">False</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkHBox" id="hbox11">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                      </widget>
+                                      <packing>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <widget class="GtkLabel" id="label67">
+                                        <property name="visible">True</property>
+                                      </widget>
+                                      <packing>
+                                        <property name="type">tab</property>
+                                        <property name="position">2</property>
+                                        <property name="tab_fill">False</property>
+                                      </packing>
+                                    </child>
+                                  </widget>
+                                </child>
+                              </widget>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">False</property>
+                  </packing>
+                </child>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkDialog" id="dialog2">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Search</property>
+    <property name="icon">logo.png</property>
+    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <signal name="destroy" handler="on_dialog2_destroy"/>
+    <child internal-child="vbox">
+      <widget class="GtkVBox" id="dialog-vbox2">
+        <property name="visible">True</property>
+        <child>
+          <widget class="GtkVBox" id="vbox16">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkLabel" id="buscarPalabra">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Word to Search</property>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkEntry" id="entry3">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="invisible_char">*</property>
+                <signal name="key_press_event" handler="event_buscar_palabra_enter"/>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <widget class="GtkHButtonBox" id="dialog-action_area2">
+            <property name="visible">True</property>
+            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <child>
+              <widget class="GtkButton" id="cancelbutton1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="response_id">-6</property>
+                <signal name="clicked" handler="on_cancelbutton1_clicked"/>
+                <child>
+                  <widget class="GtkHBox" id="hbox2">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="image1">
+                        <property name="visible">True</property>
+                        <property name="pixbuf">cancel.png</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label2">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Cancel</property>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkButton" id="okbutton1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="response_id">-5</property>
+                <signal name="clicked" handler="event_buscar_palabra_boton"/>
+                <child>
+                  <widget class="GtkHBox" id="hbox3">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="image2">
+                        <property name="visible">True</property>
+                        <property name="pixbuf">acept.png</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label3">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Ok</property>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">GTK_PACK_END</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</glade-interface>

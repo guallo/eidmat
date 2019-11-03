@@ -1,0 +1,189 @@
+<html lang="en">
+<head>
+<title>Predicates for Numeric Objects - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Numeric-Data-Types.html#Numeric-Data-Types" title="Numeric Data Types">
+<link rel="prev" href="Logical-Values.html#Logical-Values" title="Logical Values">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Predicates-for-Numeric-Objects"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Logical-Values.html#Logical-Values">Logical Values</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Numeric-Data-Types.html#Numeric-Data-Types">Numeric Data Types</a>
+<hr>
+</div>
+
+<h3 class="section">4.6 Predicates for Numeric Objects</h3>
+
+<p>Since the type of a variable may change during the execution of a
+program, it can be necessary to type checking at run-time. Doing this
+also allows you to change the behaviour of a function depending on the
+type of the input. As an example, this naive implementation of <code>abs</code>
+returns the absolute value of the input if it is a real number, and the
+length of the input if it is a complex number.
+
+<pre class="example">     function a = abs (x)
+       if (isreal (x))
+         a = sign (x) .* x;
+       elseif (iscomplex (x))
+         a = sqrt (real(x).^2 + imag(x).^2);
+       endif
+     endfunction
+</pre>
+   <p>The following functions are available for determining the type of a
+variable.
+
+   <p><a name="doc_002disnumeric"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>isnumeric</b> (<var>x</var>)<var><a name="index-isnumeric-234"></a></var><br>
+<blockquote><p>Return nonzero if <var>x</var> is a numeric object. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disreal"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>isreal</b> (<var>x</var>)<var><a name="index-isreal-235"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a real-valued numeric object. 
+</p></blockquote></div>
+
+   <p><a name="doc_002discomplex"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>iscomplex</b> (<var>x</var>)<var><a name="index-iscomplex-236"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a complex-valued numeric object. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dismatrix"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>ismatrix</b> (<var>a</var>)<var><a name="index-ismatrix-237"></a></var><br>
+<blockquote><p>Return 1 if <var>a</var> is a matrix.  Otherwise, return 0. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disvector"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>isvector</b> (<var>a</var>)<var><a name="index-isvector-238"></a></var><br>
+<blockquote><p>Return 1 if <var>a</var> is a vector.  Otherwise, return 0.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> size, rows, columns, length, isscalar, ismatrix. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disscalar"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>isscalar</b> (<var>a</var>)<var><a name="index-isscalar-239"></a></var><br>
+<blockquote><p>Return 1 if <var>a</var> is a scalar.  Otherwise, return 0.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> size, rows, columns, length, isscalar, ismatrix. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dissquare"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>issquare</b> (<var>x</var>)<var><a name="index-issquare-240"></a></var><br>
+<blockquote><p>If <var>x</var> is a square matrix, then return the dimension of <var>x</var>. 
+Otherwise, return 0.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> size, rows, columns, length, ismatrix, isscalar, isvector. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dissymmetric"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>issymmetric</b> (<var>x, tol</var>)<var><a name="index-issymmetric-241"></a></var><br>
+<blockquote><p>If <var>x</var> is symmetric within the tolerance specified by <var>tol</var>,
+then return the dimension of <var>x</var>.  Otherwise, return 0.  If
+<var>tol</var> is omitted, use a tolerance equal to the machine precision. 
+Matrix <var>x</var> is considered symmetric if
+<code>norm (</code><var>x</var><code> - </code><var>x</var><code>.', inf) / norm (</code><var>x</var><code>, inf) &lt; </code><var>tol</var>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> size, rows, columns, length, ishermitian, ismatrix, isscalar,
+issquare, isvector. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disdefinite"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>isdefinite</b> (<var>x, tol</var>)<var><a name="index-isdefinite-242"></a></var><br>
+<blockquote><p>Return 1 if <var>x</var> is symmetric positive definite within the
+tolerance specified by <var>tol</var> or 0 if <var>x</var> is symmetric
+positive semidefinite.  Otherwise, return -1.  If <var>tol</var>
+is omitted, use a tolerance equal to 100 times the machine precision.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> issymmetric. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dislogical"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>islogical</b> (<var>x</var>)<var><a name="index-islogical-243"></a></var><br>
+<blockquote><p>Return true if <var>x</var> is a logical object. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disprime"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>isprime</b> (<var>n</var>)<var><a name="index-isprime-244"></a></var><br>
+<blockquote>
+        <p>Return true if <var>n</var> is a prime number, false otherwise.
+
+        <p>Something like the following is much faster if you need to test a lot
+of small numbers:
+
+     <pre class="example">          <var>t</var> = ismember (<var>n</var>, primes (max (<var>n</var> (:))));
+</pre>
+        <p>If max(n) is very large, then you should be using special purpose
+factorization code.
+
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> primes, factor, gcd, lcm. 
+</p></blockquote></div>
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005, -->
+<!-- 2006, 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

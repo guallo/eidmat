@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>Debugging - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="prev" href="Errors-and-Warnings.html#Errors-and-Warnings" title="Errors and Warnings">
+<link rel="next" href="Input-and-Output.html#Input-and-Output" title="Input and Output">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Debugging"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Input-and-Output.html#Input-and-Output">Input and Output</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Errors-and-Warnings.html#Errors-and-Warnings">Errors and Warnings</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="octave.html">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">13 Debugging</h2>
+
+<p>Octave includes a built-in debugger to aid in the development of
+scripts. This can be used to interrupt the execution of an Octave script
+at a certain point, or when certain conditions are met. Once execution
+has stopped, and debug mode is entered, the symbol table at the point
+where execution has stopped can be examined and modified to check for
+errors.
+
+   <p>The normal commandline editing and history functions are available in
+debug mode. However, one limitation on the debug mode is that
+commands entered at the debug prompt are evaluated as strings, rather
+than being handled by the Octave parser. This means that all commands in
+debug mode must be contained on a single line. That is, it is alright to
+write
+
+<pre class="example">     debug&gt; for i = 1:n, foo(i); endfor
+</pre>
+   <p class="noindent">in debug mode. However, writing the above in three lines will not be
+correctly evaluated. To leave the debug mode, you should simply type
+either <code>quit</code>, <code>exit</code>, <code>return</code> or <code>dbcont</code>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Entering-Debug-Mode.html#Entering-Debug-Mode">Entering Debug Mode</a>
+<li><a accesskey="2" href="Breakpoints.html#Breakpoints">Breakpoints</a>
+<li><a accesskey="3" href="Debug-Mode.html#Debug-Mode">Debug Mode</a>
+</ul>
+
+   </body></html>
+

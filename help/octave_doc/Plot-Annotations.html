@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+<title>Plot Annotations - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Plotting-Basics.html#Plotting-Basics" title="Plotting Basics">
+<link rel="prev" href="Three_002dDimensional-Plotting.html#Three_002dDimensional-Plotting" title="Three-Dimensional Plotting">
+<link rel="next" href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page" title="Multiple Plots on One Page">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Plot-Annotations"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Multiple-Plots-on-One-Page.html#Multiple-Plots-on-One-Page">Multiple Plots on One Page</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Three_002dDimensional-Plotting.html#Three_002dDimensional-Plotting">Three-Dimensional Plotting</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Plotting-Basics.html#Plotting-Basics">Plotting Basics</a>
+<hr>
+</div>
+
+<h4 class="subsection">15.1.3 Plot Annotations</h4>
+
+<p>You can add titles, axis labels, legends, and arbitrary text to an
+existing plot.  For example,
+
+<pre class="example">     x = -10:0.1:10;
+     plot (x, sin (x));
+     title ("sin(x) for x = -10:0.1:10");
+     xlabel ("x");
+     ylabel ("sin (x)");
+     text (pi, 0.7, "arbitrary text");
+     legend ("sin (x)");
+</pre>
+   <p>The functions <code>grid</code> and <code>box</code> may also be used to add grid
+and border lines to the plot.  By default, the grid is off and the
+border lines are on.
+
+   <p><a name="doc_002dtitle"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>title</b> (<var>title</var>)<var><a name="index-title-830"></a></var><br>
+<blockquote><p>Create a title object and return a handle to it. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dlegend"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>legend</b> (<var>st1, st2, <small class="dots">...</small></var>)<var><a name="index-legend-831"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>st1, st2, <small class="dots">...</small>, "location", pos</var>)<var><a name="index-legend-832"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>matstr</var>)<var><a name="index-legend-833"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>matstr, "location", pos</var>)<var><a name="index-legend-834"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>cell</var>)<var><a name="index-legend-835"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>cell, "location", pos</var>)<var><a name="index-legend-836"></a></var><br>
+&mdash; Function File:  <b>legend</b> (<var>'func'</var>)<var><a name="index-legend-837"></a></var><br>
+<blockquote>
+        <p>Display a legend for the current axes using the specified strings
+as labels.  Legend entries may be specified as individual character
+string arguments, a character array, or a cell array of character
+strings.  Legend works on line graphs, bar graphs, etc.  A plot must
+exist before legend is called.
+
+        <p>The optional parameter <var>pos</var> specifies the location of the legend
+as follows:
+
+        <p><table summary=""><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">north </td><td valign="top" width="80%">
+  center top
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">south </td><td valign="top" width="80%">
+  center bottom
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">east </td><td valign="top" width="80%">
+  right center
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">west </td><td valign="top" width="80%">
+  left center
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">northeast </td><td valign="top" width="80%">
+  right top (default)
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">northwest </td><td valign="top" width="80%">
+  left top
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">southeast </td><td valign="top" width="80%">
+  right bottom
+<br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">southwest </td><td valign="top" width="80%">
+  left bottom
+<br></td></tr><tr align="left"><td valign="top" width="6%"><br></td></tr><tr align="left"><td valign="top" width="6%"></td><td valign="top" width="14%">outside </td><td valign="top" width="80%">
+  can be appended to any location string
+        <br></td></tr></table>
+
+        <p>Some specific functions are directly available using <var>func</var>:
+
+          <dl>
+<dt>"show"<dd>  Show legends from the plot
+<br><dt>"hide"<dt>"off"<dd>  Hide legends from the plot
+<br><dt>"boxon"<dd>  Draw a box around legends
+<br><dt>"boxoff"<dd>  Withdraw the box around legends
+<br><dt>"left"<dd>  Text is to the left of the keys
+<br><dt>"right"<dd>  Text is to the right of the keys
+</dl>
+        </p></blockquote></div>
+
+   <p><a name="doc_002dtext"></a>
+
+<div class="defun">
+&mdash; Function File: <var>h</var> = <b>text</b> (<var>x, y, label</var>)<var><a name="index-text-838"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>text</b> (<var>x, y, z, label</var>)<var><a name="index-text-839"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>text</b> (<var>x, y, label, p1, v1, <small class="dots">...</small></var>)<var><a name="index-text-840"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>text</b> (<var>x, y, z, label, p1, v1, <small class="dots">...</small></var>)<var><a name="index-text-841"></a></var><br>
+<blockquote><p>Create a text object with text <var>label</var> at position <var>x</var>,
+<var>y</var>, <var>z</var> on the current axes.  Property-value pairs following
+<var>label</var> may be used to specify the appearance of the text. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dxlabel"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>xlabel</b> (<var>string</var>)<var><a name="index-xlabel-842"></a></var><br>
+&mdash; Function File:  <b>ylabel</b> (<var>string</var>)<var><a name="index-ylabel-843"></a></var><br>
+&mdash; Function File:  <b>zlabel</b> (<var>string</var>)<var><a name="index-zlabel-844"></a></var><br>
+&mdash; Function File:  <b>xlabel</b> (<var>h, string</var>)<var><a name="index-xlabel-845"></a></var><br>
+<blockquote><p>Specify x, y, and z axis labels for the current figure. If <var>h</var> is
+specified then label the axis defined by <var>h</var>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> plot, semilogx, semilogy, loglog, polar, mesh, contour,
+bar, stairs,  ylabel, title. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dbox"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>box</b> (<var>arg</var>)<var><a name="index-box-846"></a></var><br>
+&mdash; Function File:  <b>box</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-box-847"></a></var><br>
+<blockquote><p>Control the display of a border around the plot. 
+The argument may be either <code>"on"</code> or <code>"off"</code>.  If it is
+omitted, the current box state is toggled.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> grid. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dgrid"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>grid</b> (<var>arg</var>)<var><a name="index-grid-848"></a></var><br>
+&mdash; Function File:  <b>grid</b> (<var>"minor", arg2</var>)<var><a name="index-grid-849"></a></var><br>
+<blockquote><p>Force the display of a grid on the plot. 
+The argument may be either <code>"on"</code> or <code>"off"</code>.  If it is
+omitted, the current grid state is toggled.
+
+        <p>If <var>arg</var> is <code>"minor"</code> then the minor grid is toggled.  When
+using a minor grid a second argument <var>arg2</var> is allowed, which can
+be either <code>"on"</code> or <code>"off"</code> to explicitly set the state of
+the minor grid.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> plot. 
+</p></blockquote></div>
+
+   </body></html>
+

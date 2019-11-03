@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+<title>Nonlinear Equations - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="prev" href="Linear-Algebra.html#Linear-Algebra" title="Linear Algebra">
+<link rel="next" href="Sparse-Matrices.html#Sparse-Matrices" title="Sparse Matrices">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Nonlinear-Equations"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Sparse-Matrices.html#Sparse-Matrices">Sparse Matrices</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Linear-Algebra.html#Linear-Algebra">Linear Algebra</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="octave.html">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">19 Nonlinear Equations</h2>
+
+<p><a name="index-nonlinear-equations-1211"></a><a name="index-equations_002c-nonlinear-1212"></a>
+Octave can solve sets of nonlinear equations of the form
+
+<pre class="example">     F (x) = 0
+</pre>
+   <p class="noindent">using the function <code>fsolve</code>, which is based on the <span class="sc">Minpack</span>
+subroutine <code>hybrd</code>.  This is an iterative technique so a starting
+point will have to be provided.  This also has the consequence that
+convergence is not guarantied even if a solution exists.
+
+   <p><a name="doc_002dfsolve"></a>
+
+<div class="defun">
+&mdash; Loadable Function: [<var>x</var>, <var>fval</var>, <var>info</var>] = <b>fsolve</b> (<var>fcn, x0</var>)<var><a name="index-fsolve-1213"></a></var><br>
+<blockquote><p>Given <var>fcn</var>, the name of a function of the form <code>f (</code><var>x</var><code>)</code>
+and an initial starting point <var>x0</var>, <code>fsolve</code> solves the set of
+equations such that <code>f(</code><var>x</var><code>) == 0</code>.
+
+        <p>If <var>fcn</var> is a two-element string array, or a two element cell array
+containing either the function name or inline or function handle. The
+first element names the function f described above, and the second
+element names a function of the form <code>j (</code><var>x</var><code>)</code> to compute the
+Jacobian matrix with elements
+
+     <pre class="example">                     df_i
+          jac(i,j) = ----
+                     dx_j
+</pre>
+        <p>You can use the function <code>fsolve_options</code> to set optional
+parameters for <code>fsolve</code>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dfsolve_005foptions"></a>
+
+<div class="defun">
+&mdash; Loadable Function:  <b>fsolve_options</b> (<var>opt, val</var>)<var><a name="index-fsolve_005foptions-1214"></a></var><br>
+<blockquote><p>When called with two arguments, this function allows you set options
+parameters for the function <code>fsolve</code>.  Given one argument,
+<code>fsolve_options</code> returns the value of the corresponding option.  If
+no arguments are supplied, the names of all the available options and
+their current values are displayed.
+
+        <p>Options include
+
+          <dl>
+<dt><code>"tolerance"</code><dd>Nonnegative relative tolerance. 
+</dl>
+        </p></blockquote></div>
+
+   <p>Here is a complete example.  To solve the set of equations
+
+<pre class="example">     -2x^2 + 3xy   + 4 sin(y) = 6
+      3x^2 - 2xy^2 + 3 cos(x) = -4
+</pre>
+   <p class="noindent">you first need to write a function to compute the value of the given
+function.  For example:
+
+<pre class="example">     function y = f (x)
+       y(1) = -2*x(1)^2 + 3*x(1)*x(2)   + 4*sin(x(2)) - 6;
+       y(2) =  3*x(1)^2 - 2*x(1)*x(2)^2 + 3*cos(x(1)) + 4;
+     endfunction
+</pre>
+   <p>Then, call <code>fsolve</code> with a specified initial condition to find the
+roots of the system of equations.  For example, given the function
+<code>f</code> defined above,
+
+<pre class="example">     [x, info] = fsolve (@f, [1; 2])
+</pre>
+   <p class="noindent">results in the solution
+
+<pre class="example">     x =
+     
+       0.57983
+       2.54621
+     
+     info = 1
+</pre>
+   <p class="noindent">A value of <code>info = 1</code> indicates that the solution has converged.
+
+   <p>The function <code>perror</code> may be used to print English messages
+corresponding to the numeric error codes.  For example,
+
+<pre class="example">     perror ("fsolve", 1)
+          -| solution converged to requested tolerance
+</pre>
+   <p>When no Jacobian is supplied (as in the example above) it is approximated
+numerically.  This requires more function evaluations, and hence is
+less efficient.  In the example above we could compute the Jacobian
+analytically as
+
+<pre class="example">     function J = jacobian(x)
+       J(1,1) =  3*x(2) - 4*x(1);
+       J(1,2) =  4*cos(x(2)) + 3*x(1);
+       J(2,1) = -2*x(2)^2 - 3*sin(x(1)) + 6*x(1);
+       J(2,2) = -4*x(1)*x(2);
+     endfunction
+</pre>
+   <p class="noindent">Using this Jacobian is done with the following code
+
+<pre class="example">     [x, info] = fsolve ({@f, @jacobian}, [1; 2]);
+</pre>
+   <p class="noindent">which gives the same solution as before.
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 2004, 2005, 2006, 2007 David Bateman -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

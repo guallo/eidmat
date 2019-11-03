@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+<title>Function Files - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Functions-and-Scripts.html#Functions-and-Scripts" title="Functions and Scripts">
+<link rel="prev" href="Default-Arguments.html#Default-Arguments" title="Default Arguments">
+<link rel="next" href="Script-Files.html#Script-Files" title="Script Files">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Function-Files"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Script-Files.html#Script-Files">Script Files</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Default-Arguments.html#Default-Arguments">Default Arguments</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Functions-and-Scripts.html#Functions-and-Scripts">Functions and Scripts</a>
+<hr>
+</div>
+
+<h3 class="section">11.7 Function Files</h3>
+
+<p><a name="index-function-file-582"></a>
+Except for simple one-shot programs, it is not practical to have to
+define all the functions you need each time you need them.  Instead, you
+will normally want to save them in a file so that you can easily edit
+them, and save them for use at a later time.
+
+   <p>Octave does not require you to load function definitions from files
+before using them.  You simply need to put the function definitions in a
+place where Octave can find them.
+
+   <p>When Octave encounters an identifier that is undefined, it first looks
+for variables or functions that are already compiled and currently
+listed in its symbol table.  If it fails to find a definition there, it
+searches a list of directories (the <dfn>path</dfn>) for files ending in
+<samp><span class="file">.m</span></samp> that have the same base name as the undefined
+identifier.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  Once Octave finds a file with a name that matches,
+the contents of the file are read.  If it defines a <em>single</em>
+function, it is compiled and executed.  See <a href="Script-Files.html#Script-Files">Script Files</a>, for more
+information about how you can define more than one function in a single
+file.
+
+   <p>When Octave defines a function from a function file, it saves the full
+name of the file it read and the time stamp on the file.  If the time
+stamp on the file changes, Octave may reload the file.  When Octave is
+running interactively, time stamp checking normally happens at most once
+each time Octave prints the prompt.  Searching for new function
+definitions also occurs if the current working directory changes.
+
+   <p>Checking the time stamp allows you to edit the definition of a function
+while Octave is running, and automatically use the new function
+definition without having to restart your Octave session.
+
+   <p>To avoid degrading performance unnecessarily by checking the time stamps
+on functions that are not likely to change, Octave assumes that function
+files in the directory tree
+<samp><var>octave-home</var><span class="file">/share/octave/</span><var>version</var><span class="file">/m</span></samp>
+will not change, so it doesn't have to check their time stamps every time the
+functions defined in those files are used.  This is normally a very good
+assumption and provides a significant improvement in performance for the
+function files that are distributed with Octave.
+
+   <p>If you know that your own function files will not change while you are
+running Octave, you can improve performance by calling
+<code>ignore_function_time_stamp ("all")</code>, so that Octave will
+ignore the time stamps for all function files.  Passing
+<code>"system"</code> to this function resets the default behavior.
+
+<!-- FIXME - note about time stamps on files in NFS environments? -->
+   <p><a name="doc_002dmfilename"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>mfilename</b> ()<var><a name="index-mfilename-583"></a></var><br>
+&mdash; Built-in Function:  <b>mfilename</b> (<code>"fullpath"</code>)<var><a name="index-mfilename-584"></a></var><br>
+&mdash; Built-in Function:  <b>mfilename</b> (<code>"fullpathext"</code>)<var><a name="index-mfilename-585"></a></var><br>
+<blockquote><p>Return the name of the currently executing file.  At the top-level,
+return the empty string.  Given the argument <code>"fullpath"</code>,
+include the directory part of the file name, but not the extension. 
+Given the argument <code>"fullpathext"</code>, include the directory part
+of the file name and the extension. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dignore_005ffunction_005ftime_005fstamp"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>ignore_function_time_stamp</b> ()<var><a name="index-ignore_005ffunction_005ftime_005fstamp-586"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>ignore_function_time_stamp</b> (<var>new_val</var>)<var><a name="index-ignore_005ffunction_005ftime_005fstamp-587"></a></var><br>
+<blockquote><p>Query or set the internal variable that controls whether Octave checks
+the time stamp on files each time it looks up functions defined in
+function files.  If the internal variable is set to <code>"system"</code>,
+Octave will not automatically recompile function files in subdirectories of
+<samp><var>octave-home</var><span class="file">/lib/</span><var>version</var></samp> if they have changed since
+they were last compiled, but will recompile other function files in the
+search path if they change.  If set to <code>"all"</code>, Octave will not
+recompile any function files unless their definitions are removed with
+<code>clear</code>.  If set to "none", Octave will always check time stamps
+on files to determine whether functions defined in function files
+need to be recompiled. 
+</p></blockquote></div>
+
+<ul class="menu">
+<li><a accesskey="1" href="Manipulating-the-load-path.html#Manipulating-the-load-path">Manipulating the load path</a>
+<li><a accesskey="2" href="Subfunctions.html#Subfunctions">Subfunctions</a>
+<li><a accesskey="3" href="Overloading-and-Autoloading.html#Overloading-and-Autoloading">Overloading and Autoloading</a>
+<li><a accesskey="4" href="Function-Locking.html#Function-Locking">Function Locking</a>
+</ul>
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> The &lsquo;<samp><span class="samp">.m</span></samp>&rsquo; suffix was chosen for compatibility
+with <span class="sc">Matlab</span>.</p>
+
+   <hr></div>
+
+   </body></html>
+

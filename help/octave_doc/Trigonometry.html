@@ -1,0 +1,365 @@
+<html lang="en">
+<head>
+<title>Trigonometry - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Arithmetic.html#Arithmetic" title="Arithmetic">
+<link rel="prev" href="Complex-Arithmetic.html#Complex-Arithmetic" title="Complex Arithmetic">
+<link rel="next" href="Sums-and-Products.html#Sums-and-Products" title="Sums and Products">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Trigonometry"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Sums-and-Products.html#Sums-and-Products">Sums and Products</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Complex-Arithmetic.html#Complex-Arithmetic">Complex Arithmetic</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic</a>
+<hr>
+</div>
+
+<h3 class="section">17.3 Trigonometry</h3>
+
+<p>Octave provides the following trigonometric functions.  Angles are
+specified in radians.  To convert from degrees to radians multiply by
+<code>pi/180</code>
+ (e.g. <code>sin (30 * pi/180)</code> returns the sine of 30 degrees).
+
+   <p><a name="doc_002dsin"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>sin</b> (<var>x</var>)<var><a name="index-sin-1054"></a></var><br>
+<blockquote><p>Compute the sine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcos"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>cos</b> (<var>x</var>)<var><a name="index-cos-1055"></a></var><br>
+<blockquote><p>Compute the cosine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dtan"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>tan</b> (<var>z</var>)<var><a name="index-tan-1056"></a></var><br>
+<blockquote><p>Compute tangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsec"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>sec</b> (<var>x</var>)<var><a name="index-sec-1057"></a></var><br>
+<blockquote><p>Compute the secant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcsc"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>csc</b> (<var>x</var>)<var><a name="index-csc-1058"></a></var><br>
+<blockquote><p>Compute the cosecant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcot"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>cot</b> (<var>x</var>)<var><a name="index-cot-1059"></a></var><br>
+<blockquote><p>Compute the cotangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasin"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>asin</b> (<var>x</var>)<var><a name="index-asin-1060"></a></var><br>
+<blockquote><p>Compute the inverse sine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacos"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acos</b> (<var>x</var>)<var><a name="index-acos-1061"></a></var><br>
+<blockquote><p>Compute the inverse cosine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002datan"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>atan</b> (<var>x</var>)<var><a name="index-atan-1062"></a></var><br>
+<blockquote><p>Compute the inverse tangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasec"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>asec</b> (<var>x</var>)<var><a name="index-asec-1063"></a></var><br>
+<blockquote><p>Compute the inverse secant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacsc"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acsc</b> (<var>x</var>)<var><a name="index-acsc-1064"></a></var><br>
+<blockquote><p>Compute the inverse cosecant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacot"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acot</b> (<var>x</var>)<var><a name="index-acot-1065"></a></var><br>
+<blockquote><p>Compute the inverse cotangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsinh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>sinh</b> (<var>x</var>)<var><a name="index-sinh-1066"></a></var><br>
+<blockquote><p>Compute the hyperbolic sine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcosh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>cosh</b> (<var>x</var>)<var><a name="index-cosh-1067"></a></var><br>
+<blockquote><p>Compute the hyperbolic cosine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dtanh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>tanh</b> (<var>x</var>)<var><a name="index-tanh-1068"></a></var><br>
+<blockquote><p>Compute hyperbolic tangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsech"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>sech</b> (<var>x</var>)<var><a name="index-sech-1069"></a></var><br>
+<blockquote><p>Compute the hyperbolic secant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcsch"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>csch</b> (<var>x</var>)<var><a name="index-csch-1070"></a></var><br>
+<blockquote><p>Compute the hyperbolic cosecant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcoth"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>coth</b> (<var>x</var>)<var><a name="index-coth-1071"></a></var><br>
+<blockquote><p>Compute the hyperbolic cotangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasinh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>asinh</b> (<var>x</var>)<var><a name="index-asinh-1072"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic sine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacosh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acosh</b> (<var>x</var>)<var><a name="index-acosh-1073"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic cosine of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002datanh"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>atanh</b> (<var>x</var>)<var><a name="index-atanh-1074"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic tangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasech"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>asech</b> (<var>x</var>)<var><a name="index-asech-1075"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic secant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacsch"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acsch</b> (<var>x</var>)<var><a name="index-acsch-1076"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic cosecant of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacoth"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>acoth</b> (<var>x</var>)<var><a name="index-acoth-1077"></a></var><br>
+<blockquote><p>Compute the inverse hyperbolic cotangent of each element of <var>x</var>. 
+</p></blockquote></div>
+
+   <p>Each of these functions expects a single argument.  For matrix arguments,
+they work on an element by element basis.  For example,
+
+<pre class="example">     sin ([1, 2; 3, 4])
+            0.84147   0.90930
+              0.14112  -0.75680
+</pre>
+   <p><a name="doc_002datan2"></a>
+
+<div class="defun">
+&mdash; Mapping Function:  <b>atan2</b> (<var>y, x</var>)<var><a name="index-atan2-1078"></a></var><br>
+<blockquote><p>Compute atan (<var>y</var> / <var>x</var>) for corresponding elements of <var>y</var>
+and <var>x</var>.  The result is in range -pi to pi. 
+</p></blockquote></div>
+
+   <p>In addition to the trigonometric functions that work with radians,
+Octave also provides the following functions which work with degrees.
+
+   <p><a name="doc_002dsind"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>sind</b> (<var>x</var>)<var><a name="index-sind-1079"></a></var><br>
+<blockquote><p>Compute the sine of each element of <var>x</var>.  Returns zero in elements
+for which <var>x</var><code>/180</code> is an integer.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> sin, cosd, tand, acosd, asind, atand. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcosd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>cosd</b> (<var>x</var>)<var><a name="index-cosd-1080"></a></var><br>
+<blockquote><p>Compute the cosine of an angle in degrees.  Returns zero in elements
+for which <code>(</code><var>x</var><code>-90)/180</code> is an integer.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> cos, sind, tand, acosd, asind, atand. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dtand"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>tand</b> (<var>x</var>)<var><a name="index-tand-1081"></a></var><br>
+<blockquote><p>Compute the tangent of an angle in degrees.  Returns zero for elements
+of for which <var>x</var><code>/180</code> is an integer and <code>Inf</code> for elements
+where <code>(</code><var>x</var><code>-90)/180</code> is an integer.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> tan, cosd, sind, acosd, asind, atand. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsecd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>secd</b> (<var>x</var>)<var><a name="index-secd-1082"></a></var><br>
+<blockquote><p>Compute the secant of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> sec, cscd, sind, cosd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcscd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>cscd</b> (<var>x</var>)<var><a name="index-cscd-1083"></a></var><br>
+<blockquote><p>Compute the cosecant of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> csc, secd, sind, cosd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcotd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>cotd</b> (<var>x</var>)<var><a name="index-cotd-1084"></a></var><br>
+<blockquote><p>Compute the cotangent of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> cot, tand. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasind"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>asind</b> (<var>x</var>)<var><a name="index-asind-1085"></a></var><br>
+<blockquote><p>Compute the inverse sine of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> asin, sind, acosd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacosd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>acosd</b> (<var>x</var>)<var><a name="index-acosd-1086"></a></var><br>
+<blockquote><p>Compute the inverse cosine of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> acos, cosd, asecd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002datand"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>atand</b> (<var>x</var>)<var><a name="index-atand-1087"></a></var><br>
+<blockquote><p>Compute the inverse tangent of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> acot, tand. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dasecd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>asecd</b> (<var>x</var>)<var><a name="index-asecd-1088"></a></var><br>
+<blockquote><p>Compute inverse secant in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> asec, secd, acscd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacscd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>acscd</b> (<var>x</var>)<var><a name="index-acscd-1089"></a></var><br>
+<blockquote><p>Compute the inverse cosecant of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> acsc, cscd, asecd. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dacotd"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>acotd</b> (<var>x</var>)<var><a name="index-acotd-1090"></a></var><br>
+<blockquote><p>Compute the inverse cotangent of an angle in degrees.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> atan, tand. 
+</p></blockquote></div>
+
+   </body></html>
+

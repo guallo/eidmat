@@ -1,0 +1,405 @@
+<html lang="en">
+<head>
+<title>Graphics Objects - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Advanced-Plotting.html#Advanced-Plotting" title="Advanced Plotting">
+<link rel="next" href="Graphics-Object-Properties.html#Graphics-Object-Properties" title="Graphics Object Properties">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Graphics-Objects"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Graphics-Object-Properties.html#Graphics-Object-Properties">Graphics Object Properties</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Advanced-Plotting.html#Advanced-Plotting">Advanced Plotting</a>
+<hr>
+</div>
+
+<h4 class="subsection">15.2.1 Graphics Objects</h4>
+
+<p>Plots in Octave are constructed from the following <dfn>graphics
+objects</dfn>.  Each graphics object has a set of properties that define its
+appearance and may also contain links to other graphics objects. 
+Graphics objects are only referenced by a numeric index, or <dfn>handle</dfn>.
+
+     <dl>
+<dt>root figure<dd>The parent of all figure objects.  The index for the root figure is
+defined to be 0.
+
+     <br><dt>figure<dd>A figure window.
+
+     <br><dt>axes<dd>An set of axes.  This object is a child of a figure object and may be a
+parent of line, text, image, patch, or surface objects.
+
+     <br><dt>line<dd>A line in two or three dimensions.
+
+     <br><dt>text<dd>Text annotations.
+
+     <br><dt>image<dd>A bitmap image.
+
+     <br><dt>patch<dd>A filled polygon, currently limited to two dimensions.
+
+     <br><dt>surface<dd>A three-dimensional surface. 
+</dl>
+
+   <p>To determine whether an object is a graphics object index or a figure
+index, use the functions <code>ishandle</code> and <code>isfigure</code>.
+
+   <p><a name="doc_002dishandle"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>ishandle</b> (<var>h</var>)<var><a name="index-ishandle-862"></a></var><br>
+<blockquote><p>Return true if <var>h</var> is a graphics handle and false otherwise. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disfigure"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>isfigure</b> (<var>h</var>)<var><a name="index-isfigure-863"></a></var><br>
+<blockquote><p>Return true if <var>h</var> is a graphics handle that contains a figure
+object and false otherwise. 
+</p></blockquote></div>
+
+   <p>The function <code>gcf</code> returns an index to the current figure object,
+or creates one if none exists.  Similarly, <code>gca</code> returns the
+current axes object, or creates one (and its parent figure object) if
+none exists.
+
+   <p><a name="doc_002dgcf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>gcf</b> ()<var><a name="index-gcf-864"></a></var><br>
+<blockquote><p>Return the current figure handle.  If a figure does not exist, create
+one and return its handle.  The handle may then be used to examine or
+set properties of the figure.  For example,
+
+     <pre class="example">          fplot (@sin, [-10, 10]);
+          fig = gcf ();
+          set (fig, "visible", "off");
+</pre>
+        <p class="noindent">plots a sine wave, finds the handle of the current figure, and then
+makes that figure invisible.  Setting the visible property of the
+figure to <code>"on"</code> will cause it to be displayed again.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> get, set. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dgca"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>gca</b> ()<var><a name="index-gca-865"></a></var><br>
+<blockquote><p>Return a handle to the current axis object.  If no axis object
+exists, create one and return its handle.  The handle may then be
+used to examine or set properties of the axes.  For example,
+
+     <pre class="example">          ax = gca ();
+          set (ax, "position", [0.5, 0.5, 0.5, 0.5]);
+</pre>
+        <p class="noindent">creates an empty axes object, then changes its location and size in
+the figure window.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> get, set. 
+</p></blockquote></div>
+
+   <p>The <code>get</code> and <code>set</code> functions may be used to examine and set
+properties for graphics objects.  For example,
+
+<pre class="example">     get (0)
+          ans =
+            {
+              type = root figure
+              currentfigure = [](0x0)
+              children = [](0x0)
+              visible = on
+            }
+</pre>
+   <p class="noindent">returns a structure containing all the properties of the root figure. 
+As with all functions in Octave, the structure is returned by value, so
+modifying it will not modify the internal root figure plot object.  To
+do that, you must use the <code>set</code> function.  Also, note that in this
+case, the <code>currentfigure</code> property is empty, which indicates that
+there is no current figure window.
+
+   <p>The <code>get</code> function may also be used to find the value of a single
+property.  For example,
+
+<pre class="example">     get (gca (), "xlim")
+          [ 0 1 ]
+</pre>
+   <p class="noindent">returns the range of the x-axis for the current axes object in the
+current figure.
+
+   <p>To set graphics object properties, use the set function.  For example,
+
+<pre class="example">     set (gca (), "xlim", [-10, 10]);
+</pre>
+   <p class="noindent">sets the range of the x-axis for the current axes object in the current
+figure to &lsquo;<samp><span class="samp">[-10, 10]</span></samp>&rsquo;.  Additionally, calling set with a graphics
+object index as the only argument returns a structure containing the
+default values for all the properties for the given object type.  For
+example,
+
+<pre class="example">     set (gca ())
+</pre>
+   <p class="noindent">returns a structure containing the default property values for axes
+objects.
+
+   <p><a name="doc_002dget"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>get</b> (<var>h, p</var>)<var><a name="index-get-866"></a></var><br>
+<blockquote><p>Return the named property <var>p</var> from the graphics handle <var>h</var>. 
+If <var>p</var> is omitted, return the complete property list for <var>h</var>. 
+If <var>h</var> is a vector, return a cell array including the property
+values or lists respectively. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dset"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>set</b> (<var>h, p, v, <small class="dots">...</small></var>)<var><a name="index-set-867"></a></var><br>
+<blockquote><p>Set the named property value or vector <var>p</var> to the value <var>v</var>
+for the graphics handle <var>h</var>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dancestor"></a>
+
+<div class="defun">
+&mdash; Function File: <var>parent</var> = <b>ancestor</b> (<var>h, type</var>)<var><a name="index-ancestor-868"></a></var><br>
+&mdash; Function File: <var>parent</var> = <b>ancestor</b> (<var>h, type, 'toplevel'</var>)<var><a name="index-ancestor-869"></a></var><br>
+<blockquote><p>Return the first ancestor of handle object <var>h</var> whose type matches
+<var>type</var>, where <var>type</var> is a character string. If <var>type</var> is a
+cell array of strings, return the first parent whose type matches
+any of the given type strings.
+
+        <p>If the handle object <var>h</var> is of type <var>type</var>, return <var>h</var>.
+
+        <p>If <code>"toplevel"</code> is given as a 3rd argument, return the highest
+parent in the object hierarchy that matches the condition, instead
+of the first (nearest) one.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> get, set. 
+</p></blockquote></div>
+
+   <p>You can create axes, line, and patch objects directly using the
+<code>axes</code>, <code>line</code>, and <code>patch</code> functions.  These objects
+become children of the current axes object.
+
+   <p><a name="doc_002daxes"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>axes</b> ()<var><a name="index-axes-870"></a></var><br>
+&mdash; Function File:  <b>axes</b> (<var>property, value, <small class="dots">...</small></var>)<var><a name="index-axes-871"></a></var><br>
+&mdash; Function File:  <b>axes</b> (<var>h</var>)<var><a name="index-axes-872"></a></var><br>
+<blockquote><p>Create an axes object and return a handle to it. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dline"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>line</b> ()<var><a name="index-line-873"></a></var><br>
+&mdash; Function File:  <b>line</b> (<var>x, y</var>)<var><a name="index-line-874"></a></var><br>
+&mdash; Function File:  <b>line</b> (<var>x, y, z</var>)<var><a name="index-line-875"></a></var><br>
+&mdash; Function File:  <b>line</b> (<var>x, y, z, property, value, <small class="dots">...</small></var>)<var><a name="index-line-876"></a></var><br>
+<blockquote><p>Create line object from <var>x</var> and <var>y</var> and insert in current
+axes object.  Return a handle (or vector of handles) to the line
+objects created.
+
+        <p>Multiple property-value pairs may be specified for the line, but they
+must appear in pairs. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpatch"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>patch</b> ()<var><a name="index-patch-877"></a></var><br>
+&mdash; Function File:  <b>patch</b> (<var>x, y, c</var>)<var><a name="index-patch-878"></a></var><br>
+&mdash; Function File:  <b>patch</b> (<var>x, y, c, opts</var>)<var><a name="index-patch-879"></a></var><br>
+&mdash; Function File:  <b>patch</b> (<var>'Faces', f, 'Vertices', v, <small class="dots">...</small></var>)<var><a name="index-patch-880"></a></var><br>
+&mdash; Function File:  <b>patch</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-patch-881"></a></var><br>
+&mdash; Function File:  <b>patch</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-patch-882"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>patch</b> (<var><small class="dots">...</small></var>)<var><a name="index-patch-883"></a></var><br>
+<blockquote><p>Create patch object from <var>x</var> and <var>y</var> with color <var>c</var> and
+insert in the current axes object.  Return handle to patch object.
+
+        <p>For a uniform colored patch, <var>c</var> can be given as an RGB vector,
+scalar value referring to the current colormap, or string value (for
+example, "r" or "red"). 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsurface"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>surface</b> (<var>x, y, z, c</var>)<var><a name="index-surface-884"></a></var><br>
+&mdash; Function File:  <b>surface</b> (<var>x, y, z</var>)<var><a name="index-surface-885"></a></var><br>
+&mdash; Function File:  <b>surface</b> (<var>z, c</var>)<var><a name="index-surface-886"></a></var><br>
+&mdash; Function File:  <b>surface</b> (<var>z</var>)<var><a name="index-surface-887"></a></var><br>
+&mdash; Function File:  <b>surface</b> (<var><small class="dots">...</small>, prop, val</var>)<var><a name="index-surface-888"></a></var><br>
+&mdash; Function File:  <b>surface</b> (<var>h, <small class="dots">...</small></var>)<var><a name="index-surface-889"></a></var><br>
+&mdash; Function File: <var>h</var> = <b>surface</b> (<var><small class="dots">...</small></var>)<var><a name="index-surface-890"></a></var><br>
+<blockquote><p>Plot a surface graphic object given matrices <var>x</var>, and <var>y</var> from
+<code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
+<var>y</var> coordinates of the surface.  If <var>x</var> and <var>y</var> are vectors,
+then a typical vertex  is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
+columns of <var>z</var> correspond to different <var>x</var> values and rows of
+<var>z</var> correspond to different <var>y</var> values. If <var>x</var> and <var>y</var>
+are missing, they are constructed from size of the matrix <var>z</var>.
+
+        <p>Any additional properties passed are assigned the the surface..
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> surf, mesh, patch, line. 
+</p></blockquote></div>
+
+   <p>By default, Octave refreshes the plot window when a prompt is printed,
+or when waiting for input.  To force an update at other times, call the
+<code>drawnow</code> function.
+
+   <p><a name="doc_002ddrawnow"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>drawnow</b> ()<var><a name="index-drawnow-891"></a></var><br>
+<blockquote><p>Update and display the current graphics.
+
+        <p>Octave automatically calls drawnow just before printing a prompt,
+when <code>sleep</code> or <code>pause</code> is called, or while waiting for
+command-line input. 
+</p></blockquote></div>
+
+   <p>Normally, high-level plot functions like <code>plot</code> or <code>mesh</code> call
+<code>newplot</code> to initialize the state of the current axes so that the
+next plot is drawn in a blank window with default property settings.  To
+have two plots superimposed over one another, call the <code>hold</code>
+function.  For example,
+
+<pre class="example">     hold ("on");
+     x = -10:0.1:10;
+     plot (x, sin (x));
+     plot (x, cos (x));
+     hold ("off");
+</pre>
+   <p class="noindent">displays sine and cosine waves on the same axes.  If the hold state is
+off, consecutive plotting commands like this will only display the last
+plot.
+
+   <p><a name="doc_002dnewplot"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>newplot</b> ()<var><a name="index-newplot-892"></a></var><br>
+<blockquote><p>Prepare graphics engine to produce a new plot.  This function should
+be called at the beginning of all high-level plotting functions. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dhold"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>hold</b><var> args<a name="index-hold-893"></a></var><br>
+<blockquote><p>Tell Octave to `hold' the current data on the plot when executing
+subsequent plotting commands.  This allows you to execute a series of
+plot commands and have all the lines end up on the same figure.  The
+default is for each new plot command to clear the plot device first. 
+For example, the command
+
+     <pre class="example">          hold on
+</pre>
+        <p class="noindent">turns the hold state on.  An argument of <code>"off"</code> turns the hold
+state off, and <code>hold</code> with no arguments toggles the current hold
+state. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dishold"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>ishold</b><var><a name="index-ishold-894"></a></var><br>
+<blockquote><p>Return true if the next line will be added to the current plot, or
+false if the plot device will be cleared before drawing the next line. 
+</p></blockquote></div>
+
+   <p>To clear the current figure, call the <code>clf</code> function.  To bring it
+to the top of the window stack, call the <code>shg</code> function.  To delete
+a graphics object, call <code>delete</code> on its index.  To close the
+figure window, call the <code>close</code> function.
+
+   <p><a name="doc_002dclf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>clf</b> ()<var><a name="index-clf-895"></a></var><br>
+<blockquote><p>Clear the current figure.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> close, delete. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dshg"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>shg</b><var><a name="index-shg-896"></a></var><br>
+<blockquote><p>Show the graph window.  Currently, this is the same as executing
+<code>drawnow</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> drawnow, figure. 
+</p></blockquote></div>
+
+   <p><a name="doc_002ddelete"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>delete</b> (<var>file</var>)<var><a name="index-delete-897"></a></var><br>
+&mdash; Function File:  <b>delete</b> (<var>h</var>)<var><a name="index-delete-898"></a></var><br>
+<blockquote><p>Delete the named file or figure handle. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dclose"></a>
+
+<div class="defun">
+&mdash; Command:  <b>close</b><var><a name="index-close-899"></a></var><br>
+&mdash; Command:  <b>close</b> (<var>n</var>)<var><a name="index-close-900"></a></var><br>
+&mdash; Command:  <b>close</b><var> all<a name="index-close-901"></a></var><br>
+&mdash; Command:  <b>close</b><var> all hidden<a name="index-close-902"></a></var><br>
+<blockquote><p>Close figure window(s) by calling the function specified by the
+<code>"closerequestfcn"</code> property for each figure.  By default, the
+function <code>closereq</code> is used.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> closereq. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dclosereq"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>closereq</b> ()<var><a name="index-closereq-903"></a></var><br>
+<blockquote><p>Close the current figure and delete all graphics objects associated
+with it.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> close, delete. 
+</p></blockquote></div>
+
+   </body></html>
+

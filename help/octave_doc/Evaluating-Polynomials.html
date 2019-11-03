@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+<title>Evaluating Polynomials - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Polynomial-Manipulations.html#Polynomial-Manipulations" title="Polynomial Manipulations">
+<link rel="next" href="Finding-Roots.html#Finding-Roots" title="Finding Roots">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Evaluating-Polynomials"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Finding-Roots.html#Finding-Roots">Finding Roots</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Polynomial-Manipulations.html#Polynomial-Manipulations">Polynomial Manipulations</a>
+<hr>
+</div>
+
+<h3 class="section">27.1 Evaluating Polynomials</h3>
+
+<p>The value of a polynomial represented by the vector <var>c</var> can be evaluated
+at the point <var>x</var> very easily, as the following example shows.
+
+<pre class="example">     N = length(c)-1;
+     val = dot( x.^(N:-1:0), c );
+</pre>
+   <p class="noindent">While the above example shows how easy it is to compute the value of a
+polynomial, it isn't the most stable algorithm.  With larger polynomials
+you should use more elegant algorithms, such as Horner's Method, which
+is exactly what the Octave function <code>polyval</code> does.
+
+   <p>In the case where <var>x</var> is a square matrix, the polynomial given by
+<var>c</var> is still well-defined.  As when <var>x</var> is a scalar the obvious
+implementation is easily expressed in Octave, but also in this case
+more elegant algorithms perform better.  The <code>polyvalm</code> function
+provides such an algorithm.
+
+   <p><a name="doc_002dpolyval"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>polyval</b> (<var>c, x</var>)<var><a name="index-polyval-1578"></a></var><br>
+<blockquote><p>Evaluate a polynomial.
+
+        <p><code>polyval (</code><var>c</var><code>, </code><var>x</var><code>)</code> will evaluate the polynomial at the
+specified value of <var>x</var>.
+
+        <p>If <var>x</var> is a vector or matrix, the polynomial is evaluated at each of
+the elements of <var>x</var>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> polyvalm, poly, roots, conv, deconv, residue, filter,
+polyderiv, polyinteg. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpolyvalm"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>polyvalm</b> (<var>c, x</var>)<var><a name="index-polyvalm-1579"></a></var><br>
+<blockquote><p>Evaluate a polynomial in the matrix sense.
+
+        <p><code>polyvalm (</code><var>c</var><code>, </code><var>x</var><code>)</code> will evaluate the polynomial in the
+matrix sense, i.e. matrix multiplication is used instead of element by
+element multiplication as is used in polyval.
+
+        <p>The argument <var>x</var> must be a square matrix.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> polyval, poly, roots, conv, deconv, residue, filter,
+polyderiv, and polyinteg. 
+</p></blockquote></div>
+
+   </body></html>
+

@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+<title>Comments - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Getting-Started.html#Getting-Started" title="Getting Started">
+<link rel="prev" href="Executable-Octave-Programs.html#Executable-Octave-Programs" title="Executable Octave Programs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Comments"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Executable-Octave-Programs.html#Executable-Octave-Programs">Executable Octave Programs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Getting-Started.html#Getting-Started">Getting Started</a>
+<hr>
+</div>
+
+<h3 class="section">2.7 Comments in Octave Programs</h3>
+
+<p><a name="index-g_t_0040samp_007b_0023_007d-140"></a><a name="index-g_t_0040samp_007b_0025_007d-141"></a><a name="index-comments-142"></a><a name="index-use-of-comments-143"></a><a name="index-documenting-Octave-programs-144"></a><a name="index-programs-145"></a>
+A <dfn>comment</dfn> is some text that is included in a program for the sake
+of human readers, and that is not really part of the program.  Comments
+can explain what the program does, and how it works.  Nearly all
+programming languages have provisions for comments, because programs are
+typically hard to understand without them.
+
+   <p>In the Octave language, a comment starts with either the sharp sign
+character, &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, or the percent symbol &lsquo;<samp><span class="samp">%</span></samp>&rsquo; and continues to the
+end of the line.  The Octave interpreter ignores the rest of a
+line following a sharp sign or percent symbol.  For example, we could
+have put the following into the function <code>f</code>:
+
+<pre class="example">     function xdot = f (x, t)
+     
+     # usage: f (x, t)
+     #
+     # This function defines the right hand
+     # side functions for a set of nonlinear
+     # differential equations.
+     
+       r = 0.25;
+       ...
+     endfunction
+</pre>
+   <p>The <code>help</code> command (see <a href="Getting-Help.html#Getting-Help">Getting Help</a>) is able to find the first
+block of comments in a function (even those that are composed directly
+on the command line).  This means that users of Octave can use the same
+commands to get help for built-in functions, and for functions that you
+have defined.  For example, after defining the function <code>f</code> above,
+the command <kbd>help f</kbd> produces the output
+
+<pre class="example">      usage: f (x, t)
+     
+      This function defines the right hand
+      side functions for a set of nonlinear
+      differential equations.
+</pre>
+   <p>Although it is possible to put comment lines into keyboard-composed
+throw-away Octave programs, it usually isn't very useful, because the
+purpose of a comment is to help you or another person understand the
+program at a later time.
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

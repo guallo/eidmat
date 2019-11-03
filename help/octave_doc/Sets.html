@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+<title>Sets - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="prev" href="Financial-Functions.html#Financial-Functions" title="Financial Functions">
+<link rel="next" href="Polynomial-Manipulations.html#Polynomial-Manipulations" title="Polynomial Manipulations">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Sets"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Polynomial-Manipulations.html#Polynomial-Manipulations">Polynomial Manipulations</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Financial-Functions.html#Financial-Functions">Financial Functions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="octave.html">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">26 Sets</h2>
+
+<p>Octave has a limited set of functions for managing sets of data, where a
+set is defined as a collection of unique elements.  In Octave a set is
+represented as a vector of numbers.
+
+   <p><a name="doc_002dcreate_005fset"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>create_set</b> (<var>x</var>)<var><a name="index-create_005fset-1565"></a></var><br>
+<blockquote><p>Return a row vector containing the unique values in <var>x</var>, sorted in
+ascending order.  For example,
+
+     <pre class="example">          create_set ([ 1, 2; 3, 4; 4, 2 ])
+           [ 1, 2, 3, 4 ]
+</pre>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> union, intersection, complement. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dunique"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>unique</b> (<var>x</var>)<var><a name="index-unique-1566"></a></var><br>
+<blockquote>
+        <p>Return the unique elements of <var>x</var>, sorted in ascending order. 
+If <var>x</var> is a row vector, return a row vector, but if <var>x</var>
+is a column vector or a matrix return a column vector.
+
+   &mdash; Function File:  <b>unique</b> (<var>A, 'rows'</var>)<var><a name="index-unique-1567"></a></var><br>
+<blockquote>
+        <p>Return the unique rows of <var>A</var>, sorted in ascending order.
+
+   &mdash; Function File: [<var>y</var>, <var>i</var>, <var>j</var>] = <b>unique</b> (<var>x</var>)<var><a name="index-unique-1568"></a></var><br>
+<blockquote>
+        <p>Return index vectors <var>i</var> and <var>j</var> such that <code>x(i)==y</code> and
+<code>y(j)==x</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> union, intersect, setdiff, setxor, ismember. 
+</p></blockquote></div>
+
+<ul class="menu">
+<li><a accesskey="1" href="Set-Operations.html#Set-Operations">Set Operations</a>
+</ul>
+
+   </body></html>
+

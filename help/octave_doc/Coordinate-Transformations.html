@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Coordinate Transformations - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Arithmetic.html#Arithmetic" title="Arithmetic">
+<link rel="prev" href="Special-Functions.html#Special-Functions" title="Special Functions">
+<link rel="next" href="Mathematical-Constants.html#Mathematical-Constants" title="Mathematical Constants">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Coordinate-Transformations"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Mathematical-Constants.html#Mathematical-Constants">Mathematical Constants</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Special-Functions.html#Special-Functions">Special Functions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic</a>
+<hr>
+</div>
+
+<h3 class="section">17.6 Coordinate Transformations</h3>
+
+<p><a name="doc_002dcart2pol"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>theta</var>, <var>r</var>] = <b>cart2pol</b> (<var>x, y</var>)<var><a name="index-cart2pol-1120"></a></var><br>
+&mdash; Function File: [<var>theta</var>, <var>r</var>, <var>z</var>] = <b>cart2pol</b> (<var>x, y, z</var>)<var><a name="index-cart2pol-1121"></a></var><br>
+<blockquote><p>Transform cartesian to polar or cylindrical coordinates. 
+<var>x</var>, <var>y</var> (and <var>z</var>) must be of same shape. 
+<var>theta</var> describes the angle relative to the x - axis. 
+<var>r</var> is the distance to the z - axis (0, 0, z).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pol2cart, cart2sph, sph2cart. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpol2cart"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>x</var>, <var>y</var>] = <b>pol2cart</b> (<var>theta, r</var>)<var><a name="index-pol2cart-1122"></a></var><br>
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>pol2cart</b> (<var>theta, r, z</var>)<var><a name="index-pol2cart-1123"></a></var><br>
+<blockquote><p>Transform polar or cylindrical to cartesian coordinates. 
+<var>theta</var>, <var>r</var> (and <var>z</var>) must be of same shape. 
+<var>theta</var> describes the angle relative to the x - axis. 
+<var>r</var> is the distance to the z - axis (0, 0, z).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> cart2pol, cart2sph, sph2cart. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcart2sph"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>theta</var>, <var>phi</var>, <var>r</var>] = <b>cart2sph</b> (<var>x, y, z</var>)<var><a name="index-cart2sph-1124"></a></var><br>
+<blockquote><p>Transform cartesian to spherical coordinates. 
+<var>x</var>, <var>y</var> and <var>z</var> must be of same shape. 
+<var>theta</var> describes the angle relative to the x - axis. 
+<var>phi</var> is the angle relative to the xy - plane. 
+<var>r</var> is the distance to the origin (0, 0, 0).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pol2cart, cart2pol, sph2cart. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsph2cart"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>x</var>, <var>y</var>, <var>z</var>] = <b>sph2cart</b> (<var>theta, phi, r</var>)<var><a name="index-sph2cart-1125"></a></var><br>
+<blockquote><p>Transform spherical to cartesian coordinates. 
+<var>x</var>, <var>y</var> and <var>z</var> must be of same shape. 
+<var>theta</var> describes the angle relative to the x-axis. 
+<var>phi</var> is the angle relative to the xy-plane. 
+<var>r</var> is the distance to the origin (0, 0, 0).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pol2cart, cart2pol, cart2sph. 
+</p></blockquote></div>
+
+   </body></html>
+

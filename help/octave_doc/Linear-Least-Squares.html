@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+<title>Linear Least Squares - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Optimization.html#Optimization" title="Optimization">
+<link rel="prev" href="Nonlinear-Programming.html#Nonlinear-Programming" title="Nonlinear Programming">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Linear-Least-Squares"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Nonlinear-Programming.html#Nonlinear-Programming">Nonlinear Programming</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Optimization.html#Optimization">Optimization</a>
+<hr>
+</div>
+
+<h3 class="section">23.4 Linear Least Squares</h3>
+
+<p>Octave also supports linear least squares minimization.  That is,
+Octave can find the parameter b such that the model
+y = x*b
+fits data (x,y) as good as possible, assuming zero-mean
+Gaussian noise.  If the noise is assumed to be isotropic the problem
+can be solved using the &lsquo;<samp><span class="samp">\</span></samp>&rsquo; or &lsquo;<samp><span class="samp">/</span></samp>&rsquo; operators, or the <code>ols</code>
+function.  In the general case where the noise is assumed to be anisotropic
+the <code>gls</code> is needed.
+
+   <p><a name="doc_002dols"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>beta</var>, <var>sigma</var>, <var>r</var>] = <b>ols</b> (<var>y, x</var>)<var><a name="index-ols-1376"></a></var><br>
+<blockquote><p>Ordinary least squares estimation for the multivariate model
+y = x b + e with
+mean (e) = 0 and cov (vec (e)) = kron (s, I). 
+ where
+y is a t by p matrix, x is a t by
+k matrix, b is a k by p matrix, and
+e is a t by p matrix.
+
+        <p>Each row of <var>y</var> and <var>x</var> is an observation and each column a
+variable.
+
+        <p>The return values <var>beta</var>, <var>sigma</var>, and <var>r</var> are defined as
+follows.
+
+          <dl>
+<dt><var>beta</var><dd>The OLS estimator for <var>b</var>, <var>beta</var><code> = pinv (</code><var>x</var><code>) *
+</code><var>y</var>, where <code>pinv (</code><var>x</var><code>)</code> denotes the pseudoinverse of
+<var>x</var>.
+
+          <br><dt><var>sigma</var><dd>The OLS estimator for the matrix <var>s</var>,
+
+          <pre class="example">               <var>sigma</var> = (<var>y</var>-<var>x</var>*<var>beta</var>)'
+                 * (<var>y</var>-<var>x</var>*<var>beta</var>)
+                 / (<var>t</var>-rank(<var>x</var>))
+</pre>
+          <br><dt><var>r</var><dd>The matrix of OLS residuals, <var>r</var><code> = </code><var>y</var><code> - </code><var>x</var><code> *
+</code><var>beta</var>. 
+</dl>
+        </p></blockquote></div>
+
+   <p><a name="doc_002dgls"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>beta</var>, <var>v</var>, <var>r</var>] = <b>gls</b> (<var>y, x, o</var>)<var><a name="index-gls-1377"></a></var><br>
+<blockquote><p>Generalized least squares estimation for the multivariate model
+y = x b + e with mean (e) = 0 and
+cov (vec (e)) = (s^2) o,
+ where
+y is a t by p matrix, x is a t by
+k matrix, b is a k by p matrix, e
+is a t by p matrix, and o is a t p by
+t p matrix.
+
+     <p class="noindent">Each row of <var>y</var> and <var>x</var> is an observation and each column a
+variable.  The return values <var>beta</var>, <var>v</var>, and <var>r</var> are
+defined as follows.
+
+          <dl>
+<dt><var>beta</var><dd>The GLS estimator for b.
+
+          <br><dt><var>v</var><dd>The GLS estimator for s^2.
+
+          <br><dt><var>r</var><dd>The matrix of GLS residuals, r = y - x beta. 
+</dl>
+        </p></blockquote></div>
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 1999, 2000, 2002, 2004, 2005, 2006, -->
+<!-- 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

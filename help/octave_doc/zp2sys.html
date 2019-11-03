@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+<title>zp2sys - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="sysinterface.html#sysinterface" title="sysinterface">
+<link rel="prev" href="tf2sys.html#tf2sys" title="tf2sys">
+<link rel="next" href="structaccess.html#structaccess" title="structaccess">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="zp2sys"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="structaccess.html#structaccess">structaccess</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="tf2sys.html#tf2sys">tf2sys</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="sysinterface.html#sysinterface">sysinterface</a>
+<hr>
+</div>
+
+<h4 class="subsection">30.2.4 Zero-pole system interface functions</h4>
+
+<p><a name="doc_002dzp"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>zp</b> (<var>zer, pol, k, tsam, inname, outname</var>)<var><a name="index-zp-1678"></a></var><br>
+<blockquote><p>Create system data structure from zero-pole data.
+
+        <p><strong>Inputs</strong>
+          <dl>
+<dt><var>zer</var><dd>vector of system zeros
+<br><dt><var>pol</var><dd>vector of system poles
+<br><dt><var>k</var><dd>scalar leading coefficient
+<br><dt><var>tsam</var><dd>sampling period. default: 0 (continuous system)
+<br><dt><var>inname</var><dt><var>outname</var><dd>input/output signal names (lists of strings)
+</dl>
+
+        <p><strong>Outputs</strong>
+sys: system data structure
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=zp([1 -1],[-2 -2 0],1);
+          octave:2&gt; sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1
+          zero-pole form:
+          1 (s - 1) (s + 1)
+          -----------------
+          s (s + 2) (s + 2)
+</pre>
+        </blockquote></div>
+
+   <p><a name="doc_002dzp2sys"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>zp2sys</b> (<var>zer, pol, k, tsam, inname, outname</var>)<var><a name="index-zp2sys-1679"></a></var><br>
+<blockquote><p>Create system data structure from zero-pole data.
+
+        <p><strong>Inputs</strong>
+          <dl>
+<dt><var>zer</var><dd>Vector of system zeros. 
+<br><dt><var>pol</var><dd>Vector of system poles. 
+<br><dt><var>k</var><dd>Scalar leading coefficient. 
+<br><dt><var>tsam</var><dd>Sampling period; default: 0 (continuous system). 
+<br><dt><var>inname</var><dt><var>outname</var><dd>Input/output signal names (lists of strings). 
+</dl>
+
+        <p><strong>Output</strong>
+          <dl>
+<dt><var>sys</var><dd>System data structure. 
+</dl>
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=zp2sys([1 -1],[-2 -2 0],1);
+          octave:2&gt; sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1
+          zero-pole form:
+          1 (s - 1) (s + 1)
+          -----------------
+          s (s + 2) (s + 2)
+</pre>
+        </blockquote></div>
+
+   <p><a name="doc_002dsys2zp"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>zer</var>, <var>pol</var>, <var>k</var>, <var>tsam</var>, <var>inname</var>, <var>outname</var>] = <b>sys2zp</b> (<var>sys</var>)<var><a name="index-sys2zp-1680"></a></var><br>
+<blockquote><p>Extract zero/pole/leading coefficient information from a system data
+structure.
+
+        <p>See <samp><span class="command">zp</span></samp> for parameter descriptions.
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=ss([1 -2; -1.1,-2.1],[0;1],[1 1]);
+          octave:2&gt; [zer,pol,k] = sys2zp(sys)
+          zer = 3.0000
+          pol =
+            -2.6953
+             1.5953
+          k = 1
+</pre>
+        </blockquote></div>
+
+   </body></html>
+

@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+<title>Manipulating Structures - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Data-Structures.html#Data-Structures" title="Data Structures">
+<link rel="prev" href="Creating-Structures.html#Creating-Structures" title="Creating Structures">
+<link rel="next" href="Processing-Data-in-Structures.html#Processing-Data-in-Structures" title="Processing Data in Structures">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Manipulating-Structures"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Processing-Data-in-Structures.html#Processing-Data-in-Structures">Processing Data in Structures</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Creating-Structures.html#Creating-Structures">Creating Structures</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Data-Structures.html#Data-Structures">Data Structures</a>
+<hr>
+</div>
+
+<h4 class="subsection">6.1.3 Manipulating Structures</h4>
+
+<p>Other functions that can manipulate the fields of a structure are given below.
+
+   <p><a name="doc_002dfieldnames"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>fieldnames</b> (<var>struct</var>)<var><a name="index-fieldnames-326"></a></var><br>
+<blockquote><p>Return a cell array of strings naming the elements of the structure
+<var>struct</var>.  It is an error to call <code>fieldnames</code> with an
+argument that is not a structure. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disfield"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>isfield</b> (<var>expr, name</var>)<var><a name="index-isfield-327"></a></var><br>
+<blockquote><p>Return true if the expression <var>expr</var> is a structure and it includes an
+element named <var>name</var>.  The first argument must be a structure and
+the second must be a string. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dgetfield"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>v1</var>, <small class="dots">...</small>] = <b>getfield</b> (<var>s, key, <small class="dots">...</small></var>)<var><a name="index-getfield-328"></a></var><br>
+<blockquote><p>Extract fields from a structure. For example
+
+     <pre class="example">          ss(1,2).fd(3).b=5;
+          getfield (ss, {1,2}, "fd", {3}, "b")
+           ans = 5
+</pre>
+        <p>Note that the function call in the previous example is equivalent to
+the expression
+
+     <pre class="example">                   i1= {1,2}; i2= "fd"; i3= {3}; i4= "b";
+                   ss(i1{:}).(i2)(i3{:}).(i4)
+</pre>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> setfield, rmfield, isfield, isstruct, fieldnames, struct. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsubstruct"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>substruct</b> (<var>type, subs, <small class="dots">...</small></var>)<var><a name="index-substruct-329"></a></var><br>
+<blockquote><p>Create a subscript structure for use with <code>subsref</code> or
+<code>subsasgn</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> subsref, subsasgn. 
+</p></blockquote></div>
+
+   </body></html>
+

@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>sysdisp - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Control-Theory.html#Control-Theory" title="Control Theory">
+<link rel="prev" href="sysinterface.html#sysinterface" title="sysinterface">
+<link rel="next" href="blockdiag.html#blockdiag" title="blockdiag">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="sysdisp"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="blockdiag.html#blockdiag">blockdiag</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="sysinterface.html#sysinterface">sysinterface</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Control-Theory.html#Control-Theory">Control Theory</a>
+<hr>
+</div>
+
+<h3 class="section">30.3 System display functions</h3>
+
+<p><a name="doc_002dsysout"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>sysout</b> (<var>sys, opt</var>)<var><a name="index-sysout-1692"></a></var><br>
+<blockquote><p>print out a system data structure in desired format
+          <dl>
+<dt><var>sys</var><dd>system data structure
+<br><dt><var>opt</var><dd>Display option
+               <dl>
+<dt><code>[]</code><dd>primary system form (default)
+<br><dt><code>"ss"</code><dd>state space form
+<br><dt><code>"tf"</code><dd>transfer function form
+<br><dt><code>"zp"</code><dd>zero-pole form
+<br><dt><code>"all"</code><dd>all of the above
+</dl>
+          </dl>
+        </p></blockquote></div>
+
+   <p><a name="doc_002dtfout"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>tfout</b> (<var>num, denom, x</var>)<var><a name="index-tfout-1693"></a></var><br>
+<blockquote><p>Print formatted transfer function n(s)/d(s) to the screen. 
+<var>x</var> defaults to the string <code>"s"</code>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> polyval, polyvalm, poly, roots, conv, deconv, residue,
+filter, polyderiv, polyinteg, polyout. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dzpout"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>zpout</b> (<var>zer, pol, k, x</var>)<var><a name="index-zpout-1694"></a></var><br>
+<blockquote><p>print formatted zero-pole form to the screen. 
+<var>x</var> defaults to the string <code>"s"</code>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> polyval, polyvalm, poly, roots, conv, deconv, residue,
+filter, polyderiv, polyinteg, polyout. 
+</p></blockquote></div>
+
+   </body></html>
+

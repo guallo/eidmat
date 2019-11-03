@@ -1,0 +1,225 @@
+<html lang="en">
+<head>
+<title>Financial Functions - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="prev" href="Statistics.html#Statistics" title="Statistics">
+<link rel="next" href="Sets.html#Sets" title="Sets">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Financial-Functions"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Sets.html#Sets">Sets</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Statistics.html#Statistics">Statistics</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="octave.html">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">25 Financial Functions</h2>
+
+<p><a name="index-financial-functions-1552"></a><a name="index-money-1553"></a><a name="index-compounding_002c-value-of-1554"></a>
+<a name="doc_002dfv"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>fv</b> (<var>r, n, p, l, method</var>)<var><a name="index-fv-1555"></a></var><br>
+<blockquote><p>Return the future value at the end of period <var>n</var> of an investment
+which consists of <var>n</var> payments of <var>p</var> in each period,
+assuming an interest rate <var>r</var>.
+
+        <p>The optional argument <var>l</var> may be used to specify an
+additional lump-sum payment.
+
+        <p>The optional argument <var>method</var> may be used to specify whether the
+payments are made at the end (<code>"e"</code>, default) or at the
+beginning (<code>"b"</code>) of each period.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent). 
+</p></blockquote></div>
+
+   <p><a name="doc_002dfvl"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>fvl</b> (<var>r, n, l</var>)<var><a name="index-fvl-1556"></a></var><br>
+<blockquote><p>Return the future value at the end of <var>n</var> periods of an initial
+lump sum investment <var>l</var>, given a per-period interest rate
+<var>r</var>.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent). 
+</p></blockquote></div>
+
+   <p><a name="doc_002dirr"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>irr</b> (<var>p, i</var>)<var><a name="index-irr-1557"></a></var><br>
+<blockquote><p>Return the internal rate of return of a series of payments <var>p</var>
+from an initial investment <var>i</var> (i.e., the solution of
+<code>npv (r, p) = i</code>.  If the second argument is omitted, a value of
+0 is used.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> npv, pv, rate. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dnper"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>nper</b> (<var>r, p, a, l, method</var>)<var><a name="index-nper-1558"></a></var><br>
+<blockquote><p>Return the number of regular payments of <var>p</var> necessary to
+amortize <var>a</var> loan of amount <var>a</var> and interest <var>r</var>.
+
+        <p>The optional argument <var>l</var> may be used to specify an additional
+lump-sum payment of <var>l</var> made at the end of the amortization time.
+
+        <p>The optional argument <var>method</var> may be used to specify whether
+payments are made at the end (<var>"e"</var>, default) or at the beginning
+(<var>"b"</var>) of each period.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pv, pmt, rate, npv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dnpv"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>npv</b> (<var>r, p, i</var>)<var><a name="index-npv-1559"></a></var><br>
+<blockquote><p>Returns the net present value of a series of irregular (i.e., not
+necessarily identical) payments <var>p</var> which occur at the ends of <var>n</var>
+consecutive periods.  <var>r</var> specifies the one-period interest rates and
+can either be a scalar (constant rates) or a vector of the same
+length as <var>p</var>.
+
+        <p>The optional argument <var>i</var> may be used to specify an initial
+investment.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> irr, pv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpmt"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>pmt</b> (<var>r, n, a, l, method</var>)<var><a name="index-pmt-1560"></a></var><br>
+<blockquote><p>Return the amount of periodic payment necessary to amortize a loan
+of amount a with interest rate <var>r</var> in <var>n</var> periods.
+
+        <p>The optional argument <var>l</var> may be used to specify a terminal
+lump-sum payment.
+
+        <p>The optional argument <var>method</var> may be used to specify whether
+payments are made at the end (<var>"e"</var>, default) or at the beginning
+(<var>"b"</var>) of each period.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pv, nper, rate. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpv"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>pv</b> (<var>r, n, p, l, method</var>)<var><a name="index-pv-1561"></a></var><br>
+<blockquote><p>Returns the present value of an investment that will pay off <var>p</var> for <var>n</var>
+consecutive periods, assuming an interest <var>r</var>.
+
+        <p>The optional argument <var>l</var> may be used to specify an additional
+lump-sum payment made at the end of <var>n</var> periods.
+
+        <p>The optional argument <var>method</var> may be used to specify whether
+payments are made at the end (<code>"e"</code>, default) or at the
+beginning (<code>"b"</code>) of each period.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent).
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pmt, nper, rate, npv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpvl"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>pvl</b> (<var>r, n, p</var>)<var><a name="index-pvl-1562"></a></var><br>
+<blockquote><p>Return the present value of an investment that will pay off <var>p</var>
+in one lump sum at the end of <var>n</var> periods, given the interest
+rate <var>r</var>.
+
+        <p>Note that the rate <var>r</var> is specified as a fraction (i.e., 0.05,
+not 5 percent). 
+</p></blockquote></div>
+
+   <p><a name="doc_002drate"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>rate</b> (<var>n, p, v, l, method</var>)<var><a name="index-rate-1563"></a></var><br>
+<blockquote><p>Return the rate of return on an investment of present value <var>v</var> which
+pays <var>p</var> in <var>n</var> consecutive periods.
+
+        <p>The optional argument <var>l</var> may be used to specify an additional
+lump-sum payment made at the end of <var>n</var> periods.
+
+        <p>The optional string argument <var>method</var> may be used to specify
+whether payments are made at the end (<code>"e"</code>, default) or at the
+beginning (<code>"b"</code>) of each period.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> pv, pmt, nper, npv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dvol"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>vol</b> (<var>x, m, n</var>)<var><a name="index-vol-1564"></a></var><br>
+<blockquote><p>Return the volatility of each column of the input matrix <var>x</var>. 
+The number of data sets per period is given by <var>m</var> (e.g. the
+number of data per year if you want to compute the volatility per
+year).  The optional parameter <var>n</var> gives the number of past
+periods used for computation, if it is omitted, a value of 1 is used. 
+If <var>t</var> is the number of rows of <var>x</var>, <code>vol</code> returns the
+volatility from <code>n*m</code> to <var>t</var>. 
+</p></blockquote></div>
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 1999, 2000, 2002, 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

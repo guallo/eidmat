@@ -1,0 +1,269 @@
+<html lang="en">
+<head>
+<title>Three-Dimensional Plotting - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Plotting-Basics.html#Plotting-Basics" title="Plotting Basics">
+<link rel="prev" href="Two_002dDimensional-Plots.html#Two_002dDimensional-Plots" title="Two-Dimensional Plots">
+<link rel="next" href="Plot-Annotations.html#Plot-Annotations" title="Plot Annotations">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Three-Dimensional-Plotting"></a>
+<a name="Three_002dDimensional-Plotting"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Plot-Annotations.html#Plot-Annotations">Plot Annotations</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Two_002dDimensional-Plots.html#Two_002dDimensional-Plots">Two-Dimensional Plots</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Plotting-Basics.html#Plotting-Basics">Plotting Basics</a>
+<hr>
+</div>
+
+<h4 class="subsection">15.1.2 Three-Dimensional Plotting</h4>
+
+<p>The function <code>mesh</code> produces mesh surface plots.  For example,
+
+<pre class="example">     tx = ty = linspace (-8, 8, 41)';
+     [xx, yy] = meshgrid (tx, ty);
+     r = sqrt (xx .^ 2 + yy .^ 2) + eps;
+     tz = sin (r) ./ r;
+     mesh (tx, ty, tz);
+</pre>
+   <p class="noindent">produces the familiar &ldquo;sombrero&rdquo; plot shown in <a href="fig_003amesh.html#fig_003amesh">fig:mesh</a>.  Note
+the use of the function <code>meshgrid</code> to create matrices of X and Y
+coordinates to use for plotting the Z data.  The <code>ndgrid</code> function
+is similar to <code>meshgrid</code>, but works for N-dimensional matrices.
+
+   <div class="float">
+<a name="fig_003amesh"></a><img src="mesh.png" alt="mesh.png">
+
+   <p><strong class="float-caption">Figure 15.5: Mesh plot.</strong></p></div>
+
+   <p>The <code>meshc</code> function is similar to <code>mesh</code>, but also produces a
+plot of contours for the surface.
+
+   <p>The <code>plot3</code> function displays arbitrary three-dimensional data,
+without requiring it to form a surface.  For example
+
+<pre class="example">     t = 0:0.1:10*pi;
+     r = linspace (0, 1, numel (t));
+     z = linspace (0, 1, numel (t));
+     plot3 (r.*sin(t), r.*cos(t), z);
+</pre>
+   <p class="noindent">displays the spiral in three dimensions shown in <a href="fig_003aplot3.html#fig_003aplot3">fig:plot3</a>.
+
+   <div class="float">
+<a name="fig_003aplot3"></a><img src="plot3.png" alt="plot3.png">
+
+   <p><strong class="float-caption">Figure 15.6: Three dimensional spiral.</strong></p></div>
+
+   <p>Finally, the <code>view</code> function changes the viewpoint for
+three-dimensional plots.
+
+   <p><a name="doc_002dmesh"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>mesh</b> (<var>x, y, z</var>)<var><a name="index-mesh-813"></a></var><br>
+<blockquote><p>Plot a mesh given matrices <var>x</var>, and <var>y</var> from <code>meshgrid</code> and
+a matrix <var>z</var> corresponding to the <var>x</var> and <var>y</var> coordinates of
+the mesh.  If <var>x</var> and <var>y</var> are vectors, then a typical vertex
+is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus, columns of <var>z</var>
+correspond to different <var>x</var> values and rows of <var>z</var> correspond
+to different <var>y</var> values.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> meshgrid, contour. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dmeshc"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>meshc</b> (<var>x, y, z</var>)<var><a name="index-meshc-814"></a></var><br>
+<blockquote><p>Plot a mesh and contour given matrices <var>x</var>, and <var>y</var> from
+<code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
+<var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
+then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
+columns of <var>z</var> correspond to different <var>x</var> values and rows of
+<var>z</var> correspond to different <var>y</var> values.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> meshgrid, mesh, contour. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dhidden"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>hidden</b> (<var>mode</var>)<var><a name="index-hidden-815"></a></var><br>
+&mdash; Function File:  <b>hidden</b> ()<var><a name="index-hidden-816"></a></var><br>
+<blockquote><p>Manipulation the mesh hidden line removal. Called with no argument
+the hidden line removal is toggled. The argument <var>mode</var> can be either
+'on' or 'off' and the set of the hidden line removal is set accordingly.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> mesh, meshc, surf. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsurf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>surf</b> (<var>x, y, z</var>)<var><a name="index-surf-817"></a></var><br>
+<blockquote><p>Plot a surface given matrices <var>x</var>, and <var>y</var> from <code>meshgrid</code> and
+a matrix <var>z</var> corresponding to the <var>x</var> and <var>y</var> coordinates of
+the mesh.  If <var>x</var> and <var>y</var> are vectors, then a typical vertex
+is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus, columns of <var>z</var>
+correspond to different <var>x</var> values and rows of <var>z</var> correspond
+to different <var>y</var> values.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> mesh, surface. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsurfc"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>surfc</b> (<var>x, y, z</var>)<var><a name="index-surfc-818"></a></var><br>
+<blockquote><p>Plot a surface and contour given matrices <var>x</var>, and <var>y</var> from
+<code>meshgrid</code> and a matrix <var>z</var> corresponding to the <var>x</var> and
+<var>y</var> coordinates of the mesh.  If <var>x</var> and <var>y</var> are vectors,
+then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>z</var>(i,j)).  Thus,
+columns of <var>z</var> correspond to different <var>x</var> values and rows of
+<var>z</var> correspond to different <var>y</var> values.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> meshgrid, surf, contour. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dmeshgrid"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>xx</var>, <var>yy</var>, <var>zz</var>] = <b>meshgrid</b> (<var>x, y, z</var>)<var><a name="index-meshgrid-819"></a></var><br>
+&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x, y</var>)<var><a name="index-meshgrid-820"></a></var><br>
+&mdash; Function File: [<var>xx</var>, <var>yy</var>] = <b>meshgrid</b> (<var>x</var>)<var><a name="index-meshgrid-821"></a></var><br>
+<blockquote><p>Given vectors of <var>x</var> and <var>y</var> and <var>z</var> coordinates, and
+returning 3 arguments, return three dimensional arrays corresponding
+to the <var>x</var>, <var>y</var>, and <var>z</var> coordinates of a mesh.  When
+returning only 2 arguments, return matrices corresponding to the
+<var>x</var> and <var>y</var> coordinates of a mesh.  The rows of <var>xx</var> are
+copies of <var>x</var>, and the columns of <var>yy</var> are copies of <var>y</var>. 
+If <var>y</var> is omitted, then it is assumed to be the same as <var>x</var>,
+and <var>z</var> is assumed the same as <var>y</var>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> mesh, contour. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dndgrid"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>,  <var>y</var>n] = <b>ndgrid</b> (<var>x1, x2, <small class="dots">...</small>, xn</var>)<var><a name="index-ndgrid-822"></a></var><br>
+&mdash; Function File: [<var>y1</var>, <var>y2</var>, <small class="dots">...</small>,  <var>y</var>n] = <b>ndgrid</b> (<var>x</var>)<var><a name="index-ndgrid-823"></a></var><br>
+<blockquote><p>Given n vectors <var>x1</var>, <small class="dots">...</small> <var>x</var>n, <code>ndgrid</code> returns
+n arrays of dimension n.  The elements of the ith output argument
+contains the elements of the vector <var>x</var>i repeated over all
+dimensions different from the ith dimension.  Calling ndgrid with
+only one input argument <var>x</var> is equivalent of calling ndgrid with
+all n input arguments equal to <var>x</var>:
+
+        <p>[<var>y1</var>, <var>y2</var>, <small class="dots">...</small>,  <var>y</var>n] = ndgrid (<var>x</var>, <small class="dots">...</small>, <var>x</var>)
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> meshgrid. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dplot3"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>plot3</b> (<var>args</var>)<var><a name="index-plot3-824"></a></var><br>
+<blockquote><p>Produce three-dimensional plots.  Many different combinations of
+arguments are possible.  The simplest form is
+
+     <pre class="example">          plot3 (<var>x</var>, <var>y</var>, <var>z</var>)
+</pre>
+        <p class="noindent">in which the arguments are taken to be the vertices of the points to
+be plotted in three dimensions. If all arguments are vectors of the
+same length, then a single continuous line is drawn. If all arguments
+are matrices, then each column of the matrices is treated as a
+separate line.  No attempt is made to transpose the arguments to make
+the number of rows match.
+
+        <p>If only two arguments are given, as
+
+     <pre class="example">          plot3 (<var>x</var>, <var>c</var>)
+</pre>
+        <p class="noindent">the real and imaginary parts of the second argument are used
+as the <var>y</var> and <var>z</var> coordinates, respectively.
+
+        <p>If only one argument is given, as
+
+     <pre class="example">          plot3 (<var>c</var>)
+</pre>
+        <p class="noindent">the real and imaginary parts of the argument are used as the <var>y</var>
+and <var>z</var> values, and they are plotted versus their index.
+
+        <p>Arguments may also be given in groups of three as
+
+     <pre class="example">          plot3 (<var>x1</var>, <var>y1</var>, <var>z1</var>, <var>x2</var>, <var>y2</var>, <var>z2</var>, ...)
+</pre>
+        <p class="noindent">in which each set of three arguments is treated as a separate line or
+set of lines in three dimensions.
+
+        <p>To plot multiple one- or two-argument groups, separate each group
+with an empty format string, as
+
+     <pre class="example">          plot3 (<var>x1</var>, <var>c1</var>, "", <var>c2</var>, "", ...)
+</pre>
+        <p>An example of the use of <code>plot3</code> is
+
+     <pre class="example">             z = [0:0.05:5];
+             plot3 (cos(2*pi*z), sin(2*pi*z), z, ";helix;");
+             plot3 (z, exp(2i*pi*z), ";complex sinusoid;");
+</pre>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> plot. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dview"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>view</b> (<var>azimuth, elevation</var>)<var><a name="index-view-825"></a></var><br>
+&mdash; Function File:  <b>view</b> (<var>dims</var>)<var><a name="index-view-826"></a></var><br>
+&mdash; Function File: [<var>azimuth</var>, <var>elevation</var>] = <b>view</b> ()<var><a name="index-view-827"></a></var><br>
+<blockquote><p>Set or get the viewpoint for the current axes. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dshading"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>shading</b> (<var>type</var>)<var><a name="index-shading-828"></a></var><br>
+&mdash; Function File:  <b>shading</b> (<var>ax, <small class="dots">...</small></var>)<var><a name="index-shading-829"></a></var><br>
+<blockquote><p>Set the shading of surface or patch graphic objects. Valid arguments
+for <var>type</var> are <code>"flat"</code>, <code>"interp"</code>, or
+<code>"faceted"</code>.  If <var>ax</var> is given the shading is applied to
+axis <var>ax</var> instead of the current axis. 
+</p></blockquote></div>
+
+   </body></html>
+

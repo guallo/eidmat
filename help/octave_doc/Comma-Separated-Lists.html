@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+<title>Comma Separated Lists - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Data-Containers.html#Data-Containers" title="Data Containers">
+<link rel="prev" href="Cell-Arrays.html#Cell-Arrays" title="Cell Arrays">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Comma-Separated-Lists"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Cell-Arrays.html#Cell-Arrays">Cell Arrays</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Data-Containers.html#Data-Containers">Data Containers</a>
+<hr>
+</div>
+
+<h3 class="section">6.3 Comma Separated Lists</h3>
+
+<p><a name="index-comma-separated-lists-358"></a>
+Comma separated lists are the basic argument type to all Octave
+functions. In the example
+
+<pre class="example">     max (<var>a</var>, <var>b</var>)
+</pre>
+   <p class="noindent"><var>a</var><code>, </code><var>b</var> is a comma separated list. Comma separated lists
+can appear on both the right and left hand side of an equation. For
+example
+
+<pre class="example">     [<var>i</var>, <var>j</var>] = ceil (find (<var>x</var>, [], "last"));
+</pre>
+   <p class="noindent">where <var>i</var><code>, </code><var>j</var> is equally a comma separated list. Comma
+separated lists can not be directly manipulated by the user. However,
+both structures are cell arrays can be converted into comma
+separated lists, which makes them useful to keep the input arguments and
+return values of functions organized. Another example of where a comma
+separated list can be used is in the creation of a new array. If all the
+accessed elements of a cell array are scalars or column vectors, they
+can be concatenated into a new column vector containing the elements, by
+surrounding the list with <code>[</code> and <code>]</code> as in the following
+example
+
+<pre class="example">     a = {1, [2, 3], 4};
+     b = [a{:}]
+           b =
+              1   2   3   4
+</pre>
+   <p>It is also possible to pass the accessed elements directly to a
+function.  The list of elements from the cell array will be passed as an
+argument list to a given function as if it is called with the elements as
+arguments.  The two calls to <code>printf</code> in the following example are
+identical but the latter is simpler and handles more situations
+
+<pre class="example">     c = {"GNU", "Octave", "is", "Free", "Software"};
+     printf ("%s ", c{1}, c{2}, c{3}, c{4}, c{5});
+          -| GNU Octave is Free Software
+     printf ("%s ", c{:});
+          -| GNU Octave is Free Software
+</pre>
+   <p>Just like it is possible to create a numerical array from selected
+elements of a cell array, it is possible to create a new cell array
+containing the selected elements. By surrounding the list with
+&lsquo;<samp><span class="samp">{</span></samp>&rsquo; and &lsquo;<samp><span class="samp">}</span></samp>&rsquo; a new cell array will be created, like the
+following example illustrates
+
+<pre class="example">     a = {1, rand(2, 2), "three"};
+     b = { a{ [1, 3] } }
+           b =
+              {
+                [1,1] =  1
+                [1,2] = three
+              }
+</pre>
+   <p class="noindent">This syntax is however a bit cumbersome, and since this is a common
+operation, it is possible to achieve the same using the &lsquo;<samp><span class="samp">(</span></samp>&rsquo;
+and &lsquo;<samp><span class="samp">)</span></samp>&rsquo; operators for indexing. When a cell array is indexed
+using the &lsquo;<samp><span class="samp">(</span></samp>&rsquo; and &lsquo;<samp><span class="samp">)</span></samp>&rsquo; operators a new cell array containing
+the selected elements. Using this syntax, the previous example can
+be simplified into the following
+
+<pre class="example">     a = {1, rand(2, 2), "three"};
+     b = a( [1, 3] )
+           b =
+              {
+                [1,1] =  1
+                [1,2] = three
+              }
+</pre>
+   <p>A comma separated list can equally appear on the left-hand side of an
+assignment. An example is
+
+<pre class="example">     in {1} = ceil (rand (10, 1));
+     in {2} = [];
+     in {3} = "last";
+     in {4} = "first";
+     out = cell (4, 1);
+     [out{1:2}] = find (in{1 : 3});
+     [out{3:4}] = find (in{[1, 2, 4]});
+</pre>
+   <p>Structure arrays can equally be used to create comma separated
+lists. This is done by addresses one of the fields of a structure
+array. For example
+
+<pre class="example">     x = ceil (randn (10, 1));
+     in = struct ("call1", {x, Inf, "last"},
+                  "call2", {x, Inf, "first"});
+     out = struct ("call1", cell (2, 1), "call2", cell (2, 1));
+     [out.call1] = find (in.call1);
+     [out.call2] = find (in.call2);
+</pre>
+   <!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005, -->
+<!-- 2006, 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

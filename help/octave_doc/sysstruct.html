@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>sysstruct - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Control-Theory.html#Control-Theory" title="Control Theory">
+<link rel="next" href="sysinterface.html#sysinterface" title="sysinterface">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="sysstruct"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="sysinterface.html#sysinterface">sysinterface</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Control-Theory.html#Control-Theory">Control Theory</a>
+<hr>
+</div>
+
+<h3 class="section">30.1 System Data Structure</h3>
+
+<ul class="menu">
+<li><a accesskey="1" href="sysstructvars.html#sysstructvars">sysstructvars</a>
+<li><a accesskey="2" href="sysstructtf.html#sysstructtf">sysstructtf</a>
+<li><a accesskey="3" href="sysstructzp.html#sysstructzp">sysstructzp</a>
+<li><a accesskey="4" href="sysstructss.html#sysstructss">sysstructss</a>
+</ul>
+
+<p>The <acronym>OCST</acronym> stores all dynamic systems in
+a single data structure format that can represent continuous systems,
+discrete-systems, and mixed (hybrid) systems in state-space form, and
+can also represent purely continuous/discrete systems in either
+transfer function or pole-zero form. In order to
+provide more flexibility in treatment of discrete/hybrid systems, the
+<acronym>OCST</acronym> also keeps a record of which system outputs are sampled.
+
+   <p>Octave structures are accessed with a syntax much like that used
+by the C programming language.  For consistency in
+use of the data structure used in the <acronym>OCST</acronym>, it is recommended that
+the system structure access m-files be used (see <a href="sysinterface.html#sysinterface">sysinterface</a>). 
+Some elements of the data structure are absent depending on the internal
+system representation(s) used.  More than one system representation
+can be used for <acronym>SISO</acronym> systems; the <acronym>OCST</acronym> m-files ensure that all representations
+used are consistent with one another.
+
+   <p><a name="doc_002dsysrepdemo"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>sysrepdemo</b><var><a name="index-sysrepdemo-1669"></a></var><br>
+<blockquote><p>Tutorial for the use of the system data structure functions. 
+</p></blockquote></div>
+
+   </body></html>
+

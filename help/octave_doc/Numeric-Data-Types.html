@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+<title>Numeric Data Types - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="prev" href="Data-Types.html#Data-Types" title="Data Types">
+<link rel="next" href="Strings.html#Strings" title="Strings">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Numeric-Data-Types"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Strings.html#Strings">Strings</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Data-Types.html#Data-Types">Data Types</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="octave.html">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">4 Numeric Data Types</h2>
+
+<p><a name="index-numeric-constant-182"></a><a name="index-numeric-value-183"></a>
+A <dfn>numeric constant</dfn> may be a scalar, a vector, or a matrix, and it
+may contain complex values.
+
+   <p>The simplest form of a numeric constant, a scalar, is a single number
+that can be an integer, a decimal fraction, a number in scientific
+(exponential) notation, or a complex number.  Note that by default numeric
+constants are represented within Octave in double-precision floating
+point format (complex constants are stored as pairs of double-precision
+floating point values).  It is however possible to represent real
+integers as described in <a href="Integer-Data-Types.html#Integer-Data-Types">Integer Data Types</a>. Here are some examples
+of real-valued numeric constants, which all have the same value:
+
+<pre class="example">     105
+     1.05e+2
+     1050e-1
+</pre>
+   <p>To specify complex constants, you can write an expression of the form
+
+<pre class="example">     3 + 4i
+     3.0 + 4.0i
+     0.3e1 + 40e-1i
+</pre>
+   <p class="noindent">all of which are equivalent.  The letter &lsquo;<samp><span class="samp">i</span></samp>&rsquo; in the previous example
+stands for the pure imaginary constant, defined as
+  <code>sqrt (-1)</code>.
+
+   <p>For Octave to recognize a value as the imaginary part of a complex
+constant, a space must not appear between the number and the &lsquo;<samp><span class="samp">i</span></samp>&rsquo;. 
+If it does, Octave will print an error message, like this:
+
+<pre class="example">     octave:13&gt; 3 + 4 i
+     
+     parse error:
+     
+       3 + 4 i
+             ^
+</pre>
+   <p class="noindent">You may also use &lsquo;<samp><span class="samp">j</span></samp>&rsquo;, &lsquo;<samp><span class="samp">I</span></samp>&rsquo;, or &lsquo;<samp><span class="samp">J</span></samp>&rsquo; in place of the
+&lsquo;<samp><span class="samp">i</span></samp>&rsquo; above.  All four forms are equivalent.
+
+   <p><a name="doc_002ddouble"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>double</b> (<var>x</var>)<var><a name="index-double-184"></a></var><br>
+<blockquote><p>Convert <var>x</var> to double precision type. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsingle"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>single</b> (<var>val</var>)<var><a name="index-single-185"></a></var><br>
+<blockquote><p>Convert the numeric value <var>val</var> to single precision.
+
+        <p><strong>Note</strong>: this function currently returns its argument converted
+to double precision because Octave does not yet have a single-precision
+numeric data type. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcomplex"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>complex</b> (<var>val</var>)<var><a name="index-complex-186"></a></var><br>
+&mdash; Built-in Function:  <b>complex</b> (<var>re, im</var>)<var><a name="index-complex-187"></a></var><br>
+<blockquote><p>Convert <var>x</var> to a complex value. 
+</p></blockquote></div>
+
+<ul class="menu">
+<li><a accesskey="1" href="Matrices.html#Matrices">Matrices</a>
+<li><a accesskey="2" href="Ranges.html#Ranges">Ranges</a>
+<li><a accesskey="3" href="Integer-Data-Types.html#Integer-Data-Types">Integer Data Types</a>
+<li><a accesskey="4" href="Bit-Manipulations.html#Bit-Manipulations">Bit Manipulations</a>
+<li><a accesskey="5" href="Logical-Values.html#Logical-Values">Logical Values</a>
+<li><a accesskey="6" href="Predicates-for-Numeric-Objects.html#Predicates-for-Numeric-Objects">Predicates for Numeric Objects</a>
+</ul>
+
+   </body></html>
+

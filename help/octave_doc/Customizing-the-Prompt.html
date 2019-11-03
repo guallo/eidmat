@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+<title>Customizing the Prompt - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Command-Line-Editing.html#Command-Line-Editing" title="Command Line Editing">
+<link rel="prev" href="Customizing-readline.html#Customizing-readline" title="Customizing readline">
+<link rel="next" href="Diary-and-Echo-Commands.html#Diary-and-Echo-Commands" title="Diary and Echo Commands">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Customizing-the-Prompt"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Diary-and-Echo-Commands.html#Diary-and-Echo-Commands">Diary and Echo Commands</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Customizing-readline.html#Customizing-readline">Customizing readline</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Command-Line-Editing.html#Command-Line-Editing">Command Line Editing</a>
+<hr>
+</div>
+
+<h4 class="subsection">2.4.7 Customizing the Prompt</h4>
+
+<p><a name="index-prompt-customization-116"></a><a name="index-customizing-the-prompt-117"></a>
+The following variables are available for customizing the appearance of
+the command-line prompts.  Octave allows the prompt to be customized by
+inserting a number of backslash-escaped special characters that are
+decoded as follows:
+
+     <dl>
+<dt>&lsquo;<samp><span class="samp">\t</span></samp>&rsquo;<dd>The time.
+
+     <br><dt>&lsquo;<samp><span class="samp">\d</span></samp>&rsquo;<dd>The date.
+
+     <br><dt>&lsquo;<samp><span class="samp">\n</span></samp>&rsquo;<dd>Begins a new line by printing the equivalent of a carriage return
+followed by a line feed.
+
+     <br><dt>&lsquo;<samp><span class="samp">\s</span></samp>&rsquo;<dd>The name of the program (usually just &lsquo;<samp><span class="samp">octave</span></samp>&rsquo;).
+
+     <br><dt>&lsquo;<samp><span class="samp">\w</span></samp>&rsquo;<dd>The current working directory.
+
+     <br><dt>&lsquo;<samp><span class="samp">\W</span></samp>&rsquo;<dd>The basename of the current working directory.
+
+     <br><dt>&lsquo;<samp><span class="samp">\u</span></samp>&rsquo;<dd>The username of the current user.
+
+     <br><dt>&lsquo;<samp><span class="samp">\h</span></samp>&rsquo;<dd>The hostname, up to the first `.'.
+
+     <br><dt>&lsquo;<samp><span class="samp">\H</span></samp>&rsquo;<dd>The hostname.
+
+     <br><dt>&lsquo;<samp><span class="samp">\#</span></samp>&rsquo;<dd>The command number of this command, counting from when Octave starts.
+
+     <br><dt>&lsquo;<samp><span class="samp">\!</span></samp>&rsquo;<dd>The history number of this command.  This differs from &lsquo;<samp><span class="samp">\#</span></samp>&rsquo; by the
+number of commands in the history list when Octave starts.
+
+     <br><dt>&lsquo;<samp><span class="samp">\$</span></samp>&rsquo;<dd>If the effective UID is 0, a &lsquo;<samp><span class="samp">#</span></samp>&rsquo;, otherwise a &lsquo;<samp><span class="samp">$</span></samp>&rsquo;.
+
+     <br><dt>&lsquo;<samp><span class="samp">\nnn</span></samp>&rsquo;<dd>The character whose character code in octal is <var>nnn</var>.
+
+     <br><dt>&lsquo;<samp><span class="samp">\\</span></samp>&rsquo;<dd>A backslash. 
+</dl>
+
+   <p><a name="doc_002dPS1"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>PS1</b> ()<var><a name="index-PS1-118"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS1</b> (<var>new_val</var>)<var><a name="index-PS1-119"></a></var><br>
+<blockquote><p>Query or set the primary prompt string.  When executing interactively,
+Octave displays the primary prompt when it is ready to read a command.
+
+        <p>The default value of the primary prompt string is <code>"\s:\#&gt; "</code>. 
+To change it, use a command like
+
+     <pre class="example">          octave:13&gt; PS1 ("\\u@\\H&gt; ")
+</pre>
+        <p class="noindent">which will result in the prompt &lsquo;<samp><span class="samp">boris@kremvax&gt; </span></samp>&rsquo; for the user
+&lsquo;<samp><span class="samp">boris</span></samp>&rsquo; logged in on the host &lsquo;<samp><span class="samp">kremvax.kgb.su</span></samp>&rsquo;.  Note that two
+backslashes are required to enter a backslash into a double-quoted
+character string. 
+See <a href="Strings.html#Strings">Strings</a>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> PS2, PS4. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dPS2"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>PS2</b> ()<var><a name="index-PS2-120"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS2</b> (<var>new_val</var>)<var><a name="index-PS2-121"></a></var><br>
+<blockquote><p>Query or set the secondary prompt string.  The secondary prompt is
+printed when Octave is expecting additional input to complete a
+command.  For example, if you are typing a for loop that spans several
+lines, Octave will print the secondary prompt at the beginning of
+each line after the first.  The default value of the secondary prompt
+string is <code>"&gt; "</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> PS1, PS4. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dPS4"></a>
+
+<div class="defun">
+&mdash; Built-in Function: <var>val</var> = <b>PS4</b> ()<var><a name="index-PS4-122"></a></var><br>
+&mdash; Built-in Function: <var>old_val</var> = <b>PS4</b> (<var>new_val</var>)<var><a name="index-PS4-123"></a></var><br>
+<blockquote><p>Query or set the character string used to prefix output produced
+when echoing commands when <code>echo_executing_commands</code> is enabled. 
+The default value is <code>"+ "</code>. 
+See <a href="Invoking-Octave-from-the-Command-Line.html#Invoking-Octave-from-the-Command-Line">Invoking Octave from the Command Line</a>, for a description of
+<code>--echo-commands</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> echo_executing_commands, PS1, PS2. 
+</p></blockquote></div>
+
+   </body></html>
+

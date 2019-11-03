@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+<title>tf2sys - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="sysinterface.html#sysinterface" title="sysinterface">
+<link rel="prev" href="ss2sys.html#ss2sys" title="ss2sys">
+<link rel="next" href="zp2sys.html#zp2sys" title="zp2sys">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="tf2sys"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="zp2sys.html#zp2sys">zp2sys</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="ss2sys.html#ss2sys">ss2sys</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="sysinterface.html#sysinterface">sysinterface</a>
+<hr>
+</div>
+
+<h4 class="subsection">30.2.3 Transfer function system interface functions</h4>
+
+<p><a name="doc_002dtf"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>tf</b> (<var>num, den, tsam, inname, outname</var>)<var><a name="index-tf-1675"></a></var><br>
+<blockquote><p>build system data structure from transfer function format data
+
+        <p><strong>Inputs</strong>
+          <dl>
+<dt><var>num</var><dt><var>den</var><dd>coefficients of numerator/denominator polynomials
+<br><dt><var>tsam</var><dd>sampling interval. default: 0 (continuous time)
+<br><dt><var>inname</var><dt><var>outname</var><dd>input/output signal names; may be a string or cell array with a single string
+entry. 
+</dl>
+
+        <p><strong>Outputs</strong>
+<var>sys</var> = system data structure
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=tf([2 1],[1 2 1],0.1);
+          octave:2&gt; sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1 (discrete)
+          Sampling interval: 0.1
+          transfer function form:
+          2*z^1 + 1
+          -----------------
+          1*z^2 + 2*z^1 + 1
+</pre>
+        </blockquote></div>
+
+   <p><a name="doc_002dtf2sys"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>tf2sys</b> (<var>num, den, tsam, inname, outname</var>)<var><a name="index-tf2sys-1676"></a></var><br>
+<blockquote><p>Build system data structure from transfer function format data.
+
+        <p><strong>Inputs</strong>
+          <dl>
+<dt><var>num</var><dt><var>den</var><dd>Coefficients of numerator/denominator polynomials. 
+<br><dt><var>tsam</var><dd>Sampling interval; default: 0 (continuous time). 
+<br><dt><var>inname</var><dt><var>outname</var><dd>Input/output signal names; may be a string or cell array with a single string
+entry. 
+</dl>
+
+        <p><strong>Output</strong>
+          <dl>
+<dt><var>sys</var><dd>System data structure. 
+</dl>
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=tf2sys([2 1],[1 2 1],0.1);
+          octave:2&gt; sysout(sys)
+          Input(s)
+                  1: u_1
+          Output(s):
+                  1: y_1 (discrete)
+          Sampling interval: 0.1
+          transfer function form:
+          2*z^1 + 1
+          -----------------
+          1*z^2 + 2*z^1 + 1
+</pre>
+        </blockquote></div>
+
+   <p><a name="doc_002dsys2tf"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>num</var>, <var>den</var>, <var>tsam</var>, <var>inname</var>, <var>outname</var>] = <b>sys2tf</b> (<var>sys</var>)<var><a name="index-sys2tf-1677"></a></var><br>
+<blockquote><p>Extract transfer function data from a system data structure.
+
+        <p>See <samp><span class="command">tf</span></samp> for parameter descriptions.
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys=ss([1 -2; -1.1,-2.1],[0;1],[1 1]);
+          octave:2&gt; [num,den] = sys2tf(sys)
+          num = 1.0000  -3.0000
+          den = 1.0000   1.1000  -4.3000
+</pre>
+        </blockquote></div>
+
+   </body></html>
+

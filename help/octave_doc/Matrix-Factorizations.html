@@ -1,0 +1,446 @@
+<html lang="en">
+<head>
+<title>Matrix Factorizations - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Linear-Algebra.html#Linear-Algebra" title="Linear Algebra">
+<link rel="prev" href="Basic-Matrix-Functions.html#Basic-Matrix-Functions" title="Basic Matrix Functions">
+<link rel="next" href="Functions-of-a-Matrix.html#Functions-of-a-Matrix" title="Functions of a Matrix">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Matrix-Factorizations"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Functions-of-a-Matrix.html#Functions-of-a-Matrix">Functions of a Matrix</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Basic-Matrix-Functions.html#Basic-Matrix-Functions">Basic Matrix Functions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Linear-Algebra.html#Linear-Algebra">Linear Algebra</a>
+<hr>
+</div>
+
+<h3 class="section">18.3 Matrix Factorizations</h3>
+
+<p><a name="doc_002dchol"></a>
+
+<div class="defun">
+&mdash; Loadable Function:  <b>chol</b> (<var>a</var>)<var><a name="index-chol-1185"></a></var><br>
+<blockquote><p><a name="index-Cholesky-factorization-1186"></a>Compute the Cholesky factor, <var>r</var>, of the symmetric positive definite
+matrix <var>a</var>, where
+
+     <pre class="example">          r' * r = a.
+</pre>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> cholinv, chol2inv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcholinv"></a>
+
+<div class="defun">
+&mdash; Loadable Function:  <b>cholinv</b> (<var>a</var>)<var><a name="index-cholinv-1187"></a></var><br>
+<blockquote><p>Use the Cholesky factorization to compute the inverse of the
+symmetric positive definite matrix <var>a</var>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> chol, chol2inv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dchol2inv"></a>
+
+<div class="defun">
+&mdash; Loadable Function:  <b>chol2inv</b> (<var>u</var>)<var><a name="index-chol2inv-1188"></a></var><br>
+<blockquote><p>Invert a symmetric, positive definite square matrix from its Cholesky
+decomposition, <var>u</var>.  Note that <var>u</var> should be an upper-triangular
+matrix with positive diagonal elements.  <code>chol2inv (</code><var>u</var><code>)</code>
+provides <code>inv (</code><var>u</var><code>'*</code><var>u</var><code>)</code> but it is much faster than
+using <code>inv</code>.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> chol, cholinv. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dhess"></a>
+
+<div class="defun">
+&mdash; Loadable Function: <var>h</var> = <b>hess</b> (<var>a</var>)<var><a name="index-hess-1189"></a></var><br>
+&mdash; Loadable Function: [<var>p</var>, <var>h</var>] = <b>hess</b> (<var>a</var>)<var><a name="index-hess-1190"></a></var><br>
+<blockquote><p><a name="index-Hessenberg-decomposition-1191"></a>Compute the Hessenberg decomposition of the matrix <var>a</var>.
+
+        <p>The Hessenberg decomposition is usually used as the first step in an
+eigenvalue computation, but has other applications as well (see Golub,
+Nash, and Van Loan, IEEE Transactions on Automatic Control, 1979).  The
+Hessenberg decomposition is
+<code>p * h * p' = a</code> where <code>p</code> is a square unitary matrix
+(<code>p' * p = I</code>, using complex-conjugate transposition) and <code>h</code>
+is upper Hessenberg (<code>i &gt;= j+1 =&gt; h (i, j) = 0</code>). 
+</p></blockquote></div>
+
+   <p><a name="doc_002dlu"></a>
+
+<div class="defun">
+&mdash; Loadable Function: [<var>l</var>, <var>u</var>, <var>p</var>] = <b>lu</b> (<var>a</var>)<var><a name="index-lu-1192"></a></var><br>
+<blockquote><p><a name="index-LU-decomposition-1193"></a>Compute the LU decomposition of <var>a</var>, using subroutines from
+<span class="sc">Lapack</span>.  The result is returned in a permuted form, according to
+the optional return value <var>p</var>.  For example, given the matrix
+<code>a = [1, 2; 3, 4]</code>,
+
+     <pre class="example">          [l, u, p] = lu (a)
+</pre>
+        <p class="noindent">returns
+
+     <pre class="example">          l =
+          
+            1.00000  0.00000
+            0.33333  1.00000
+          
+          u =
+          
+            3.00000  4.00000
+            0.00000  0.66667
+          
+          p =
+          
+            0  1
+            1  0
+</pre>
+        <p>The matrix is not required to be square. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dqr"></a>
+
+<div class="defun">
+&mdash; Loadable Function: [<var>q</var>, <var>r</var>, <var>p</var>] = <b>qr</b> (<var>a</var>)<var><a name="index-qr-1194"></a></var><br>
+<blockquote><p><a name="index-QR-factorization-1195"></a>Compute the QR factorization of <var>a</var>, using standard <span class="sc">Lapack</span>
+subroutines.  For example, given the matrix <code>a = [1, 2; 3, 4]</code>,
+
+     <pre class="example">          [q, r] = qr (a)
+</pre>
+        <p class="noindent">returns
+
+     <pre class="example">          q =
+          
+            -0.31623  -0.94868
+            -0.94868   0.31623
+          
+          r =
+          
+            -3.16228  -4.42719
+             0.00000  -0.63246
+</pre>
+        <p>The <code>qr</code> factorization has applications in the solution of least
+squares problems
+
+     <pre class="example">          <code>min norm(A x - b)</code>
+</pre>
+        <p>for overdetermined systems of equations (i.e.,
+<code>a</code>
+ is a tall, thin matrix).  The QR factorization is
+<code>q * r = a</code> where <code>q</code> is an orthogonal matrix and <code>r</code> is
+upper triangular.
+
+        <p>The permuted QR factorization <code>[</code><var>q</var><code>, </code><var>r</var><code>, </code><var>p</var><code>] =
+qr (</code><var>a</var><code>)</code> forms the QR factorization such that the diagonal
+entries of <code>r</code> are decreasing in magnitude order.  For example,
+given the matrix <code>a = [1, 2; 3, 4]</code>,
+
+     <pre class="example">          [q, r, p] = qr(a)
+</pre>
+        <p class="noindent">returns
+
+     <pre class="example">          q =
+          
+            -0.44721  -0.89443
+            -0.89443   0.44721
+          
+          r =
+          
+            -4.47214  -3.13050
+             0.00000   0.44721
+          
+          p =
+          
+             0  1
+             1  0
+</pre>
+        <p>The permuted <code>qr</code> factorization <code>[q, r, p] = qr (a)</code>
+factorization allows the construction of an orthogonal basis of
+<code>span (a)</code>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dqz"></a>
+
+<div class="defun">
+&mdash; Loadable Function: <var>lambda</var> = <b>qz</b> (<var>a, b</var>)<var><a name="index-qz-1196"></a></var><br>
+<blockquote><p>Generalized eigenvalue problem A x = s B x,
+<var>QZ</var> decomposition. There are three ways to call this function:
+          <ol type=1 start=1>
+<li><code>lambda = qz(A,B)</code>
+
+          <p>Computes the generalized eigenvalues
+<var>lambda</var>
+of (A - s B). 
+<li><code>[AA, BB, Q, Z, V, W, lambda] = qz (A, B)</code>
+
+          <p>Computes qz decomposition, generalized eigenvectors, and
+generalized eigenvalues of (A - sB)
+          <pre class="example">               
+                   A*V = B*V*diag(lambda)
+                   W'*A = diag(lambda)*W'*B
+                   AA = Q'*A*Z, BB = Q'*B*Z
+</pre>
+          <p>with <var>Q</var> and <var>Z</var> orthogonal (unitary)= <var>I</var>
+
+          <li><code>[AA,BB,Z{, lambda}] = qz(A,B,opt)</code>
+
+          <p>As in form [2], but allows ordering of generalized eigenpairs
+for (e.g.) solution of discrete time algebraic Riccati equations. 
+Form 3 is not available for complex matrices, and does not compute
+the generalized eigenvectors <var>V</var>, <var>W</var>, nor the orthogonal matrix <var>Q</var>.
+               <dl>
+<dt><var>opt</var><dd>for ordering eigenvalues of the GEP pencil.  The leading  block
+of the revised pencil contains all eigenvalues that satisfy:
+                    <dl>
+<dt><code>"N"</code><dd>= unordered (default)
+
+                    <br><dt><code>"S"</code><dd>= small: leading block has all |lambda| &lt;=1
+
+                    <br><dt><code>"B"</code><dd>= big: leading block has all |lambda| &gt;= 1
+
+                    <br><dt><code>"-"</code><dd>= negative real part: leading block has all eigenvalues
+in the open left half-plane
+
+                    <br><dt><code>"+"</code><dd>= nonnegative real part: leading block has all eigenvalues
+in the closed right half-plane
+</dl>
+               </dl>
+          </ol>
+
+        <p>Note: qz performs permutation balancing, but not scaling (see balance). 
+Order of output arguments was selected for compatibility with MATLAB
+
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> balance, dare, eig, schur. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dqzhess"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>aa</var>, <var>bb</var>, <var>q</var>, <var>z</var>] = <b>qzhess</b> (<var>a, b</var>)<var><a name="index-qzhess-1197"></a></var><br>
+<blockquote><p>Compute the Hessenberg-triangular decomposition of the matrix pencil
+<code>(</code><var>a</var><code>, </code><var>b</var><code>)</code>, returning
+<var>aa</var><code> = </code><var>q</var><code> * </code><var>a</var><code> * </code><var>z</var>,
+<var>bb</var><code> = </code><var>q</var><code> * </code><var>b</var><code> * </code><var>z</var>, with <var>q</var> and <var>z</var>
+orthogonal.  For example,
+
+     <pre class="example">          [aa, bb, q, z] = qzhess ([1, 2; 3, 4], [5, 6; 7, 8])
+           aa = [ -3.02244, -4.41741;  0.92998,  0.69749 ]
+           bb = [ -8.60233, -9.99730;  0.00000, -0.23250 ]
+            q = [ -0.58124, -0.81373; -0.81373,  0.58124 ]
+            z = [ 1, 0; 0, 1 ]
+</pre>
+        <p>The Hessenberg-triangular decomposition is the first step in
+Moler and Stewart's QZ decomposition algorithm.
+
+        <p>Algorithm taken from Golub and Van Loan, <cite>Matrix Computations, 2nd
+edition</cite>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dschur"></a>
+
+<div class="defun">
+&mdash; Loadable Function: <var>s</var> = <b>schur</b> (<var>a</var>)<var><a name="index-schur-1198"></a></var><br>
+&mdash; Loadable Function: [<var>u</var>, <var>s</var>] = <b>schur</b> (<var>a, opt</var>)<var><a name="index-schur-1199"></a></var><br>
+<blockquote><p><a name="index-Schur-decomposition-1200"></a>The Schur decomposition is used to compute eigenvalues of a
+square matrix, and has applications in the solution of algebraic
+Riccati equations in control (see <code>are</code> and <code>dare</code>). 
+<code>schur</code> always returns
+<code>s = u' * a * u</code>
+where
+<code>u</code>
+ is a unitary matrix
+(<code>u'* u</code> is identity)
+and
+<code>s</code>
+is upper triangular.  The eigenvalues of
+<code>a</code> (and <code>s</code>)
+are the diagonal elements of
+<code>s</code>. 
+If the matrix
+<code>a</code>
+is real, then the real Schur decomposition is computed, in which the
+matrix
+<code>u</code>
+is orthogonal and
+<code>s</code>
+is block upper triangular
+with blocks of size at most
+<code>2 x 2</code>
+along the diagonal.  The diagonal elements of
+<code>s</code>
+(or the eigenvalues of the
+<code>2 x 2</code>
+blocks, when
+appropriate) are the eigenvalues of
+<code>a</code>
+and
+<code>s</code>.
+
+        <p>The eigenvalues are optionally ordered along the diagonal according to
+the value of <code>opt</code>.  <code>opt = "a"</code> indicates that all
+eigenvalues with negative real parts should be moved to the leading
+block of
+<code>s</code>
+(used in <code>are</code>), <code>opt = "d"</code> indicates that all eigenvalues
+with magnitude less than one should be moved to the leading block of
+<code>s</code>
+(used in <code>dare</code>), and <code>opt = "u"</code>, the default, indicates that
+no ordering of eigenvalues should occur.  The leading
+<code>k</code>
+columns of
+<code>u</code>
+always span the
+<code>a</code>-invariant
+subspace corresponding to the
+<code>k</code>
+leading eigenvalues of
+<code>s</code>. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsvd"></a>
+
+<div class="defun">
+&mdash; Loadable Function: <var>s</var> = <b>svd</b> (<var>a</var>)<var><a name="index-svd-1201"></a></var><br>
+&mdash; Loadable Function: [<var>u</var>, <var>s</var>, <var>v</var>] = <b>svd</b> (<var>a</var>)<var><a name="index-svd-1202"></a></var><br>
+<blockquote><p><a name="index-singular-value-decomposition-1203"></a>Compute the singular value decomposition of <var>a</var>
+
+     <pre class="example">          A = U*S*V'
+</pre>
+        <p>The function <code>svd</code> normally returns the vector of singular values. 
+If asked for three return values, it computes
+U, S, and V. 
+For example,
+
+     <pre class="example">          svd (hilb (3))
+</pre>
+        <p class="noindent">returns
+
+     <pre class="example">          ans =
+          
+            1.4083189
+            0.1223271
+            0.0026873
+</pre>
+        <p class="noindent">and
+
+     <pre class="example">          [u, s, v] = svd (hilb (3))
+</pre>
+        <p class="noindent">returns
+
+     <pre class="example">          u =
+          
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+          
+          s =
+          
+            1.40832  0.00000  0.00000
+            0.00000  0.12233  0.00000
+            0.00000  0.00000  0.00269
+          
+          v =
+          
+            -0.82704   0.54745   0.12766
+            -0.45986  -0.52829  -0.71375
+            -0.32330  -0.64901   0.68867
+</pre>
+        <p>If given a second argument, <code>svd</code> returns an economy-sized
+decomposition, eliminating the unnecessary rows or columns of <var>u</var> or
+<var>v</var>. 
+</p></blockquote></div>
+
+<!-- FIXME - should there be a new section here? -->
+   <p><a name="doc_002dhoush"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>housv</var>, <var>beta</var>, <var>zer</var>] = <b>housh</b> (<var>x, j, z</var>)<var><a name="index-housh-1204"></a></var><br>
+<blockquote><p>Compute Householder reflection vector <var>housv</var> to reflect <var>x</var>
+to be the jth column of identity, i.e.,
+
+     <pre class="example">          (I - beta*housv*housv')x =  norm(x)*e(j) if x(1) &lt; 0,
+          (I - beta*housv*housv')x = -norm(x)*e(j) if x(1) &gt;= 0
+</pre>
+        <p class="noindent">Inputs
+
+          <dl>
+<dt><var>x</var><dd>vector
+<br><dt><var>j</var><dd>index into vector
+<br><dt><var>z</var><dd>threshold for zero  (usually should be the number 0)
+</dl>
+
+     <p class="noindent">Outputs (see Golub and Van Loan):
+
+          <dl>
+<dt><var>beta</var><dd>If beta = 0, then no reflection need be applied (zer set to 0)
+<br><dt><var>housv</var><dd>householder vector
+</dl>
+        </p></blockquote></div>
+
+   <p><a name="doc_002dkrylov"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>u</var>, <var>h</var>, <var>nu</var>] = <b>krylov</b> (<var>a, v, k, eps1, pflg</var>)<var><a name="index-krylov-1205"></a></var><br>
+<blockquote><p>Construct an orthogonal basis <var>u</var> of block Krylov subspace
+
+     <pre class="example">          [v a*v a^2*v ... a^(k+1)*v]
+</pre>
+        <p class="noindent">Using Householder reflections to guard against loss of orthogonality.
+
+        <p>If <var>v</var> is a vector, then <var>h</var> contains the Hessenberg matrix
+such that <code>a*u == u*h+rk*ek'</code>, in which <code>rk =
+a*u(:,k)-u*h(:,k)</code>, and <code>ek'</code> is the vector
+<code>[0, 0, ..., 1]</code> of length <code>k</code>.  Otherwise, <var>h</var> is
+meaningless.
+
+        <p>If <var>v</var> is a vector and <var>k</var> is greater than
+<code>length(A)-1</code>, then <var>h</var> contains the Hessenberg matrix such
+that <code>a*u == u*h</code>.
+
+        <p>The value of <var>nu</var> is the dimension of the span of the krylov
+subspace (based on <var>eps1</var>).
+
+        <p>If <var>b</var> is a vector and <var>k</var> is greater than <var>m-1</var>, then
+<var>h</var> contains the Hessenberg decomposition of <var>a</var>.
+
+        <p>The optional parameter <var>eps1</var> is the threshold for zero.  The
+default value is 1e-12.
+
+        <p>If the optional parameter <var>pflg</var> is nonzero, row pivoting is used
+to improve numerical behavior.  The default value is 0.
+
+        <p>Reference: Hodel and Misra, "Partial Pivoting in the Computation of
+Krylov Subspaces", to be submitted to Linear Algebra and its
+Applications
+</p></blockquote></div>
+
+   </body></html>
+

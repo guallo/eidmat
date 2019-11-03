@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>Indexing Cell Arrays - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Cell-Arrays.html#Cell-Arrays" title="Cell Arrays">
+<link rel="prev" href="Creating-Cell-Arrays.html#Creating-Cell-Arrays" title="Creating Cell Arrays">
+<link rel="next" href="Cell-Arrays-of-Strings.html#Cell-Arrays-of-Strings" title="Cell Arrays of Strings">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Indexing-Cell-Arrays"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Cell-Arrays-of-Strings.html#Cell-Arrays-of-Strings">Cell Arrays of Strings</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Creating-Cell-Arrays.html#Creating-Cell-Arrays">Creating Cell Arrays</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Cell-Arrays.html#Cell-Arrays">Cell Arrays</a>
+<hr>
+</div>
+
+<h4 class="subsection">6.2.2 Indexing Cell Arrays</h4>
+
+<p>As shown in the introductory example elements can be inserted from cell
+arrays using the &lsquo;<samp><span class="samp">{</span></samp>&rsquo; and &lsquo;<samp><span class="samp">}</span></samp>&rsquo; operators. Besides the change
+of operators, indexing works for cell arrays like for multidimensional
+arrays.  As an example, all the rows of the first and third column of a
+cell array can be set to <code>0</code> with the following code
+
+<pre class="example">     c{:, [1, 3]} = 0;
+</pre>
+   <p>Accessing values in a cell array is, however, different from the same
+operation for numerical arrays. Accessing a single element of a cell
+array is very similar to numerical arrays, for example
+
+<pre class="example">     element = c{1, 2};
+</pre>
+   <p class="noindent">This will, however, <em>not</em> work when accessing multiple elements of
+a cell array, because it might not be possible to represent all elements
+with a single variable as is the case with numerical arrays.
+
+   <p>Accessing multiple elements of a cell array with the &lsquo;<samp><span class="samp">{</span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">}</span></samp>&rsquo; operators will result in a comma-separated list (see <a href="Comma-Separated-Lists.html#Comma-Separated-Lists">Comma Separated Lists</a>) of all the requested elements as discussed later.
+
+   <p>One distinction between &lsquo;<samp><span class="samp">{</span></samp>&rsquo; and &lsquo;<samp><span class="samp">(</span></samp>&rsquo; to index cell arrays is
+in the deletion of elements from the cell array. In a similar manner to
+a numerical array the &lsquo;<samp><span class="samp">()</span></samp>&rsquo; operator can be used to delete elements
+from the cell array. The &lsquo;<samp><span class="samp">{}</span></samp>&rsquo; operator however will remove the
+elements of the cell array, but not delete the space for them. For example
+
+<pre class="example">     x = {"1", "2"; "3", "4"};
+     x{1, :} = []
+      x =
+           {
+             [1,1] = [](0x0)
+             [2,1] = 3
+             [1,2] = [](0x0)
+             [2,2] = 4
+           }
+     
+     x(1, :) = []
+      x =
+           {
+             [1,1] = 3
+             [1,2] = 4
+           }
+</pre>
+   </body></html>
+

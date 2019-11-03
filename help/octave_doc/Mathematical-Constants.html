@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+<title>Mathematical Constants - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Arithmetic.html#Arithmetic" title="Arithmetic">
+<link rel="prev" href="Coordinate-Transformations.html#Coordinate-Transformations" title="Coordinate Transformations">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Mathematical-Constants"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Coordinate-Transformations.html#Coordinate-Transformations">Coordinate Transformations</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Arithmetic.html#Arithmetic">Arithmetic</a>
+<hr>
+</div>
+
+<h3 class="section">17.7 Mathematical Constants</h3>
+
+<p><a name="doc_002dI"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>I</b> (<var>x</var>)<var><a name="index-I-1126"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var>n, m</var>)<var><a name="index-I-1127"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-I-1128"></a></var><br>
+&mdash; Built-in Function:  <b>I</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-I-1129"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the pure imaginary unit, defined as
+  <code>sqrt (-1)</code>. 
+Since I (also i, J, and j) is a function, you can use the name(s) for
+other purposes. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dInf"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>Inf</b> (<var>x</var>)<var><a name="index-Inf-1130"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var>n, m</var>)<var><a name="index-Inf-1131"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-Inf-1132"></a></var><br>
+&mdash; Built-in Function:  <b>Inf</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-Inf-1133"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all Infinity. 
+The arguments are handled the same as the arguments for <code>eye</code>. 
+The optional argument <var>class</var> may be either &lsquo;<samp><span class="samp">"single"</span></samp>&rsquo; or
+&lsquo;<samp><span class="samp">"double"</span></samp>&rsquo;.  The default is &lsquo;<samp><span class="samp">"double"</span></samp>&rsquo;. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dNaN"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>NaN</b> (<var>x</var>)<var><a name="index-NaN-1134"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var>n, m</var>)<var><a name="index-NaN-1135"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-NaN-1136"></a></var><br>
+&mdash; Built-in Function:  <b>NaN</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-NaN-1137"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all NaN
+(Not a Number).  The value NaN is the result of an operation like
+0/0, or &lsquo;<samp><span class="samp">Inf - Inf</span></samp>&rsquo;,
+or any operation with a NaN.
+
+        <p>Note that NaN always compares not equal to NaN.  This behavior is
+specified by the IEEE standard for floating point arithmetic.  To
+find NaN values, you must use the <code>isnan</code> function.
+
+        <p>The arguments are handled the same as the arguments for <code>eye</code>. 
+The optional argument <var>class</var> may be either &lsquo;<samp><span class="samp">"single"</span></samp>&rsquo; or
+&lsquo;<samp><span class="samp">"double"</span></samp>&rsquo;.  The default is &lsquo;<samp><span class="samp">"double"</span></samp>&rsquo;. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dpi"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>pi</b> (<var>x</var>)<var><a name="index-pi-1138"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var>n, m</var>)<var><a name="index-pi-1139"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-pi-1140"></a></var><br>
+&mdash; Built-in Function:  <b>pi</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-pi-1141"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the ratio of the circumference of a circle to its diameter. 
+Internally, <code>pi</code> is computed as &lsquo;<samp><span class="samp">4.0 * atan (1.0)</span></samp>&rsquo;. 
+</p></blockquote></div>
+
+   <p><a name="doc_002de"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>e</b> (<var>x</var>)<var><a name="index-e-1142"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var>n, m</var>)<var><a name="index-e-1143"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-e-1144"></a></var><br>
+&mdash; Built-in Function:  <b>e</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-e-1145"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the base of natural logarithms.  The constant
+ <var>e</var>
+ satisfies the equation
+ <code>log</code> (<var>e</var>) = 1. 
+</p></blockquote></div>
+
+   <p><a name="doc_002deps"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>eps</b> (<var>x</var>)<var><a name="index-eps-1146"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var>n, m</var>)<var><a name="index-eps-1147"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-eps-1148"></a></var><br>
+&mdash; Built-in Function:  <b>eps</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-eps-1149"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all eps,
+the machine precision.  More precisely, <code>eps</code> is the largest
+relative spacing between any two adjacent numbers in the machine's
+floating point system.  This number is obviously system-dependent.  On
+machines that support 64 bit IEEE floating point arithmetic, <code>eps</code>
+is approximately
+ 2.2204e-16. 
+</p></blockquote></div>
+
+   <p><a name="doc_002drealmax"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>realmax</b> (<var>x</var>)<var><a name="index-realmax-1150"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var>n, m</var>)<var><a name="index-realmax-1151"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmax-1152"></a></var><br>
+&mdash; Built-in Function:  <b>realmax</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmax-1153"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the largest floating point number that is representable.  The actual
+value is system-dependent.  On machines that support 64-bit IEEE
+floating point arithmetic, <code>realmax</code> is approximately
+ 1.7977e+308
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> realmin. 
+</p></blockquote></div>
+
+   <p><a name="doc_002drealmin"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>realmin</b> (<var>x</var>)<var><a name="index-realmin-1154"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var>n, m</var>)<var><a name="index-realmin-1155"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var>n, m, k, <small class="dots">...</small></var>)<var><a name="index-realmin-1156"></a></var><br>
+&mdash; Built-in Function:  <b>realmin</b> (<var><small class="dots">...</small>, class</var>)<var><a name="index-realmin-1157"></a></var><br>
+<blockquote><p>Return a matrix or N-dimensional array whose elements are all equal
+to the smallest normalized floating point number that is representable. 
+The actual value is system-dependent.  On machines that support
+64-bit IEEE floating point arithmetic, <code>realmin</code> is approximately
+ 2.2251e-308
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> realmax. 
+</p></blockquote></div>
+
+<!-- DO NOT EDIT!  Generated automatically by munge-texi. -->
+<!-- Copyright (C) 1996, 1997, 2007 John W. Eaton -->
+<!-- This file is part of Octave. -->
+<!-- Octave is free software; you can redistribute it and/or modify it -->
+<!-- under the terms of the GNU General Public License as published by the -->
+<!-- Free Software Foundation; either version 3 of the License, or (at -->
+<!-- your option) any later version. -->
+<!-- Octave is distributed in the hope that it will be useful, but WITHOUT -->
+<!-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License -->
+<!-- for more details. -->
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with Octave; see the file COPYING.  If not, see -->
+<!-- <http://www.gnu.org/licenses/>. -->
+   </body></html>
+

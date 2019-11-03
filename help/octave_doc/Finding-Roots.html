@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Finding Roots - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Polynomial-Manipulations.html#Polynomial-Manipulations" title="Polynomial Manipulations">
+<link rel="prev" href="Evaluating-Polynomials.html#Evaluating-Polynomials" title="Evaluating Polynomials">
+<link rel="next" href="Products-of-Polynomials.html#Products-of-Polynomials" title="Products of Polynomials">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Finding-Roots"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Products-of-Polynomials.html#Products-of-Polynomials">Products of Polynomials</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Evaluating-Polynomials.html#Evaluating-Polynomials">Evaluating Polynomials</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Polynomial-Manipulations.html#Polynomial-Manipulations">Polynomial Manipulations</a>
+<hr>
+</div>
+
+<h3 class="section">27.2 Finding Roots</h3>
+
+<p>Octave can find the roots of a given polynomial.  This is done by computing
+the companion matrix of the polynomial (see the <code>compan</code> function
+for a definition), and then finding its eigenvalues.
+
+   <p><a name="doc_002droots"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>roots</b> (<var>v</var>)<var><a name="index-roots-1580"></a></var><br>
+<blockquote>
+        <p>For a vector <var>v</var> with N components, return
+the roots of the polynomial
+
+     <pre class="example">          v(1) * z^(N-1) + ... + v(N-1) * z + v(N)
+</pre>
+        <p>As an example, the following code finds the roots of the quadratic
+polynomial
+     <pre class="example">          p(x) = x^2 - 5.
+</pre>
+        <pre class="example">          c = [1, 0, -5];
+          roots(c)
+            2.2361
+           -2.2361
+</pre>
+        <p>Note that the true result is
++/- sqrt(5)
+which is roughly
++/- 2.2361.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> compan. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dcompan"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>compan</b> (<var>c</var>)<var><a name="index-compan-1581"></a></var><br>
+<blockquote><p>Compute the companion matrix corresponding to polynomial coefficient
+vector <var>c</var>.
+
+        <p>The companion matrix is
+
+     <pre class="smallexample">               _                                                        _
+              |  -c(2)/c(1)   -c(3)/c(1)  ...  -c(N)/c(1)  -c(N+1)/c(1)  |
+              |       1            0      ...       0             0      |
+              |       0            1      ...       0             0      |
+          A = |       .            .   .            .             .      |
+              |       .            .       .        .             .      |
+              |       .            .           .    .             .      |
+              |_      0            0      ...       1             0     _|
+</pre>
+        <p>The eigenvalues of the companion matrix are equal to the roots of the
+polynomial.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> poly, roots, residue, conv, deconv, polyval, polyderiv,
+polyinteg. 
+</p></blockquote></div>
+
+   </body></html>
+

@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+<title>fir2sys - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="sysinterface.html#sysinterface" title="sysinterface">
+<link rel="next" href="ss2sys.html#ss2sys" title="ss2sys">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="fir2sys"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="ss2sys.html#ss2sys">ss2sys</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="sysinterface.html#sysinterface">sysinterface</a>
+<hr>
+</div>
+
+<h4 class="subsection">30.2.1 Finite impulse response system interface functions</h4>
+
+<p><a name="doc_002dfir2sys"></a>
+
+<div class="defun">
+&mdash; Function File:  <b>fir2sys</b> (<var>num, tsam, inname, outname</var>)<var><a name="index-fir2sys-1670"></a></var><br>
+<blockquote><p>construct a system data structure from <acronym>FIR</acronym> description
+
+        <p><strong>Inputs</strong>
+          <dl>
+<dt><var>num</var><dd>vector of coefficients
+[c0, c1, <small class="dots">...</small>, cn]
+of the <acronym>SISO</acronym> <acronym>FIR</acronym> transfer function
+C(z) = c0 + c1*z^(-1) + c2*z^(-2) + <small class="dots">...</small> + cn*z^(-n)
+
+          <br><dt><var>tsam</var><dd>sampling time (default: 1)
+
+          <br><dt><var>inname</var><dd>name of input signal;  may be a string or a list with a single entry.
+
+          <br><dt><var>outname</var><dd>name of output signal; may be a string or a list with a single entry. 
+</dl>
+
+        <p><strong>Output</strong>
+          <dl>
+<dt><var>sys</var><dd>system data structure
+</dl>
+
+        <p><strong>Example</strong>
+     <pre class="example">          octave:1&gt; sys = fir2sys([1 -1 2 4],0.342,\
+          &gt; "A/D input","filter output");
+          octave:2&gt; sysout(sys)
+          Input(s)
+                  1: A/D input
+          
+          Output(s):
+                  1: filter output (discrete)
+          
+          Sampling interval: 0.342
+          transfer function form:
+          1*z^3 - 1*z^2 + 2*z^1 + 4
+          -------------------------
+          1*z^3 + 0*z^2 + 0*z^1 + 0
+</pre>
+        </blockquote></div>
+
+   <p><a name="doc_002dsys2fir"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>c</var>, <var>tsam</var>, <var>input</var>, <var>output</var>] = <b>sys2fir</b> (<var>sys</var>)<var><a name="index-sys2fir-1671"></a></var><br>
+<blockquote>
+        <p>Extract <acronym>FIR</acronym> data from system data structure; see <samp><span class="command">fir2sys</span></samp> for
+parameter descriptions.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> fir2sys. 
+</p></blockquote></div>
+
+   </body></html>
+

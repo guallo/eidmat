@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>sysstructvars - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="sysstruct.html#sysstruct" title="sysstruct">
+<link rel="next" href="sysstructtf.html#sysstructtf" title="sysstructtf">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="sysstructvars"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="sysstructtf.html#sysstructtf">sysstructtf</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="sysstruct.html#sysstruct">sysstruct</a>
+<hr>
+</div>
+
+<h4 class="subsection">30.1.1 Variables common to all <acronym>OCST</acronym> system formats</h4>
+
+<p>The data structure elements (and variable types) common to all  system
+representations are listed below; examples of the initialization
+and use of the system data structures are given in subsequent sections and
+in the online demo <code>DEMOcontrol</code>.
+     <dl>
+<dt><var>n</var><dt><var>nz</var><dd>The respective number of continuous and discrete states
+in the system (scalar)
+
+     <br><dt><var>inname</var><dt><var>outname</var><dd>list of name(s) of the system input, output signal(s). (list of strings)
+
+     <br><dt><var>sys</var><dd>System status vector.  (vector)
+
+     <p>This vector indicates both what representation was used to initialize
+the system data structure (called the primary system type) and which
+other representations are currently up-to-date with the primary system
+type (see <a href="structaccess.html#structaccess">structaccess</a>).
+
+     <p>The value of the first element of the vector indicates the primary
+system type.
+
+          <dl>
+<dt>0<dd>for tf form (initialized with <code>tf2sys</code> or <code>fir2sys</code>)
+
+          <br><dt>1<dd>for zp form (initialized with <code>zp2sys</code>)
+
+          <br><dt>2<dd>for ss form (initialized with <code>ss2sys</code>)
+</dl>
+
+     <p>The next three elements are boolean flags that indicate whether tf, zp,
+or ss, respectively, are &ldquo;up to date" (whether it is safe to use the
+variables associated with these representations).  These flags are
+changed when calls are made to the <code>sysupdate</code> command.
+
+     <br><dt><var>tsam</var><dd> Discrete time sampling period  (nonnegative scalar). 
+ <var>tsam</var> is set to 0 for continuous time systems.
+
+     <br><dt><var>yd</var><dd> Discrete-time output list (vector)
+
+     <p>indicates which outputs are discrete time (i.e.,
+    produced by D/A converters) and which are continuous time. 
+    yd(ii) = 0 if output ii is continuous, = 1 if discrete. 
+</dl>
+
+   <p>The remaining variables of the  system data structure are only present
+if the corresponding entry of the <code>sys</code> vector is true (=1).
+
+   </body></html>
+

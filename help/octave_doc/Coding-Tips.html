@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>Coding Tips - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Tips.html#Tips" title="Tips">
+<link rel="prev" href="Style-Tips.html#Style-Tips" title="Style Tips">
+<link rel="next" href="Comment-Tips.html#Comment-Tips" title="Comment Tips">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Coding-Tips"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Comment-Tips.html#Comment-Tips">Comment Tips</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Style-Tips.html#Style-Tips">Style Tips</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Tips.html#Tips">Tips</a>
+<hr>
+</div>
+
+<h3 class="section">C.2 Tips for Making Code Run Faster.</h3>
+
+<p><a name="index-execution-speed-2134"></a><a name="index-speedups-2135"></a>
+Here are some ways of improving the execution speed of Octave programs.
+
+     <ul>
+<li>Avoid looping wherever possible.
+
+     <li>Use iteration rather than recursion whenever possible. 
+Function calls are slow in Octave.
+
+     <li>Avoid resizing matrices unnecessarily.  When building a single result
+matrix from a series of calculations, set the size of the result matrix
+first, then insert values into it.  Write
+
+     <pre class="example">          result = zeros (big_n, big_m)
+          for i = over:and_over
+            r1 = ...
+            r2 = ...
+            result (r1, r2) = new_value ();
+          endfor
+</pre>
+     <p class="noindent">instead of
+
+     <pre class="example">          result = [];
+          for i = ever:and_ever
+            result = [ result, new_value() ];
+          endfor
+</pre>
+     <li>Avoid calling <code>eval</code> or <code>feval</code> whenever possible, because
+they require Octave to parse input or look up the name of a function in
+the symbol table.
+
+     <p>If you are using <code>eval</code> as an exception handling mechanism and not
+because you need to execute some arbitrary text, use the <code>try</code>
+statement instead.  See <a href="The-try-Statement.html#The-try-Statement">The try Statement</a>.
+
+     <li>If you are calling lots of functions but none of them will need to
+change during your run, set the variable
+<code>ignore_function_time_stamp</code> to <code>"all"</code> so that Octave doesn't
+waste a lot of time checking to see if you have updated your function
+files. 
+</ul>
+
+   </body></html>
+

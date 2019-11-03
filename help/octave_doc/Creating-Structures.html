@@ -1,0 +1,160 @@
+<html lang="en">
+<head>
+<title>Creating Structures - Untitled</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Untitled">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="octave.html">
+<link rel="up" href="Data-Structures.html#Data-Structures" title="Data Structures">
+<link rel="prev" href="Structure-Arrays.html#Structure-Arrays" title="Structure Arrays">
+<link rel="next" href="Manipulating-Structures.html#Manipulating-Structures" title="Manipulating Structures">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Creating-Structures"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Manipulating-Structures.html#Manipulating-Structures">Manipulating Structures</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Structure-Arrays.html#Structure-Arrays">Structure Arrays</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Data-Structures.html#Data-Structures">Data Structures</a>
+<hr>
+</div>
+
+<h4 class="subsection">6.1.2 Creating Structures</h4>
+
+<p>As well as indexing a structure with ".", Octave can create a structure
+with the <code>struct</code> command. <code>struct</code> takes pairs of arguments,
+where the first argument in the pair is the fieldname to include in the
+structure and the second is a scalar or cell array, representing the
+values to include in the structure or structure array. For example
+
+<pre class="example">     struct ("field1", 1, "field2", 2)
+      ans =
+           {
+             field1 =  1
+             field2 =  2
+           }
+</pre>
+   <p>If the values passed to <code>struct</code> are a mix of scalar and cell
+arrays, then the scalar arguments are expanded to create a
+structure array with a consistent dimension. For example
+
+<pre class="example">     struct ("field1", {1, "one"}, "field2", {2, "two"},
+             "field3", 3)
+      ans =
+           {
+             field1 =
+     
+             (,
+               [1] =  1
+               [2] = one
+             ,)
+     
+             field2 =
+     
+             (,
+               [1] =  2
+               [2] = two
+             ,)
+     
+             field3 =
+     
+             (,
+               [1] =  3
+               [2] =  3
+             ,)
+     
+           }
+</pre>
+   <p><a name="doc_002dstruct"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>struct</b> (<var>"field", value, "field", value, <small class="dots">...</small></var>)<var><a name="index-struct-321"></a></var><br>
+<blockquote>
+        <p>Create a structure and initialize its value.
+
+        <p>If the values are cell arrays, create a structure array and initialize
+its values.  The dimensions of each cell array of values must match. 
+Singleton cells and non-cell values are repeated so that they fill
+the entire array.  If the cells are empty, create an empty structure
+array with the specified field names. 
+</p></blockquote></div>
+
+   <p><a name="doc_002disstruct"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>isstruct</b> (<var>expr</var>)<var><a name="index-isstruct-322"></a></var><br>
+<blockquote><p>Return 1 if the value of the expression <var>expr</var> is a structure. 
+</p></blockquote></div>
+
+   <p>Additional functions that can manipulate the fields of a structure are
+listed below.
+
+   <p><a name="doc_002drmfield"></a>
+
+<div class="defun">
+&mdash; Built-in Function:  <b>rmfield</b> (<var>s, f</var>)<var><a name="index-rmfield-323"></a></var><br>
+<blockquote><p>Remove field <var>f</var> from the structure <var>s</var>.  If <var>f</var> is a
+cell array of character strings or a character array, remove the
+named fields.
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> cellstr, iscellstr, setfield. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dsetfield"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>k1</var>, <small class="dots">...</small>, <var>v1</var>] = <b>setfield</b> (<var>s, k1, v1, <small class="dots">...</small></var>)<var><a name="index-setfield-324"></a></var><br>
+<blockquote><p>Set field members in a structure.
+
+     <pre class="example">          oo(1,1).f0= 1;
+          oo = setfield(oo,{1,2},'fd',{3},'b', 6);
+          oo(1,2).fd(3).b == 6
+           ans = 1
+</pre>
+        <p>Note that this function could be written
+
+     <pre class="example">                   i1= {1,2}; i2= 'fd'; i3= {3}; i4= 'b';
+                   oo( i1{:} ).( i2 )( i3{:} ).( i4 ) == 6;
+</pre>
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> getfield, rmfield, isfield, isstruct, fieldnames, struct. 
+</p></blockquote></div>
+
+   <p><a name="doc_002dorderfields"></a>
+
+<div class="defun">
+&mdash; Function File: [<var>t</var>, <var>p</var>] = <b>orderfields</b> (<var>s1, s2</var>)<var><a name="index-orderfields-325"></a></var><br>
+<blockquote><p>Return a struct with fields arranged alphabetically or as specified
+by <var>s2</var> and a corresponding permutation vector.
+
+        <p>Given one struct, arrange field names in <var>s1</var> alphabetically.
+
+        <p>Given two structs, arrange field names in <var>s1</var> as they appear
+in <var>s2</var>.  The second argument may also specify the order in
+a permutation vector or a cell array of strings.
+
+        <pre class="sp">
+     
+     </pre>
+     <strong>See also:</strong> getfield, rmfield, isfield, isstruct, fieldnames, struct. 
+</p></blockquote></div>
+
+   </body></html>
+
