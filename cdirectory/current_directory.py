@@ -6,6 +6,7 @@ from cdirectory.list_files import ListFiles
 from util.select_folder_dialog import SelectFolderDialog
 from menubar.cdirectory_menu_bar import CDirectoryMenuBar
 from toolbar.cdirectory_toolbar import CDirectoryToolbar
+from cmds.change_directory import ChangeDirectory
 
 
 class CurrentDirectory(gtk.VBox):
@@ -54,6 +55,14 @@ class CurrentDirectory(gtk.VBox):
 
         self.update_appearance()
 
+    def get_mbar(self):
+        """
+            Retorna: un CDirectoryMenuBar.
+
+            Devuelve la barra de menus del CurrentDirectory.
+        """
+        return self.__mbar
+
     def grab_focus(self):
         """
             Hace que el foco lo tenga el 'ListFiles'(listado de carpetas y
@@ -95,20 +104,29 @@ class CurrentDirectory(gtk.VBox):
 
             Si 'p_path' apunta a un directorio entonces se establece el mismo
             como directorio actual del usuario.
+
+            Si 'p_path' apunta a un archivo se trata de abrir el mismo.
         """
         if os.path.isdir(p_path):
             if os.access(p_path, os.R_OK):
-                self.__conn.set_change_dir(p_path)
+                self.__conn.append_command(ChangeDirectory(p_path))
             else:
                 pass
         else:
-            pass
+            ext = os.path.splitext(p_path)[1]
+
+            if ext == ".var" or ext == ".mat":
+                pass
+            elif ext == ".eidmat":
+                pass
+            else:
+                self.__mwindow.show_edebugger(True, True, p_path)
 
     def go_up(self):
         """
             Cambia al directorio padre.
         """
-        self.__conn.set_change_dir(os.path.dirname(self.__path))
+        self.__conn.append_command(ChangeDirectory(os.path.dirname(self.__path)))
 
     def browse_for_folder(self):
         """

@@ -16,11 +16,11 @@ class CommandWindowBuffer(Buffer):
         # Estos atributos se dejaron publico
         # por cuestion de ganar en velocidad.
         self.limit = 0
-        self.end_mark = self.create_mark(None, 0, False)
+        self.end_mark = self.create_mark(None, self.get_char_count(), False)
 
         self.__scrollback_lines = 5000
         self.__no_editable_tag = self.create_tag(editable = False)
-        self.apply_tag(self.__no_editable_tag, 0, 0)
+        self.apply_tag(self.__no_editable_tag, 0, self.limit)
 
     def update_no_editable_zone(self):
         """
@@ -28,7 +28,7 @@ class CommandWindowBuffer(Buffer):
             que el usuario no borre la salida dada por 'Octave' o algun
             comando ya enviado anteriormente al mismo.
         """
-        self.remove_tag(self.__no_editable_tag, 0, self.limit)
+        self.remove_tag(self.__no_editable_tag, 0, self.get_char_count())
         self.apply_tag(self.__no_editable_tag, 0, self.limit)
 
     def check_scrollback_lines(self):

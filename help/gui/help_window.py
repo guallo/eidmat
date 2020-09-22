@@ -59,7 +59,10 @@ class HelpWindow:
         self.__stop_button = self.__xml2.get_widget('toolbutton3')
         self.__stop_button.set_sensitive(False)     
 
-        self.__notebook_sections = self.__xml2.get_widget('notebook2')
+        self.__notebook_sections = self.__xml2.get_widget('notebook2')        
+        
+        
+        self.__notebook_sections.set_menu_label_text(self.__notebook_sections.get_nth_page(2), "Search Results")
         self.__notebook_view = self.__xml2.get_widget('notebook3')        
 
         # Ocultar tags del notebook3 que representa la derecha de la ventana.
@@ -122,6 +125,7 @@ class HelpWindow:
         column.set_sort_column_id(0) 
         self.__treeview_index.append_column(column)        
         self.__generate_command = GenerateComands(self)
+        self.__generate_command.show_help()
 
         # Componente Web.
         gtkmozembed.push_startup() # Necesaria para que pinche el gtkmozembed.

@@ -119,22 +119,22 @@ class MenuStart():
             Metodo auxiliar utilizado para la creacion de un <MenuItem> 
             asociado a cada elemento de los shortcuts.
         """
-        if p_elem is not None:
+        if p_elem != None:
             hbox = gtk.HBox(False, 5)
             p_elem.add(hbox)
         else:
             p_elem = gtk.SeparatorMenuItem()
-        if p_stock is not None:
+        if p_stock != None:
             image = gtk.Image()
             image.set_from_file(p_stock)
             hbox.pack_start(image)
             hbox.set_child_packing(image, False, False, 0, gtk.PACK_START)
-        if p_text is not None:
+        if p_text != None:
             label = gtk.Label(p_text)
             label.set_use_underline(True)
             hbox.pack_start(label)
             hbox.set_child_packing(label, False, False, 0, gtk.PACK_START)        
-        if p_handler is not None:
+        if p_handler != None:
             p_elem.connect("button-press-event", p_handler)
             p_elem.connect("activate", p_handler)
         p_elem.show_all()

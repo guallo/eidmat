@@ -6,7 +6,7 @@ import pango
 from util.terminal import Terminal
 from util.constants import VAR, VALUE
 from util.confirm import Confirm
-from cmd.load_vars import LoadVars
+from cmds.load_vars import LoadVars
 
 
 class ImportWizard(gtk.Window):
@@ -55,8 +55,7 @@ class ImportWizard(gtk.Window):
         vbox.pack_start(hpaned)
 
         # Listado de variables.
-        self.__model = gtk.ListStore("gboolean", gtk.gdk.Pixbuf, str, str,
-                                                                 str, str)
+        self.__model = gtk.ListStore("gboolean", gtk.gdk.Pixbuf, str, str, str, str, str)
         tree = gtk.TreeView(self.__model)
         self.__selec = tree.get_selection()
         self.__selec.connect("changed", self.on_selection_changed)
@@ -80,8 +79,8 @@ class ImportWizard(gtk.Window):
         col.add_attribute(cell, "text", 2)
         tree.append_column(col)
 
-        # Columnas Size, Bytes, Class.
-        for pos, name in enumerate(["Size", "Bytes", "Class"]):
+        # Columnas Size, Bytes, Class, Attributes.
+        for pos, name in enumerate(["Size", "Bytes", "Class", "Attributes"]):
             cell = gtk.CellRendererText()
             col = gtk.TreeViewColumn(name, cell, text=pos+3)
             col.set_resizable(True)
@@ -150,25 +149,27 @@ class ImportWizard(gtk.Window):
         """
             Retorna: una cadena.
 
-            Metodo auxiliar que retorna codigo octave que permite determinar
+            Metodo auxiliar que retorna codigo Octave que permite determinar
             los nombres de las variables que estan en el archivo del cual se
             quiere importar.
         """
-        VAR1 = VAR + "1"
-        cmds = (
-        "%s = whos -variables;" %VAR,
-        "for %s=1 : length(%s);" %(VAR1, VAR),
-        "eval([%s(%s).name, \"='%s';\"]);" %(VAR, VAR1, VALUE),
-        "endfor;",
-        "try;load -force '%s';catch;end_try_catch;" %self.__path,
-        "clear %s %s;" %(VAR, VAR1),
-        "%s = whos -variables;" %VAR,
-        "disp('***');",
-        "for %s=1 : length(%s);" %(VAR1, VAR),
-        "eval([\"try;if (\", %s(%s).name, \"!='%s');disp('\", %s(%s).name, \"');endif;catch;disp('\", %s(%s).name,\"')end_try_catch;\"]);" %(VAR, VAR1, VALUE, VAR, VAR1, VAR, VAR1),
-        "endfor;",
-        "clear %s %s;" %(VAR, VAR1))
-        return "".join(cmds) + "\n"
+        path = os.path.join(os.path.dirname(__file__), "disp_names.m")
+
+        file_ = open(path, "r")
+        code = file_.read().strip()
+        file_.close()
+
+        replacer = lambda match: {"var": VAR,
+                                  "index": VAR + "1",
+                                  "value": VALUE,
+                                  "path": self.__path,
+                                  "\n": ""
+                                 }[match.group()]
+
+        pattern = re.compile("(var|index|value|path|\n)")
+        code = re.sub(pattern, replacer, code)
+
+        return code + "\n"
 
     def extract_names(self, p_text):
         """
@@ -187,71 +188,65 @@ class ImportWizard(gtk.Window):
             pos -= 1
 
         if names:
-            self.__term.feed_child("whos -variables;\n",
-                                    self.show_vars, [names])
+            self.__term.feed_child("whos;\n", self.show_vars, [names])
         else:
-            self.__textview.get_buffer().set_text(
-                                              "Could not import any variable.")
+            self.__textview.get_buffer().set_text("Could not import any variable.")
 
     def _get_vars(self, p_text):
         """
-            p_text:  una cadena que es la salida del comando 'whos -variables;'
+            p_text:  una cadena que es la salida del comando 'whos;'
                      enviado anteriormente a 'Octave'.
 
             Retorna: una lista('list') de listas, donde cada sublista contiene
-                     los datos de una variable determinada, los datos son el
-                     nombre, tamanno, bytes, clase y si es global o no.
+                     los datos de una variable determinada, los datos son:
+
+                     - atributos
+                     - nombre
+                     - tamanno
+                     - bytes
+                     - clase
 
             Metodo auxiliar que retorna los datos de las variables extraidas
             de 'p_text'.
         """
         lines = p_text.splitlines()
-        pos, length = 0, len(lines)
+        length = len(lines)
+        pos = 0
 
-        pattern1 = re.compile("^\s*\*+", re.IGNORECASE)
-        pattern2 = re.compile("global", re.IGNORECASE)
-
-        find_aster = True
-        find_equal = find_vars = False
+        find_equal = True
+        pattern = re.compile("Total is \d+ elements? using \d+ bytes?", re.IGNORECASE)
 
         vars_ = []
         while pos < length:
             line = lines[pos]
 
-            if find_aster and re.search(pattern1, line):
-                if re.search(pattern2, line):
-                    is_global = True
-                else:
-                    is_global = False
-                find_equal = True
-                find_aster = find_vars = False
+            if find_equal:
+                if "=" in line:
+                    find_equal = False
 
-            elif find_equal and "=" in line:
-                find_vars = True
-                find_aster = find_equal = False
+            else:  # find_vars
+                if re.search(pattern, line):
+                    break
 
-            elif find_vars:
-                if line:
-                    var = line.split()
-                    var.append(is_global)
+                var = line.split()
+                if var:
+                    if len(var) == 4:
+                        var.insert(0, "")
                     vars_.append(var)
-                else:
-                    find_aster = True
-                    find_equal = find_vars = False
 
             pos += 1
         return vars_
 
     def show_vars(self, p_text, p_names):
         """
-            p_text:  una cadena que es la salida del comando 'whos -variables;'
+            p_text:  una cadena que es la salida del comando 'whos;'
                      enviado anteriormente a 'Octave'.
             p_names: una lista('list') que contiene los nombres de las
                      variables contenidas en el archivo a importar.
 
             Muestra en un listado las variables contenidas en el archivo a
-            importar. De cada variable se expone su nombre, tamanno, bytes y
-            clase a la que pertenece.
+            importar. De cada variable se expone su nombre, tamanno, bytes,
+            clase y atributos.
         """
         vars_ = self._get_vars(p_text)
         model = self.__model
@@ -267,12 +262,10 @@ class ImportWizard(gtk.Window):
                 img = images.get(var[4], "class_double.png")
                 pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(root,
                                                                 "images", img))
-                var[4] += ("", " (global)")[var[5]]
-                model.append([True, pixbuf, var[1], var[2], var[3], var[4]])
+                model.append([True, pixbuf, var[1], var[2], var[3], var[4], var[0]])
 
         self.__apply_butt.set_sensitive(True)
-        self.__textview.get_buffer().set_text(
-                                           "No variable selected for preview.")
+        self.__textview.get_buffer().set_text("No variable selected for preview.")
 
     def on_selection_changed(self, p_selec):
         """
@@ -301,12 +294,10 @@ class ImportWizard(gtk.Window):
                                        , self.show_preview)
                 self.__wait = True
             else:
-                self.__textview.get_buffer().set_text(
-                                 "Preview too large to be displayed properly.")
+                self.__textview.get_buffer().set_text("Preview too large to be displayed properly.")
 
         else:
-            self.__textview.get_buffer().set_text(
-                                           "No variable selected for preview.")
+            self.__textview.get_buffer().set_text("No variable selected for preview.")
 
     def show_preview(self, p_text):
         """
@@ -356,14 +347,14 @@ class ImportWizard(gtk.Window):
 
         if equals:
             if len(equals) == 1:
-                msg = "A variable named\n%s\n" %equals[0]
-                msg += "already exist in the EIDMAT Workspace."
+                msg = "A variable named\n%s\n" \
+                      "already exist in the EIDMAT Workspace." %equals[0]
             elif len(equals) == 2:
-                msg = "Variables named\n%s and %s\n" %tuple(equals)
-                msg += "already exist in the EIDMAT Workspace."
+                msg = "Variables named\n%s and %s\n" \
+                      "already exist in the EIDMAT Workspace." %tuple(equals)
             else:
-                msg = "Variables with some of these names already exist\n"
-                msg += "in the EIDMAT Workspace."
+                msg = "Variables with some of these names already exist\n" \
+                      "in the EIDMAT Workspace."
             msg += "\n\nAre you sure that you want to overwrite them?"
 
             if not Confirm(gtk.STOCK_DIALOG_QUESTION, msg, "Import Wizard",

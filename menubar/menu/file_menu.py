@@ -30,6 +30,12 @@ class FileMenu(Menu):
         self.append(new_item)
         new_item.set_submenu(NewSubmenu(p_mwindow))
 
+        # Open
+        self._open_item = self.create_item("image", "_Open...",
+                            os.path.join(root, "images", "open.png"))
+        self.append(self._open_item)
+        self._open_item.connect("activate", self.on_open_activate)
+
         # Separator
         self.append(self.create_item("separator"))
 
@@ -51,6 +57,15 @@ class FileMenu(Menu):
         exit_item = self.create_item("image", "E_xit EIDMAT", gtk.STOCK_QUIT)
         self.append(exit_item)
         exit_item.connect("activate", self.on_exit_activate)
+
+    def on_open_activate(self, p_item):
+        """
+            p_item: el 'gtk.MenuItem' que recibio la sennal.
+
+            Se ejecuta cuando el usuario activa el elemento de menu
+            'Open'. Llama el metodo 'MainWindow.open_'.
+        """
+        self._mwindow.open_()
 
     def on_import_activate(self, p_item):
         """

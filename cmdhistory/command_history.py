@@ -25,6 +25,10 @@ class CommandHistory(gtk.TreeView):
             adicionar la fecha en que se abre la aplicacion si no se encuentra
             en los datos cargados.
         """
+        # Proyecto
+        self.__project = False
+        self.__localization = None
+
         self.__tree = gtk.TreeStore(str)
         gtk.TreeView.__init__(self, self.__tree)
         
@@ -70,6 +74,14 @@ class CommandHistory(gtk.TreeView):
 
         self.update_appearance()
 
+    def get_mbar(self):
+        """
+            Retorna: un CMDHistoryMenuBar.
+
+            Devuelve la barra de menus del CommandHistory.
+        """
+        return self.__mbar
+
     def _update_copy(self):
         """
             Metodo que actualiza el fichero del historial de comandos
@@ -78,12 +90,15 @@ class CommandHistory(gtk.TreeView):
             comandos, e.g. 'adicionar', 'cortar'.
         """
         path = os.path.join(os.environ["HOME"], "command_history")
+        if self.__project:
+            path = os.path.join(self.__localization, "HIST", ".hist.txt~")
         history = self._open_file("w", path)
         model = self.__tree
         copy = []
         
         for row in model:
             copy.append(row.path)
+            f = model[row.path][0]
             history.write("\t" + model[row.path][0] + "\n")
             
             for i in xrange(model.iter_n_children(row.iter)):
@@ -208,21 +223,23 @@ class CommandHistory(gtk.TreeView):
         return open(p_path, p_mode)
 
     def _load(self):
-         """
-            Metodo que se ejecuta cuando inicia la aplicacion, es el encargado
-            de inicializar el historial de comandos con los datos que quedaron 
-            guardados en el fichero correspondiente al mismo.
-         """
-         model = self.__tree
-         path = os.path.join(os.environ["HOME"], "command_history")
-         file_ = self._open_file("r", path)
-         for line in file_:
-             if line[0] == "\t":
-                 iter_ = model.append(None, [line.strip()])
-             else:
-                 model.append(iter_, [line.strip()])
-                 self.expand_to_path(model.get_path(iter_))
-         file_.close()
+        """
+           Metodo que se ejecuta cuando inicia la aplicacion, es el encargado
+           de inicializar el historial de comandos con los datos que quedaron 
+           guardados en el fichero correspondiente al mismo.
+        """
+        model = self.__tree
+        path = os.path.join(os.environ["HOME"], "command_history")
+        if self.__project:
+            path = os.path.join(self.__localization, "HIST", ".hist.txt~")
+        file_ = self._open_file("r", path)
+        for line in file_:
+            if line[0] == "\t":
+                iter_ = model.append(None, [line.strip()])
+            else:
+                model.append(iter_, [line.strip()])
+                self.expand_to_path(model.get_path(iter_))
+        file_.close()
         
     def append(self, p_text):
         """
@@ -252,8 +269,8 @@ class CommandHistory(gtk.TreeView):
 
     def _get_date(self):
         """
-			Retorna: la fecha actual con el formato que se mostrara en el
-					 historial de comandos.
+            Retorna: la fecha actual con el formato que se mostrara en el
+                     historial de comandos.
 
             Metodo que convierte la fecha actual en el formato que sera 
             mostrado en el historial de comandos 
@@ -268,7 +285,7 @@ class CommandHistory(gtk.TreeView):
     def copy(self):
         """
             Retorna: una lista con las direcciones de las filas seleccionadas
-            		 en el historial de comandos.
+            	     en el historial de comandos.
 
             Si hay seleccion en el 'CommandHistory', entonces se copia al
             'gtk.Clipboard' el texto comprendido en la misma
@@ -305,7 +322,7 @@ class CommandHistory(gtk.TreeView):
         model = self.__tree
         copy = self.__copy_of_history
         
-        if self.__pointer["row"] is not None:
+        if self.__pointer["row"] != None:
             p_r = copy[self.__pointer["row"]]
         
         for i in xrange(len(p_list_of_path) - 1, -1, -1):
@@ -314,7 +331,7 @@ class CommandHistory(gtk.TreeView):
             if not model.iter_has_child(iter_) and path != model[len(model) - 1].path:
                 model.remove(iter_)
                 
-                if self.__pointer["row"] is not None and path < p_r:
+                if self.__pointer["row"] != None and path < p_r:
                     self.__pointer["row"] -= 1
    
     def clear(self):
@@ -323,17 +340,18 @@ class CommandHistory(gtk.TreeView):
             correspondiente al mismo, dejando en estos solo la fecha mas
             reciente.
         """
-        msg = "Are you sure you want to delete your entire history?"
-        resp = Confirm(gtk.STOCK_DIALOG_QUESTION, msg, "Command History",
+        if not self.__project:
+            msg = "Are you sure you want to delete your entire history?"
+            resp = Confirm(gtk.STOCK_DIALOG_QUESTION, msg, "Command History",
                        self.__parent).run()
-        if not resp:
-            return
+            if not resp:
+                return
         model = self.__tree
         date = model[model[len(model) - 1].path][0]
         model.clear()
         model.append(None, [date])
         
-        if self.__pointer["row"] is not None:
+        if self.__pointer["row"] != None:
             if model[len(model) - 1].path < self.__copy_of_history[self.__pointer["row"]]:
                 self.__pointer["row"] = 1
             else:
@@ -495,6 +513,9 @@ class CommandHistory(gtk.TreeView):
 
             tbar.get_cut().set_sensitive(False)
             tbar.get_copy().set_sensitive(False)
+        
+        #if self.__project:
+        #    project_menu.get_project().get_p_menu()
 
     def activate(self):
         """
@@ -502,3 +523,34 @@ class CommandHistory(gtk.TreeView):
             herramientas del mismo.
         """
         self.__mwindow.set_menu_bar(self.__mbar, self.__tbar, 1)
+
+    def set_project(self, p_project, p_localization = None):
+        """
+            p_project: True o False. Identifica si se esta trabajando en un 
+                       proyecto o no
+		
+            p_localization: una cadena de texto. Representa la localizacion 
+                            del proyecto
+ 
+            Asigna nuevos valores a las variables <self.__project> y 
+            <self.__localization>
+        """        
+        self.__project = p_project
+        self.__localization = p_localization
+    
+    def clear_entire_history(self):        
+        """
+            Elimina todos los datos del historial de comandos para levantar el 
+            historial que no pertenece al proyecto.
+        """        
+        model = self.__tree        
+        model.clear()
+        self._load()
+        model = self.__tree
+        copy = []        
+        for row in model:
+            copy.append(row.path)
+            for i in xrange(model.iter_n_children(row.iter)):
+                copy.append((row.path[0], i))
+        self.__copy_of_history = copy
+        

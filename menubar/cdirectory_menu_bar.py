@@ -1,3 +1,5 @@
+import gtk
+
 from menubar.context_menu_bar import ContextMenuBar
 from menubar.menu.cdirectory.cdirectory_file_menu import CDirectoryFileMenu
 from menubar.menu.cdirectory.cdirectory_edit_menu import CDirectoryEditMenu
@@ -15,7 +17,7 @@ class CDirectoryMenuBar(ContextMenuBar):
         """
             p_mwindow: un 'MainWindow'.
 
-            Retorna:   un 'CDirectoryMenuBar'.
+            Retorna: un 'CDirectoryMenuBar'.
 
             Crea un nuevo 'CDirectoryMenuBar'.
         """
@@ -27,6 +29,10 @@ class CDirectoryMenuBar(ContextMenuBar):
         # Edit
         self.append_item("_Edit", CDirectoryEditMenu(p_mwindow))
 
+        # Debug
+        self.__debug = gtk.Menu()
+        self.append_item("De_bug", self.__debug)
+
         # Window
         self.append_item("_Window", CDirectoryWindowMenu(p_mwindow))
 
@@ -34,3 +40,11 @@ class CDirectoryMenuBar(ContextMenuBar):
         self.append_item("_Help", CDirectoryHelpMenu(p_mwindow))
 
         self.show_all()
+
+    def get_debug(self):
+        """
+            Retorna: un 'gtk.Menu'.
+
+            Retorna el menu 'Debug' de la barra de menu del 'CurrentDirectory'.
+        """
+        return self.__debug

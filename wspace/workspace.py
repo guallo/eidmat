@@ -3,10 +3,10 @@ import gtk
 
 from util.confirm import Confirm
 from util.message import Message
-from cmd.save_vars import SaveVars
-from cmd.new_var import NewVar
-from cmd.delete_var import DeleteVar
-from cmd.duplicate_var import DuplicateVar
+from cmds.save_vars import SaveVars
+from cmds.new_var import NewVar
+from cmds.delete_var import DeleteVar
+from cmds.duplicate_var import DuplicateVar
 from wspace.workspace_toolbar import WorkspaceToolbar
 from wspace.list_vars import ListVars
 from wspace.workspace_save_dialog import WorkspaceSaveDialog
@@ -61,6 +61,14 @@ class Workspace(gtk.VBox):
 
         self.update_appearance()
 
+    def get_mbar(self):
+        """
+            Retorna: un WSpaceMenuBar.
+
+            Devuelve la barra de menus del Workspace.
+        """
+        return self.__mbar
+
     def import_wiz_closed(self):
         """
             Informa que el asistente de importacion de variables
@@ -81,8 +89,8 @@ class Workspace(gtk.VBox):
     def update(self, p_vars):
         """
             p_vars: una 'list'(lista) con datos de las variables definidas por
-                    el usuario como su nombre, tamanno, bytes y clase a la que
-                    pertenece.
+                    el usuario como su nombre, tamanno, bytes, clase a la que
+                    pertenece, entre otros.
 
             Este metodo es llamado cuando se necesita actualizar el 'ListVars'
             (listado de variables) del 'Workspace' con 'p_vars'. Llama el
@@ -134,11 +142,14 @@ class Workspace(gtk.VBox):
                 "%s\n\n%s" %(path, "\n".join(msg)), "Importing Failed",
                 self.__parent).run()
 
-    def save(self, p_all=True):
+    def save(self, p_all=True, p_path = None):
         """
             p_all: 'True' si se quieren guardar todas las variables o 'False'
                    si solo se quieren guardar las variables seleccionadas.
-
+            p_path: Contiene la localizacion directa del path donde se 
+                   guardaran todas las variables del workspace utilizada en el 
+                   trabajo con proyecto.
+            
             Muestra un dialogo para que el usuario indique donde guardar las
             variables, una vez indicado el fichero, se guardan las variables
             en el mismo.
@@ -148,11 +159,14 @@ class Workspace(gtk.VBox):
 
         ########################## BEGIN ###############################
         while True:
-            path = WorkspaceSaveDialog(parent, current_dir.get_path()).run()
-
-            if not path:
-                break
-
+            if p_path:
+                path = p_path
+            else:
+                path = WorkspaceSaveDialog(parent, 
+                                           current_dir.get_path()).run()
+                if not path:
+                    break
+            
             save = True
 
             # if (Existe el archivo):

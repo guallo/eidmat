@@ -28,6 +28,12 @@ class NewSubmenu(Menu):
         self.append(var_item)
         var_item.connect("activate", self.on_var_activate)
 
+        # M-File
+        file_item = self.create_item("image", "M-F_ile",
+                                   os.path.join(root, "images", "file.png"))
+        self.append(file_item)
+        file_item.connect("activate", self.on_file_activate)
+
     def on_var_activate(self, p_item):
         """
             p_item: el 'gtk.ImageMenuItem' que recibio la sennal.
@@ -39,3 +45,12 @@ class NewSubmenu(Menu):
 
         wspace.grab_focus()
         wspace.new_var()
+
+    def on_file_activate(self, p_item):
+        """
+            p_item: el 'gtk.ImageMenuItem' que recibio la sennal.
+
+            Se ejecuta cuando el usuario activa el elemento de menu
+            'M-File'. Llama el metodo 'MainWindow.show_edebugger'.
+        """
+        self._mwindow.show_edebugger(True, True)

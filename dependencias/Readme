@@ -1,0 +1,7 @@
+Pasos para instalar las versiones necesarias de 'GtkSourceView' y 'Octave':
+    1- Desinstalar cualquier versión de GtkSourceView presente en la PC.
+    2- Desinstalar cualquier versión de Octave presente en la PC.
+    3- Instalar "GtkSourceView/gtksourceview-2.9.9.tar.gz".
+    4- Instalar "GtkSourceView/pygtksourceview-2.9.2.tar.gz".
+    5- Instalar "Octave/octave3.2-common_3.2.3-1_all.deb".
+    6- Instalar "Octave/octave3.2_3.2.3-1_i386.deb".
