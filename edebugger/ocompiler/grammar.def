@@ -1,0 +1,100 @@
+program                 : blocks END_OF_INPUT
+
+blocks                  : //empty
+                        | block blocks
+
+block                   : do_block
+                        | for_block
+                        | function_block
+                        | if_block
+                        | elseif_block
+                        | else_block
+                        | switch_block
+                        | case_block
+                        | otherwise_block
+                        | try_block
+                        | catch_block
+                        | unwind_protect_block
+                        | unwind_protect_cleanup_block
+                        | while_block
+
+do_block                : DO blocks UNTIL
+for_block               : FOR blocks ENDFOR
+function_block          : function_header blocks ENDFUNCTION
+if_block                : IF blocks ENDIF
+elseif_block            : ELSEIF blocks ENDELSEIF
+else_block              : ELSE blocks ENDELSE
+switch_block            : SWITCH blocks ENDSWITCH
+case_block              : CASE blocks ENDCASE
+otherwise_block         : OTHERWISE blocks ENDOTHERWISE
+try_block               : TRY blocks ENDTRY
+catch_block             : CATCH blocks ENDCATCH
+unwind_protect_block    : UNWIND_PROTECT blocks END_UNWIND_PROTECT
+unwind_protect_cleanup_block    : UNWIND_PROTECT_CLEANUP blocks END_UNWIND_PROTECT_CLEANUP
+while_block             : WHILE blocks ENDWHILE
+
+function_header         : FUNCTION function_header1
+
+function_header1        : IDENTIFIER function_header2
+                        | '[' return_list_cont '=' IDENTIFIER
+
+function_header2        : //empty
+                        | '=' IDENTIFIER
+                        | ',' IDENTIFIER more_indetifiers '=' IDENTIFIER
+
+return_list_cont        : ']'
+                        | IDENTIFIER more_indetifiers ']'
+
+more_indetifiers        : //empty
+                        | ',' IDENTIFIER more_indetifiers
+_______________________________________________________________________________
+
+END_OF_INPUT
+DO
+UNTIL
+FOR
+ENDFOR
+ENDFUNCTION
+IF
+ENDIF
+ELSEIF
+ENDELSEIF
+ELSE
+ENDELSE
+SWITCH
+ENDSWITCH
+CASE
+ENDCASE
+OTHERWISE
+ENDOTHERWISE
+TRY
+ENDTRY
+CATCH
+ENDCATCH
+UNWIND_PROTECT
+END_UNWIND_PROTECT
+UNWIND_PROTECT_CLEANUP
+END_UNWIND_PROTECT_CLEANUP
+WHILE
+ENDWHILE
+FUNCTION
+IDENTIFIER
+'='
+'['
+']'
+','
+_______________________________________________________________________________
+
+%
+#
+%{ %}
+_______________________________________________________________________________
+""
+''
+\
+( )
+{ }
+.'
+.\
+.\=
+\=

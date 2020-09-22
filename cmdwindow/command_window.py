@@ -6,7 +6,7 @@ from cmdwindow.command_window_menu import CommandWindowMenu
 from cmdwindow.command_window_buffer import CommandWindowBuffer
 from menubar.cmdwindow_menu_bar import CMDWindowMenuBar
 from toolbar.cmdwindow_toolbar import CMDWindowToolbar
-from cmd.clear_cmdwindow import ClearCMDWindow
+from cmds.clear_cmdwindow import ClearCMDWindow
 from util.confirm import Confirm
 
 
@@ -35,6 +35,7 @@ class CommandWindow(gtk.TextView):
         self.__history = p_cmdhistory
         self.__ps1 = ">> "
         self.__ps2 = ""
+        self.__ps3 = "K>> "
         self.__confirmed_clear = False
         self.__mbar = CMDWindowMenuBar(p_mwindow)
         self.__tbar = CMDWindowToolbar(p_mwindow)
@@ -49,6 +50,14 @@ class CommandWindow(gtk.TextView):
         self.connect_after("realize", self.on_realize)
 
         gobject.timeout_add(200, lambda: not self.update_appearance())
+
+    def get_mbar(self):
+        """
+            Retorna: un CMDWindowMenuBar.
+
+            Devuelve la barra de menus del CommandWindow.
+        """
+        return self.__mbar
 
     def get_ps1(self):
         """
@@ -69,6 +78,28 @@ class CommandWindow(gtk.TextView):
             complete una sentencia determinada.
         """
         return self.__ps2
+
+    def get_ps3(self):
+        """
+            Retorna: una cadena que es el 'prompt de debugeo' de 'Octave'.
+
+            Retorna la cadena que representa el 'prompt de debugeo' de
+            'Octave'. Este prompt es el que muestra 'Octave' cuando esta
+            en modo de debugeo.
+        """
+        return self.__ps3
+
+    def replace_prompt(self, p_psx, p_replacer):
+        buff = self.__buff
+        replacer_length = len(unicode(p_replacer, "utf-8"))
+        prompt = {1: self.__ps1, 2: self.__ps2}.get(p_psx, self.__ps3)
+        prompt_length = len(unicode(prompt, "utf-8"))
+
+        before_prompt = max(0, buff.limit - prompt_length)
+        buff.delete(before_prompt, buff.limit)
+        buff.insert(before_prompt, p_replacer)
+        buff.limit = before_prompt + replacer_length
+        buff.update_no_editable_zone()
 
     def key_press_event(self, p_cmdwindow, p_event):
         """
@@ -350,7 +381,7 @@ class CommandWindow(gtk.TextView):
             Pega el contenido del 'gtk.Clipboard' en el 'CommandWindow'.
         """
         text = self.get_clipboard("CLIPBOARD").wait_for_text()
-        if text is None:
+        if text == None:
             return
 
         buff = self.__buff
@@ -526,7 +557,7 @@ class CommandWindow(gtk.TextView):
         if not self.has_screen():
             return
 
-        if self.get_clipboard("CLIPBOARD").wait_for_text() is None:
+        if self.get_clipboard("CLIPBOARD").wait_for_text() == None:
             edit_menu.get_paste().set_sensitive(False)
 
             tbar.get_paste().set_sensitive(False)

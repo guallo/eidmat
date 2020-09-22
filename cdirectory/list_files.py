@@ -25,7 +25,10 @@ class ListFiles(gtk.TreeView):
         self._create_column("File Type", (("text", 2), ))
         self._create_column("Size", (("text", 3), ))
         self._create_column("Last Modified", (("text", 4), ))
+    
+        self.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
 
+        self.connect("key-press-event", self.on_key_press_event)
         self.connect('row-activated', self.on_row_activated)
         self.connect("focus-in-event", self.on_focus_in_event)
         self.get_selection().connect("changed", self.on_selection_changed)
@@ -54,21 +57,52 @@ class ListFiles(gtk.TreeView):
             col.add_attribute(cell, t[0], t[1])
         self.append_column(col)
 
+    def on_key_press_event(self, p_list, p_event):
+        """
+            p_list:  el 'ListFiles' que recibio la sennal.
+            p_event: el evento que desencadeno la sennal.
+
+            Retorna:      'True' si se presiono la tecla 'Enter'. Retornar
+                          'True' detiene otros manejadores que se invocan
+                           para el evento.
+
+                          'False' si se presiono la teclas Space+Ctrl. Retornar
+                          'False' permite que se hagan otros manejadores que se
+                           invocan para el evento.
+
+            Si se presiona 'Enter', 'Return' o 'Space' se llama el metodo
+            'ListFiles.on_row_activated'.
+        """
+        ascii = p_event.keyval
+        flags = p_event.state
+        
+        if ascii in (65293, 65421, 32):  # enter izq, enter der, space
+            if ascii == 32 and int(gtk.gdk.CONTROL_MASK & flags):
+                return False
+
+            self.on_row_activated(None, None, None)
+            return True
+
     def on_row_activated(self, p_list, p_path, p_col):
         """
             p_list: el 'ListFiles' que recibio la sennal.
             p_path: un camino de arbol que apunta a la fila activada.
             p_col:  la columna en la fila activada.
 
-            Se ejecuta cuando el usuario da doble click o presiona la tecla
-            'Enter' sobre alguna fila del listado de archivos('ListFiles').
-            Llama el metodo 'CurrentDirectory.try_to_open' pasando como
-            parametro la direccion del archivo o directorio seleccionado.
+            Llama el metodo 'CurrentDirectory.try_to_open' para cada
+            fila seleccionada.
         """
-        model, iter_ = self.get_selection().get_selected()
+        model, paths = self.get_selection().get_selected_rows()
 
-        if iter_:
-            self.__cdirectory.try_to_open(model.get_value(iter_, 6))
+        if paths:
+            files = [path for path in paths if not os.path.isdir(model[path][6])]
+
+            if files:
+                for file_ in files:
+                    self.__cdirectory.try_to_open(model[file_][6])
+
+            elif len(paths) == 1:
+                self.__cdirectory.try_to_open(model[paths[0]][6])
 
     def on_focus_in_event(self, p_list, p_event):
         """

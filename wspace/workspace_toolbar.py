@@ -23,7 +23,7 @@ class WorkspaceToolbar(gtk.Toolbar):
         # Boton para crear nuevas variables.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "new_var.png"))
-        new = gtk.ToolButton(img)
+        new = gtk.ToolButton(img, "New")
         new.set_tooltip_text("New variable")
         new.connect("clicked", self.on_new_clicked)
         new.connect("focus", self.on_button_focus)
@@ -32,7 +32,7 @@ class WorkspaceToolbar(gtk.Toolbar):
         # Boton para importar datos
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "import_data.png"))
-        import_ = gtk.ToolButton(img)
+        import_ = gtk.ToolButton(img, "Import")
         import_.set_tooltip_text("Import data")
         import_.connect("clicked", self.on_import_clicked)
         import_.connect("focus", self.on_button_focus)
@@ -41,7 +41,7 @@ class WorkspaceToolbar(gtk.Toolbar):
         # Boton para salvar el workspace
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "save_workspace.png"))
-        save = gtk.ToolButton(img)
+        save = gtk.ToolButton(img, "Save")
         save.set_tooltip_text("Save")
         save.connect("clicked", self.on_save_clicked)
         save.connect("focus", self.on_button_focus)
@@ -53,7 +53,7 @@ class WorkspaceToolbar(gtk.Toolbar):
         # Boton para eliminar variables.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "delete_var.png"))
-        self.__delete = gtk.ToolButton(img)
+        self.__delete = gtk.ToolButton(img, "Delete")
         self.__delete.set_tooltip_text("Delete")
         self.__delete.connect("clicked", self.on_delete_clicked)
         self.__delete.connect("focus", self.on_button_focus)

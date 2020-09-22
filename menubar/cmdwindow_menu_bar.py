@@ -1,3 +1,5 @@
+import gtk
+
 from menubar.context_menu_bar import ContextMenuBar
 from menubar.menu.cmdwindow.cmdwindow_file_menu import CMDWindowFileMenu
 from menubar.menu.cmdwindow.cmdwindow_edit_menu import CMDWindowEditMenu
@@ -28,6 +30,10 @@ class CMDWindowMenuBar(ContextMenuBar):
         self.__edit = CMDWindowEditMenu(p_mwindow)
         self.append_item("_Edit", self.__edit)
 
+        # Debug
+        self.__debug = gtk.Menu()
+        self.append_item("De_bug", self.__debug)
+
         # Window
         self.append_item("_Window", CMDWindowWindowMenu(p_mwindow))
 
@@ -43,3 +49,11 @@ class CMDWindowMenuBar(ContextMenuBar):
             Retorna el menu editar de la barra de menu del 'CommandWindow'.
         """
         return self.__edit
+
+    def get_debug(self):
+        """
+            Retorna: un 'gtk.Menu'.
+
+            Retorna el menu 'Debug' de la barra de menu del 'CommandWindow'.
+        """
+        return self.__debug

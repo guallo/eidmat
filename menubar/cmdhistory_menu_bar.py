@@ -1,3 +1,5 @@
+import gtk
+
 from menubar.context_menu_bar import ContextMenuBar
 from menubar.menu.cmdhistory.cmdhistory_file_menu import CMDHistoryFileMenu
 from menubar.menu.cmdhistory.cmdhistory_edit_menu import CMDHistoryEditMenu
@@ -28,6 +30,10 @@ class CMDHistoryMenuBar(ContextMenuBar):
         self.__edit = CMDHistoryEditMenu(p_mwindow)
         self.append_item("_Edit", self.__edit)
 
+        # Debug
+        self.__debug = gtk.Menu()
+        self.append_item("De_bug", self.__debug)
+
         # Window
         self.append_item("_Window", CMDHistoryWindowMenu(p_mwindow))
 
@@ -40,6 +46,14 @@ class CMDHistoryMenuBar(ContextMenuBar):
         """
             Retorna: un 'CMDHistoryEditMenu'.
 
-            Retorna el menu editar de la barra de menu del 'CommandHistory'.
+            Retorna el menu 'Edit' de la barra de menu del 'CommandHistory'.
         """
         return self.__edit
+
+    def get_debug(self):
+        """
+            Retorna: un 'gtk.Menu'.
+
+            Retorna el menu 'Debug' de la barra de menu del 'CommandHistory'.
+        """
+        return self.__debug

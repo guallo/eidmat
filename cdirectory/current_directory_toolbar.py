@@ -23,7 +23,7 @@ class CurrentDirectoryToolbar(gtk.Toolbar):
         # Boton para subir un nivel en el arbol de directorios.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "go_up.png"))
-        self.__up = gtk.ToolButton(img)
+        self.__up = gtk.ToolButton(img, "Up")
         self.__up.set_tooltip_text("Go up one level")
         self.insert(self.__up, -1)
 

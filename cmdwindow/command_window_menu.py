@@ -71,7 +71,7 @@ class CommandWindowMenu(Menu):
                                       p_accel="Ctrl+L")
         clear_item.connect("activate", self.on_clear_activate)
 
-        if self.get_clipboard("CLIPBOARD").wait_for_text() is None:
+        if self.get_clipboard("CLIPBOARD").wait_for_text() == None:
             paste_item.set_sensitive(False)
 
         if not selection:

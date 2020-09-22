@@ -2,7 +2,7 @@ import os
 import gtk
 
 from wspace.list_vars_menu import ListVarsMenu
-from cmd.rename_var import RenameVar
+from cmds.rename_var import RenameVar
 
 
 class ListVars(gtk.TreeView):
@@ -20,14 +20,14 @@ class ListVars(gtk.TreeView):
         """
         gtk.TreeView.__init__(self)
 
-        self.set_model(gtk.ListStore(gtk.gdk.Pixbuf,
-                                     str, str, str, str, "gboolean"))
+        self.set_model(gtk.ListStore(gtk.gdk.Pixbuf, str, str, str, str, str))
         self.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
 
         self._create_column("Name", (("pixbuf", 0), ("text", 1)), True)
         self._create_column("Size", (("text", 2), ))
         self._create_column("Bytes", (("text", 3), ))
         self._create_column("Class", (("text", 4), ))
+        self._create_column("Attributes", (("text", 5), ))
 
         self.get_selection().connect("changed", self.on_selection_changed)
         self.connect("button-press-event", self.on_button_press_event)
@@ -224,9 +224,14 @@ class ListVars(gtk.TreeView):
 
     def show_vars(self, p_vars):
         """
-            p_vars: una 'list'(lista) con datos de las variables definidas por
-                    el usuario como su nombre, tamanno, bytes, clase y si es
-                    global o no.
+            p_vars: una lista('list') de listas, donde cada sublista contiene
+                    los datos de una variable determinada, los datos son:
+
+                    - atributos
+                    - nombre
+                    - tamanno
+                    - bytes
+                    - clase
 
             Muestra los datos de las variables contenidas en 'p_vars'.
         """
@@ -240,12 +245,12 @@ class ListVars(gtk.TreeView):
                   "cell"  : "class_cell.png",
                   "sym"   : "class_sym.png"}
         root = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir))
+
         for pos, var in enumerate(p_vars):
             img = images.get(var[4], "class_double.png")
             pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(root, "images",
                                                                img))
-            var[4] += ("", " (global)")[var[5]]
-            model.append([pixbuf, var[1], var[2], var[3], var[4], var[5]])
+            model.append([pixbuf, var[1], var[2], var[3], var[4], var[0]])
             if var[1] in selected_vars:
                 self.get_selection().select_path((pos, ))
 

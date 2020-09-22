@@ -23,11 +23,9 @@ class Terminal(vte.Terminal):
         self.connect("contents-changed", self.on_contents_changed)
 
         self.set_scrollback_lines(2172)  # 1.4 Mb
-        self.fork_command("octave",
-                         ["", "--braindead", "-q", "--no-history", "-f"])
+        self.fork_command("octave", ["", "--braindead", "-q", "--no-history", "-f"])
 
-        self.feed_child("if(exist('OCTAVE_VERSION')==5);PS1('%s');else;\
-                         PS1='%s';endif;" %(PS1, PS1))
+        self.feed_child("if (exist('OCTAVE_VERSION') == 5); PS1('%s'); else; PS1 = '%s'; endif;" %(PS1, PS1))
 
     def on_contents_changed(self, p_term):
         """

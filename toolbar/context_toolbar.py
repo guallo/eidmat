@@ -26,10 +26,21 @@ class ContextToolbar(gtk.Toolbar):
 
         root = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir))
 
+        # Boton para mostrar el editor.
+        img = gtk.Image()
+        img.set_from_file(os.path.join(root, "images", "file.png"))
+        self._file = gtk.ToolButton(img, "New")
+        self._file.set_tooltip_text("New M-File")
+        self._file.connect("clicked", self.on_file_clicked)
+        self.insert(self._file, -1)
+
+        # Separador.
+        self.insert(gtk.SeparatorToolItem(), -1)
+
         # Boton cortar.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "cut.png"))
-        self._cut = gtk.ToolButton(img)
+        self._cut = gtk.ToolButton(img, "Cut")
         self._cut.set_tooltip_text("Cut")
         self._cut.connect("clicked", self.on_cut_clicked)
         self.insert(self._cut, -1)
@@ -37,7 +48,7 @@ class ContextToolbar(gtk.Toolbar):
         # Boton copiar.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "copy.png"))
-        self._copy = gtk.ToolButton(img)
+        self._copy = gtk.ToolButton(img, "Copy")
         self._copy.set_tooltip_text("Copy")
         self._copy.connect("clicked", self.on_copy_clicked)
         self.insert(self._copy, -1)
@@ -45,7 +56,7 @@ class ContextToolbar(gtk.Toolbar):
         # Boton pegar.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "paste.png"))
-        self._paste = gtk.ToolButton(img)
+        self._paste = gtk.ToolButton(img, "Paste")
         self._paste.set_tooltip_text("Paste")
         self._paste.connect("clicked", self.on_paste_clicked)
         self.insert(self._paste, -1)
@@ -56,7 +67,7 @@ class ContextToolbar(gtk.Toolbar):
         # Boton para mostrar la ayuda.
         img = gtk.Image()
         img.set_from_file(os.path.join(root, "images", "help.png"))
-        help = gtk.ToolButton(img)
+        help = gtk.ToolButton(img, "Help")
         help.set_tooltip_text("Help")
         help.connect("clicked", self.on_help_clicked)
         self.insert(help, -1)
@@ -78,6 +89,14 @@ class ContextToolbar(gtk.Toolbar):
         browse.set_tooltip_text("Browse for folder")
         browse.child.connect("clicked", self.on_browse_clicked)
         self.insert(browse, -1)
+
+    def get_file(self):
+        """
+            Retorna: un 'gtk.ToolButton'.
+
+            Retorna el boton 'New M-File'.
+        """
+        return self._file
 
     def get_cut(self):
         """
@@ -107,7 +126,7 @@ class ContextToolbar(gtk.Toolbar):
         """
             Elimina el 'ComboOfDirectories' de la 'ContextToolbar'.
         """
-        item = self.get_nth_item(7)
+        item = self.get_nth_item(9)
 
         item.remove(self._mwindow.get_combo())
         self.remove(item)
@@ -126,7 +145,7 @@ class ContextToolbar(gtk.Toolbar):
         item = gtk.ToolItem()
         item.add(self._mwindow.get_combo())
         item.show_all()
-        self.insert(item, 7)
+        self.insert(item, 9)
 
     def insert_butt_up(self):
         """
@@ -185,6 +204,15 @@ class ContextToolbar(gtk.Toolbar):
             Llama el metodo 'MainWindow.show_help'.
         """
         self._mwindow.show_help()
+
+    def on_file_clicked(self, p_butt):
+        """
+            p_butt: el 'gtk.ToolButton' que recibio la sennal.
+
+            Se ejecuta cuando el usuario da click en el boton 'New M-File'.
+            Llama el metodo 'MainWindow.show_edebugger'.
+        """
+        self._mwindow.show_edebugger(True, True)
 
     def on_browse_clicked(self, p_butt):
         """
