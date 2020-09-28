@@ -3,7 +3,7 @@
 Para ejecutar EIDMAT solo debe dar doble click al 'run.py'
 
 Dependencias:
-* python-gtk
+* python-gtk2
 * python-vte
 * python-gtkmozembed
 * python-gtksourceview >= 2.9.2
